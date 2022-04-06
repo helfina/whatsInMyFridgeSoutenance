@@ -53,11 +53,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Recette::class, inversedBy: 'favoris')]
     private $favoris;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Avis::class, orphanRemoval: true)]
+    private $avis;
+
 
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
         $this->recettes = new ArrayCollection();
+        $this->avis = new ArrayCollection();
     }
 
 
@@ -265,6 +269,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeFavori(Recette $favori): self
     {
         $this->favoris->removeElement($favori);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): self
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis[] = $avi;
+            $avi->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): self
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getUser() === $this) {
+                $avi->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -50,6 +50,9 @@ class Recette
     #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Composition::class, orphanRemoval: true)]
     private $compositions;
 
+    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Avis::class, orphanRemoval: true)]
+    private $avis;
+
 
     public function __construct()
     {
@@ -222,6 +225,36 @@ class Recette
             // set the owning side to null (unless already changed)
             if ($composition->getRecette() === $this) {
                 $composition->setRecette(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Avis>
+     */
+    public function getAvis(): Collection
+    {
+        return $this->avis;
+    }
+
+    public function addAvi(Avis $avi): self
+    {
+        if (!$this->avis->contains($avi)) {
+            $this->avis[] = $avi;
+            $avi->setRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAvi(Avis $avi): self
+    {
+        if ($this->avis->removeElement($avi)) {
+            // set the owning side to null (unless already changed)
+            if ($avi->getRecette() === $this) {
+                $avi->setRecette(null);
             }
         }
 
