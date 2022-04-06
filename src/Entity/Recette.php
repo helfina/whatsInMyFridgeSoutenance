@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\RecetteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RecetteRepository::class)]
@@ -43,10 +44,14 @@ class Recette
     #[ORM\JoinColumn(nullable: false)]
     private $category;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoris')]
+    private $favoris;
+
 
     public function __construct()
     {
         $this->avis = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -158,6 +163,33 @@ class Recette
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(User $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris[] = $favori;
+            $favori->addFavori($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(User $favori): self
+    {
+        if ($this->favoris->removeElement($favori)) {
+            $favori->removeFavori($this);
+        }
 
         return $this;
     }
