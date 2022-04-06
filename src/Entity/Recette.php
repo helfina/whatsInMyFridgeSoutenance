@@ -35,6 +35,14 @@ class Recette
     #[ORM\Column(type: 'integer')]
     private $cook_time;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'recettes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'recettes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
+
 
     public function __construct()
     {
@@ -126,6 +134,30 @@ class Recette
     public function setCookTime(int $cook_time): self
     {
         $this->cook_time = $cook_time;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
