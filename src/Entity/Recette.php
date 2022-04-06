@@ -47,11 +47,15 @@ class Recette
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'favoris')]
     private $favoris;
 
+    #[ORM\OneToMany(mappedBy: 'recette', targetEntity: Composition::class, orphanRemoval: true)]
+    private $compositions;
+
 
     public function __construct()
     {
         $this->avis = new ArrayCollection();
         $this->favoris = new ArrayCollection();
+        $this->compositions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +193,36 @@ class Recette
     {
         if ($this->favoris->removeElement($favori)) {
             $favori->removeFavori($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Composition>
+     */
+    public function getCompositions(): Collection
+    {
+        return $this->compositions;
+    }
+
+    public function addComposition(Composition $composition): self
+    {
+        if (!$this->compositions->contains($composition)) {
+            $this->compositions[] = $composition;
+            $composition->setRecette($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComposition(Composition $composition): self
+    {
+        if ($this->compositions->removeElement($composition)) {
+            // set the owning side to null (unless already changed)
+            if ($composition->getRecette() === $this) {
+                $composition->setRecette(null);
+            }
         }
 
         return $this;
