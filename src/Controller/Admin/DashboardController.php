@@ -55,8 +55,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Show Categories', 'fas fa-list', Category::class)
         ]);
         yield MenuItem::subMenu('Ingredients', 'fas fa-list')->setSubItems([
-            MenuItem::linkToCrud('Add Ingredient', 'fas fa-list', Ingredient::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Show Ingredients', 'fas fa-list', Ingredient::class)->setAction(Crud::PAGE_INDEX)
+            MenuItem::linkToCrud('Ajouter un ingredient', 'fas fa-list', Ingredient::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Ingredients enregistrés', 'fas fa-list', Ingredient::class)->setAction(Crud::PAGE_INDEX)
         ]);
         yield MenuItem::subMenu('Compositions', 'fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Add Composition', 'fas fa-list', Composition::class)->setAction(Crud::PAGE_NEW),
