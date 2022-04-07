@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1>Hello {{ app_user.firstname }}! ✅</h1>
+    <h1>Hello {{ app.user.firstname }}! ✅</h1>
 
     {% if app.user %}
         {% if is_granted('ROLE_ADMIN') %}
