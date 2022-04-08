@@ -5,7 +5,7 @@
 {% block body %}
 
     <h1>Hello {{ app.user.firstname }}! ✅</h1>
-
+    <h2>Profil</h2>
     {% if app.user %}
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a> |

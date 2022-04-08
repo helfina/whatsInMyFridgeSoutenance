@@ -1,0 +1,29 @@
+
+ 
+ <div class="cards p-0 justify-content-between ">
+
+
+					<div class="photo">
+						<img src="{{asset('img/' ~ recette.photo)}}" alt="{{recette.slug}}">
+					</div>
+					<div class="cont-card">
+						<h3>{{recette.title}}</h3>
+						<p>{{recette.prepare}}</p>
+
+						<div class="time">
+							<p>
+								Temps de préparation :
+								{{recette.timePrepare}}
+								min</p>
+							<p>Temps de cuisson :
+								{{recette.cookTime}}
+								min</p>
+						</div>
+
+						<a href="#">voir la recette</a>
+
+
+					</div>
+
+
+				</div> 
