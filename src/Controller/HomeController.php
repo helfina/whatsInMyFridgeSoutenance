@@ -19,13 +19,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/compte', name: 'app_account')]
-    public function profil(): Response
-    {
-        return $this->render('home/profil/index.html.twig', [ 
-            'Salut' => 'Salut',
-    ]);
-    }
 }
 
 
