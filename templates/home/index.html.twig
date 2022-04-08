@@ -1,21 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
 
-    <div class="example-wrapper">
+	<div class="example-wrapper">
 
-        <nav>
-            {% if app.user %}
-                <a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a> | <a
-                    href="{{ path('app_logout') }}">Déconnexion</a>
+		<nav>
+			{% if app.user %}
+				<a href="{{ path('app_account') }}">Mon compte
+					<small>({{ app.user.firstname }})</small>
+				</a>
+				|
+				<a href="{{ path('app_logout') }}">Déconnexion</a>
 
-            {% else %}
-                <a href="{{ path('app_login') }}">Connexion</a> | <a href="{{ path('app_register') }}">Inscription</a>
+			{% else %}
+				<a href="{{ path('app_login') }}">Connexion</a>
+				|
+				<a href="{{ path('app_register') }}">Inscription</a>
 
-            {% endif %}
+			{% endif %}
 
-        </nav>
-    </div>
+		</nav>
+
+		<div class="liste-card ">
+			{% for recette in recettes %}
+
+
+				{% include ("cards.html.twig") %}
+
+
+			{% endfor %}
+
+
+		</div>
+
+
+	</div>
+
+
 {% endblock %}
