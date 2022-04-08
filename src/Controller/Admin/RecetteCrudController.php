@@ -35,7 +35,7 @@ class RecetteCrudController extends AbstractCrudController
             AssociationField::new('category','Categorie'),
             TextareaField::new('prepare', 'Preparation')->setNumOfRows(10),
             ImageField::new('photo')->setUploadDir('./public/img')->setBasePath('./img'),
-            SlugField::new('slug', ('Renommer la photo'))->setTargetFieldName('title'),
+            SlugField::new('slug', 'Renommer la photo')->setTargetFieldName('title'),
             NumberField::new('time_prepare', 'Temps de preparation'),
             NumberField::new('cook_time', 'Temps de cuisson'),
             AssociationField::new('user', 'Utilisateur qui ajoute la recette'),
