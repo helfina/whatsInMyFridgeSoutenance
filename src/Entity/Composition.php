@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\CompositionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CompositionRepository;
 
 #[ORM\Entity(repositoryClass: CompositionRepository::class)]
 class Composition
@@ -40,7 +40,7 @@ class Composition
         return $this->ingredient;
     }
 
-    public function setIngredient(?Ingredient $ingredient): self
+    public function setIngredient(?Ingredient $ingredient): self 
     {
         $this->ingredient = $ingredient;
 
