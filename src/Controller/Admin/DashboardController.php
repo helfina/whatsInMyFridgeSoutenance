@@ -45,16 +45,16 @@ class DashboardController extends AbstractDashboardController
         ]);
 
 
-        yield MenuItem::section('Gestion Recettes');
-        yield MenuItem::subMenu('Recette', 'fas fa-book')->setSubItems([
-            MenuItem::linkToCrud('Add Recette', 'fas fa-book', Recette::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Show Recettes', 'fas fa-book', Recette::class)
+        yield MenuItem::section('Gestion des Recettes');
+        yield MenuItem::subMenu('Les recettes', 'fas fa-book')->setSubItems([
+            MenuItem::linkToCrud('Ajouter une recette', 'fas fa-book', Recette::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Recettes enregistrés', 'fas fa-book', Recette::class)
         ]);
         yield MenuItem::subMenu('Categories', 'fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Add Categorie', 'fas fa-list', Category::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Categories', 'fas fa-list', Category::class)
         ]);
-        yield MenuItem::subMenu('Ingredients', 'fas fa-list')->setSubItems([
+        yield MenuItem::subMenu('Les ingredients', 'fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Ajouter un ingredient', 'fas fa-list', Ingredient::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Ingredients enregistrés', 'fas fa-list', Ingredient::class)->setAction(Crud::PAGE_INDEX)
         ]);

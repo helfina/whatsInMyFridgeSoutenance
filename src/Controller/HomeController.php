@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\IngredientRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -23,6 +24,17 @@ class HomeController extends AbstractController
             'Salut' => 'Salut',
     ]);
     }
+
+    #[Route('/ingredient', name: '_ingredient')]
+    public function ingredient(IngredientRepository $ir): Response
+    {
+        $ingredients = $ir->findAll();
+        
+        return $this->render('home/ingredient.html.twig', [ 
+            'ingredients' => $ingredients,
+    ]);
+    }
+
 }
 
 

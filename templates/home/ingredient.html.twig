@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Ingredients!{% endblock %}
+
+{% block body %}
+<div class="container">  
+    {% for ingredient in ingredients %}
+    <h2>{{ ingredient }}</h2>
+    <p> Produit à consommer de préférence : {{ ingredient.saison|replace({'_':' '}) }}.</p>
+    <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="50">
+    {% endfor %}   
+</div> 
+{% endblock %}
