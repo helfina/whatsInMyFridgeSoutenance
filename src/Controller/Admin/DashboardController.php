@@ -40,8 +40,8 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToCrud('Show Users', 'fas fa-users', User::class)
         ]);
         yield MenuItem::subMenu('Avis', 'fas fa-list')->setSubItems([
-            MenuItem::linkToCrud('Add Composition', 'fas fa-list', Avis::class)->setAction(Crud::PAGE_NEW),
-            MenuItem::linkToCrud('Show Compositions', 'fas fa-list', Avis::class)
+            MenuItem::linkToCrud('Add Avis', 'fas fa-list', Avis::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Avis', 'fas fa-list', Avis::class)
         ]);
 
 
