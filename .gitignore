@@ -1,6 +1,7 @@
 /.idea/
 /migrations/
-
+.yarn
+.yarnrc.yml
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
