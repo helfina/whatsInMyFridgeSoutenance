@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Ingredients!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">  
+    <div class="row">
+        {% for ingredient in ingredients %}
+        <div class="col-md-4">
+            <h2>{{ ingredient }}</h2>
+            <p> <u>Produit à consommer de préférence :</u> {{ ingredient.saison|replace({'_':' '}) }}.</p>
+            <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="80">
+        </div>   
+        {% endfor %}
+    </div>    
+</div> 
+{% endblock %}
+
