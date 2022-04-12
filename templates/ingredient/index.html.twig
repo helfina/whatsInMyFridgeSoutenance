@@ -10,14 +10,12 @@
 
 <div class="container">  
     <div class="row">
-    <a class="btn btn-primary" href="{{path('app_ingredient_ajout')}}">Ajouter un ingrédient</a>
         {% for ingredient in ingredients %}
         <div class="col-md-4">
-            <h2>{{ ingredient }}</h2>
-            <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="80">
-            <a class="btn btn-primary" href="{{path('app_ingredient_detail', {'id': ingredient.id})}}">Voir le détail</a>
+            <h2>{{ ingredient }}</h2> 
+            <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="100">
             <p> <u>Produit à consommer de préférence :</u> {{ ingredient.saison|replace({'_':' '}) }}.</p>
-            
+           
         </div>   
         {% endfor %}
     </div>    

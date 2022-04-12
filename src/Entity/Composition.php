@@ -27,7 +27,7 @@ class Composition
     #[ORM\Column(type: 'float')]
     private $poids;
 
-    #[ORM\Column(type: 'float')]
+    #[ORM\Column(type: 'float', nullable: true)]
     private $quantite;
 
     public function getId(): ?int
