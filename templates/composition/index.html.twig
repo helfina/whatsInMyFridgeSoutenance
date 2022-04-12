@@ -13,16 +13,28 @@
         
         {% for recette in recettes %}
         <div class="col-md-4">
-        <h4> Pour réaliser cette recette : <i> {{ recette.title }} </i></h4>
-        <h5> Ingredients :
+        {# <button class="btn btn-primary" href="{{ path('app_recette_detail', {'id' : recette.id}) }}">Détail de la recette</button> #}
+        <h4> Pour réaliser la recette : <i> {{ recette.title }} </i></h4>
+            <div>
+                <h5> Ingredients :</h5>
+                    <ul>
+                    {% for composition in compositions %}
+                    {% if recette.id == composition.recette.id %}
+                        <li>{{composition.poids}} grammes de {{ composition.ingredient.name|lower }} </li>
+                    {% endif %}
+                    {% endfor %}
+                    </ul>
+            </div>
+
+        <p>Prix de cette recette : 
+        {% set price = 0 %}
         {% for composition in compositions %}
         {% if recette.id == composition.recette.id %}
-             {{ composition.ingredient.name }},
+        {% set price = price + composition.price %}
         {% endif %}
-        {% endfor %}</h5>
-        <p>Poids de cette recette : 
-        calculTotal({% for composition in compositions %}+{{ composition.poids }}{% endfor %})</p>
-        
+        {% endfor %}
+        {{ price }} Euros.</p>
+
         </div>      
         {% endfor %}
     </div>    
