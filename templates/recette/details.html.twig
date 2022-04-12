@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+	
+<div class="cards p-0 justify-content-between ">
+
+{% for recette in recettes %}
+
+
+		{% if id == recette.id %}
+
+		
+			
+					<div class="photo">
+						<img src="{{asset('img/' ~ recette.photo)}}" alt="{{recette.slug}}">
+					</div>
+					<div class="cont-card">
+						<h3>{{recette.title}}</h3>
+						<p>{{recette.prepare}}</p>
+
+						<div class="time">
+							<p>
+								Temps de préparation :
+								{{recette.timePrepare}}
+								min</p>
+							<p>Temps de cuisson :
+								{{recette.cookTime}}
+								min</p>
+						</div>
+
+                        <div>
+                            <h2>Avis</h2>
+                            <h3>Ajouter un avis</h3>
+                            {{form(avisForm)}}
+                        </div>
+                        <div>
+                            {% for avis in recette.avis | reverse %}
+                                <p>Publié par {{avis.user}}</p>
+                                <div>{{avis.content}}</div>
+                            {% endfor %}
+                        </div>
+
+					</div>
+        {% endif %}
+{% endfor %}
+
+</div> 
+{% endblock %}
