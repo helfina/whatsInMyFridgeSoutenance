@@ -8,22 +8,21 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+<div class="container">
+<div class="row">
+	<a class="btn btn-primary" href="{{path('app_recette_ajout')}}">Ajouter une recette</a>
+</div>
+</div>
+	<div class="liste-card ">
+		{% for recette in recettes %}
 
-		<div class="liste-card ">
-			{% for recette in recettes %}
 
+			{% include ("cards.html.twig") %}
 
-				{% include ("cards.html.twig") %}
-
-		
-			{% endfor %}
-		
-
-		</div>
-
-		
+			
+		{% endfor %}
+			
 
 	</div>
-
 
 {% endblock %}
