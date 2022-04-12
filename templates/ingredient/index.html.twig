@@ -12,9 +12,10 @@
     <div class="row">
         {% for ingredient in ingredients %}
         <div class="col-md-4">
-            <h2>{{ ingredient }}</h2>
+            <h2>{{ ingredient }}</h2> 
+            <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="100">
             <p> <u>Produit à consommer de préférence :</u> {{ ingredient.saison|replace({'_':' '}) }}.</p>
-            <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="80">
+           
         </div>   
         {% endfor %}
     </div>    

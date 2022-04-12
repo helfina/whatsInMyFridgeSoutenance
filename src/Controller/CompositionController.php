@@ -18,8 +18,7 @@ class CompositionController extends AbstractController
         return $this->render('composition/index.html.twig', [
             'controller_name' => 'CompositionController',
             'compositions' => $cr->findAll(),
-            'recettes' => $rr->findAll(),
-                   
+            'recettes' => $rr->findAll()                   
         ]);
     }
 }
