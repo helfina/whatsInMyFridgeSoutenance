@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\AvisType;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Recette;
+use App\Form\RecetteType;
 
 class RecetteController extends AbstractController
 {
@@ -55,4 +57,43 @@ class RecetteController extends AbstractController
             'avisForm' => $avisForm->createView()
         ]);
     }
+
+    #[Route('/recette/ajout', name: 'app_recette_ajout', requirements:['id' => '[0-9]+'])]
+    public function ajout(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $recette = new Recette();
+        $recetteForm = $this->createForm(RecetteType::class, $recette);
+
+        $recetteForm->handleRequest($request);
+
+        if($recetteForm->isSubmitted() && $recetteForm->isValid()){
+            
+            if($fichier = $recetteForm->get('photo')->getData()){
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                $nomFichier = str_replace(" ", "_", $nomFichier);
+                $nomFichier .= '_'.uniqid().'.'.$fichier->guessExtension();
+                $fichier->move("img", $nomFichier);
+                $recette->setPhoto($nomFichier);
+            }
+
+            $recette->setUser($this->getUser());
+
+            $entityManager->persist($recette);
+            $entityManager->flush();
+
+            $this->addFlash('message', 'Votre recette a bien été ajoutée');
+
+            return $this->redirectToRoute('app_recette_detail', ['id' => $recette->getId()]);
+
+        }
+
+        return $this->render('recette/ajout.html.twig', [
+            'controller_name' => 'RecetteController',
+            'recetteForm' => $recetteForm->createView()
+        ]);
+    }
+        
+
 }

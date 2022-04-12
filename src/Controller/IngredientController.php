@@ -24,7 +24,7 @@ class IngredientController extends AbstractController
     }
     
     #[Route('/ingredient/ajout', name: 'app_ingredient_ajout')]
-    public function ajout(IngredientRepository $ir, Request $request, ManagerRegistry $doctrine): Response
+    public function ajout(Request $request, ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
 
