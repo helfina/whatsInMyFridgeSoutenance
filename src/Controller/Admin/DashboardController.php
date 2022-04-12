@@ -40,7 +40,7 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::section('Gestion Utilisateur');
         yield MenuItem::subMenu('Users', 'fas fa-address-book')->setSubItems([
-            MenuItem::linkToCrud('Add User', 'fas fa-user-plus', User::class)->setAction(Crud::PAGE_NEW),
+           // MenuItem::linkToCrud('Add User', 'fas fa-user-plus', User::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Users', 'fas fa-users', User::class)
         ]);
         yield MenuItem::subMenu('Avis', 'fas fa-list')->setSubItems([
