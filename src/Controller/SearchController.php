@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    #[Route('/search', name: 'app_search')]
+    #[Route('/search_ing', name: 'app_search_ing')]
     public function index(Request $rq,IngredientRepository $ir ): Response
     {   
         $word = $rq->query->get('search');
