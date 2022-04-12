@@ -18,7 +18,6 @@ class RegisterController extends AbstractController
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
-        $notification = '';
         // ecoute la requete
 
         $form->handleRequest($request);
@@ -36,11 +35,10 @@ class RegisterController extends AbstractController
             // enregistrement en bdd
             $manager->persist($user); // je prepare et je fige la donner pour la creation de l'entity
             $manager->flush();
-            $notification = 'vous etes bien inscrit';
+            return $this->redirectToRoute('app_login');
         }
         return $this->render('register/index.html.twig', [
             'form' => $form->createView(),
-            'notification' => $notification
         ]);
     }
 
