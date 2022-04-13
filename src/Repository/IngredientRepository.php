@@ -69,7 +69,6 @@ class IngredientRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
     // /**
     //  * @return Ingredient[] Returns an array of Ingredient objects
     //  */
