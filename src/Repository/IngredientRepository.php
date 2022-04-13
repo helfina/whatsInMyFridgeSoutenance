@@ -45,6 +45,8 @@ class IngredientRepository extends ServiceEntityRepository
         }
     }
 
+
+
     public function findBySearch($value)
     {
         return $this->createQueryBuilder('i')
@@ -55,7 +57,6 @@ class IngredientRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
 
     public function findEntitiesByString($str){
         return $this->getEntityManager()

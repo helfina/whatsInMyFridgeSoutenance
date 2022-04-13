@@ -6,6 +6,7 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
+import jquery from 'jquery';
 import './styles/app.scss';
 
 // start the Stimulus application
@@ -14,8 +15,6 @@ import './styles/app.scss';
 const $ = require('jquery');//pour utiliser jquery
 global.$ = global.jQuery = $; // fix un probleme d'utilisation de la variable $ 
 require('bootstrap'); // pour utiliser le js de bootstrap
-
-
 
 
 jQuery(document).ready(function() {
