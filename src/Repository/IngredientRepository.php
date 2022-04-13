@@ -56,6 +56,18 @@ class IngredientRepository extends ServiceEntityRepository
         ;
     }
 
+
+    public function findEntitiesByString($str){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT *
+                FROM ingredient e
+                WHERE e.name LIKE :str'
+            )
+            ->setParameter('str', '%'.$str.'%')
+            ->getResult();
+    }
+
     // /**
     //  * @return Ingredient[] Returns an array of Ingredient objects
     //  */
