@@ -1,0 +1,13 @@
+                            {% for ingredient in ingredients %}
+                                {% if i == (ingredient.name|first|lower) %}
+                                <div class="text-center w-25 p-3">
+
+                                    <h2>{{ ingredient }}</h2>
+                                    <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="80">
+
+                                        <a class="btn btn-primary" href="{{path('app_ingredient_detail', {'id': ingredient.id})}}">Voir le détail</a>
+                                    <p><u>Produit à consommer de préférence :</u></p>
+                                    <p>{{ ingredient.saison|replace({'_':' '}) }}.</p>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
