@@ -193,7 +193,7 @@ input.addEventListener('keyup', (e) => {
       e.target.value.split(',').forEach(tag => {
         tags.push(tag);  
       });
-      
+    
       addTags();
       input.value = '';
     }
