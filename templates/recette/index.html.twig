@@ -9,9 +9,11 @@
 </style>
 
 <div class="container">
+	{% if app.user %}
 <div class="row">
 	<a class="btn btn-primary" href="{{path('app_recette_ajout')}}">Ajouter une recette</a>
 </div>
+	{% endif %}
 </div>
 	<div class="liste-card ">
 		{% for recette in recettes %}

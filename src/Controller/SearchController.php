@@ -16,7 +16,7 @@ class SearchController extends AbstractController
         $word = $rq->query->get('search');
         $ingredients = $ir -> findBysearch($word);
         return $this->render('search/index.html.twig', [
-            'controller_name' => 'SearchController',
+            'page_name' => 'page de recherche',
             'ings' => $ingredients
         ]);
     }

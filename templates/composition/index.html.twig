@@ -8,35 +8,38 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="container">  
-    <div class="row">
-        
-        {% for recette in recettes %}
-        <div class="col-md-4">
-        {# <button class="btn btn-primary" href="{{ path('app_recette_detail', {'id' : recette.id}) }}">Détail de la recette</button> #}
-        <h4> Pour réaliser la recette : <i> {{ recette.title }} </i></h4>
-            <div>
-                <h5> Ingredients :</h5>
-                    <ul>
+<div class="container">
+  
+    <div class="row justify-content-around">
+        <h4 class="center"> Pour réaliser la recette : </h4>
+            {% for recette in recettes %}
+                <div class="card col-md-4" style="width: 18rem;"> 
+                    <div>
+                    {# <button class="btn btn-primary" href="{{ path('app_recette_detail', {'id' : recette.id}) }}">Détail de la recette</button> #}
+                    <h5><i> {{ recette.title }} </i></h5>
+                    <div>
+                        <h5> Ingredients :</h5>
+                            <ul>
+                            {% for composition in compositions %}
+                            {% if recette.id == composition.recette.id %}
+                                <li>{{composition.poids}} grammes de {{ composition.ingredient.name|lower }} </li>
+                            {% endif %}
+                            {% endfor %}
+                            </ul>
+                    </div>
+
+                    <p>Prix de cette recette : 
+                    {% set price = 0 %}
                     {% for composition in compositions %}
                     {% if recette.id == composition.recette.id %}
-                        <li>{{composition.poids}} grammes de {{ composition.ingredient.name|lower }} </li>
+                    {% set price = price + composition.price %}
                     {% endif %}
                     {% endfor %}
-                    </ul>
-            </div>
+                    {{ price }} Euros.</p>
 
-        <p>Prix de cette recette : 
-        {% set price = 0 %}
-        {% for composition in compositions %}
-        {% if recette.id == composition.recette.id %}
-        {% set price = price + composition.price %}
-        {% endif %}
-        {% endfor %}
-        {{ price }} Euros.</p>
-
-        </div>      
-        {% endfor %}
-    </div>    
+                    </div>
+                </div>       
+            {% endfor %}  
+    </div>   
 </div> 
 {% endblock %}
