@@ -24,12 +24,15 @@ class SearchController extends AbstractController
     #[Route('/search_compo', name: 'app_search_compo')]
     public function index(Request $rq, IngredientRepository $ir): Response
     {   
-        $requestString = $rq->get('c');
-        $entities = $ir->findById($requestString);
+        // $requestString = $rq->get('c');
+        // $entities = $ir->findById($requestString);
+        $list = $rq->query->get("js_object");
 
         return $this->render('search/index.html.twig', [
             'controller_name' => 'SearchController',
-            'entities' => $entities
+            // 'entities' => $entities
+            'list' => $list
+
             
         ]);
     }
