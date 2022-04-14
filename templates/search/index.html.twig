@@ -23,7 +23,49 @@
     </div>
 </div> #}
 
-<h1>{{list}}</h1>
+
+
+{% for ar in array %}
+
+    {% for ingredient in ingredients %}
+        {% if ar == ingredient.name %}
+            {% for compo in compos %}
+
+            {% if ingredient.id == compo.ingredient.id %}
+            
+            
+            {% for recette in recettes %}
+
+            {% if compo.recette.id == recette.id %}
+                {{compo.recette.title}}
+
+                {# {% include ("cards.html.twig") %} #}
+            
+            {% endif %}
+                
+            {% endfor %}
+            
+            
+            {% endif %}
+                
+            {% endfor %}
+        
+        {% endif %}
+
+
+        
+    {% endfor %}
+
+    
+{% endfor %}
+
+
+
+
+
+
+
+
 
 
 {% endblock %}
