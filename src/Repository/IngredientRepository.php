@@ -45,6 +45,8 @@ class IngredientRepository extends ServiceEntityRepository
         }
     }
 
+
+
     public function findBySearch($value)
     {
         return $this->createQueryBuilder('i')
@@ -54,6 +56,32 @@ class IngredientRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findById($value)
+    {
+        return $this->getEntityManager()
+        ->createQuery(
+            'SELECT id
+            FROM ingredient e
+            WHERE e.name LIKE :val'
+        )
+            ->setParameter('val', '%' . $value . '%')
+            ->getResult()
+        ;
+    }
+
+    
+
+    public function findEntitiesByString($str){
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT *
+                FROM ingredient e
+                WHERE e.name LIKE :str'
+            )
+            ->setParameter('str', '%'.$str.'%')
+            ->getResult();
     }
 
     // /**
