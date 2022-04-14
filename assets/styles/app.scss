@@ -204,42 +204,7 @@ nav{
 .cont-card{
     padding: 15px;
 }
-//---------------------------------------------------------------------------------
 
-.nav-link{
-    position: relative;
-    text-decoration: none;
-    font-family: 'Poppins',sans-serif;
-    background-color: #000000;
-    font-size: 18px;
-    letter-spacing: 0.5px;
-    padding: 0 10px;
-}
-.nav-link:after{
-    content: "";
-    position: absolute;
-    background-color: #ffa600;
-    height: 7px;
-    width: 0;
-    left: 0;
-    bottom: -20px;
-    transition: 0.3s;
-}
-a:hover{
-    color: #000000;
-}
-a:hover:after{
-    width: 100%;
-}
-
-.nav{
-    margin-bottom: 20px;
-}
-
-.btn-primary{
-    background-color: #F29F05;
-    width: 450px;
-} 
 
 .main_search{
     width: 100%;
