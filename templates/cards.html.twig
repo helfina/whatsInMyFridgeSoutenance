@@ -1,29 +1,31 @@
-
- 
- <div class="cards p-0 justify-content-between ">
+<div class="cards p-0 justify-content-between ">
 
 
 					<div class="photo">
-						<img src="{{asset('img/' ~ recette.photo)}}" alt="{{recette.slug}}">
+						<img src="{{asset('img/' ~ compo.recette.photo)}}" alt="{{compo.recette.slug}}">
 					</div>
 					<div class="cont-card">
-						<h3>{{recette.title}}</h3>
-						<p>{{recette.prepare}}</p>
+						<h3>{{compo.recette.title}}</h3>
+						
+                        <li>{{compo.poids}} grammes de {{ compo.ingredient.name|lower }} </li>
+						<img class="ing_img" src="{{asset('img/' ~ compo.ingredient.photo)}}" alt="">
+                    
+                    
 
 						<div class="time">
 							<p>
 								Temps de préparation :
-								{{recette.timePrepare}}
+								{{compo.recette.timePrepare}}
 								min</p>
 							<p>Temps de cuisson :
-								{{recette.cookTime}}
+								{{compo.recette.cookTime}}
 								min</p>
 						</div>
 
-						<a href="{{path('app_recette_detail', {'id': recette.id})}}">Voir la recette</a>
+						<a href="{{path('app_recette_detail', {'id': compo.recette.id})}}">Voir la recette</a>
 
 
 					</div>
 
 
-				</div> 
+</div> 
