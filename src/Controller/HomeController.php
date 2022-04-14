@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\SearchingredientType;
+use App\Repository\CompositionRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\IngredientRepository;
 use Sensio\Bundle\FrameworkExtraBundle\EventListener\ControllerListener;
@@ -17,7 +18,7 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
     
-    public function index(RecetteRepository $rr, Request $request): Response
+    public function index(RecetteRepository $rr,CompositionRepository $cr , Request $request): Response
     {   
         $form = $this->createForm(SearchingredientType::class);
         $search = $form->handleRequest($request);
@@ -26,6 +27,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'recettes' => $rr->findAll(),
+            'compos' => $cr->findAll(),
             'form' => $form->createView()
         ]);
     }

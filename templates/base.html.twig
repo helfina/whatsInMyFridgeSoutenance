@@ -12,14 +12,13 @@
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
-            // <script>
-            // console.log('test');
-            // alert('test');
-            // </script>
+            
         {% endblock %}
     </head>
     <body>
         {% include('nav.html.twig') %}
+        <div class="correction">
         {% block body %}{% endblock %}
+        </div>
     </body>
 </html>
