@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mon compte {{ app.user.pseudo }}{% endblock %}
+{% block title %}Hello AccountPasswordController!{% endblock %}
 
 {% block body %}
     <div class="container">
@@ -19,8 +19,8 @@
 
                 {# !TODO revoir l'affichage des ingredient, une jointure sql, ou un ajout de champs favoris #}
                 <div>
-                        <ul class="row flex-wrap">
-                            {% for recettes in recette %}
+                    <ul class="row flex-wrap">
+                        {% for recettes in recette %}
                             {% for composition in compositions %}
 
                                 {% if recettes.id == composition.recette.id %}
@@ -29,8 +29,8 @@
                                     </li>
                                 {% endif %}
                             {% endfor %}
-                            {% endfor %}
-                        </ul>
+                        {% endfor %}
+                    </ul>
                 </div>
 
 
@@ -54,43 +54,20 @@
             <h4 class="text-center col-12">Mes recettes Favorites</h4>
             {% for recettes in recette %}
                 {% if  recettes.user == app.user.pseudo %}
-            <article class="cards">
-                <div class="card-header">
-                    <h5 class="card-title">{{ recettes.title }} by {{ recettes.user }}</h5>
-                    <img src="{{asset('img/' ~ recettes.photo)}}" alt="" class="img-fluid">
-                </div>
-                <div class="card-body">
-                        <p>Temps de preparations: {{ recettes.timePrepare }}</p>
-                        <p>Temps de cuissons: {{ recettes.cookTime }}</p>
-                 {#    <h6> Ingredients :</h6>
-                    <ul>
-                        {% for composition in compositions %}
-                            {% if recettes.user == composition.recette %}
-                                <li>{{composition.poids}} grammes de {{ composition.ingredient.name|lower }} </li>
-                            {% endif %}
-                        {% endfor %}
-                    </ul> #}
-                </div>
-            </article>
+                    <article class="cards">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ recettes.title }} by {{ recettes.user }}</h5>
+                            <img src="{{asset('img/' ~ recettes.photo)}}" alt="" class="img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <p>Temps de preparations: {{ recettes.timePrepare }}</p>
+                            <p>Temps de cuissons: {{ recettes.cookTime }}</p>
+
+                        </div>
+                    </article>
                 {% endif %}
             {% endfor %}
         </section>
     </div>
-
-
-    {# {% if app.user %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a> |
-            <a href="{{ path('admin') }}">Espace Admin</a> |
-            <a href="{{ path('app_logout') }}">Déconnexion</a>
-
-        {% else %}
-
-            <a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a> |
-            <a href="{{ path('app_logout') }}">Déconnexion</a>
-
-        {% endif %}
-
-    {% endif %} #}
 
 {% endblock %}

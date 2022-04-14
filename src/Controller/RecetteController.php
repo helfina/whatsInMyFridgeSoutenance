@@ -3,24 +3,26 @@
 namespace App\Controller;
 
 use App\Entity\Avis;
+use App\Form\AvisType;
+use App\Entity\Recette;
+use App\Form\RecetteType;
 use App\Repository\RecetteRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use App\Form\AvisType;
-use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Recette;
-use App\Form\RecetteType;
 
 class RecetteController extends AbstractController
 {
     #[Route('/recette', name: 'app_recette')]
     public function index(RecetteRepository $rr): Response
     {
+        $c = [0,'Entrée','Plat','Dessert'];
         return $this->render('recette/index.html.twig', [
             'controller_name' => 'RecetteController',
-            'recettes' => $rr->findAll()
+            'recettes' => $rr->findBy( array(), array('title' => 'ASC')),
+            'category' => $c
         ]);
     }
 
@@ -69,10 +71,10 @@ class RecetteController extends AbstractController
         $recetteForm->handleRequest($request);
 
         if($recetteForm->isSubmitted() && $recetteForm->isValid()){
-            
+
             if($fichier = $recetteForm->get('photo')->getData()){
                 $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
-                $nomFichier = str_replace(" ", "_", $nomFichier);
+                $nomFichier = strreplace(" ", "", $nomFichier);
                 $nomFichier .= '_'.uniqid().'.'.$fichier->guessExtension();
                 $fichier->move("img", $nomFichier);
                 $recette->setPhoto($nomFichier);
@@ -94,6 +96,5 @@ class RecetteController extends AbstractController
             'recetteForm' => $recetteForm->createView()
         ]);
     }
-        
 
 }
