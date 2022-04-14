@@ -5,7 +5,7 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <h1>{{ page_name }}</h1>
+    <h1>{{ controller_name }}</h1>
 
         {# <div class="card-columns result">
         {% for ing in ings %}
@@ -23,5 +23,49 @@
     </div>
 </div> #}
 
-<p>{{entities}}</p>
+
+
+{% for ar in array %}
+
+    {% for ingredient in ingredients %}
+        {% if ar == ingredient.name %}
+            {% for compo in compos %}
+
+            {% if ingredient.id == compo.ingredient.id %}
+            
+            
+            {% for recette in recettes %}
+
+            {% if compo.recette.id == recette.id %}
+                {{compo.recette.title}}
+
+                {# {% include ("cards.html.twig") %} #}
+            
+            {% endif %}
+                
+            {% endfor %}
+            
+            
+            {% endif %}
+                
+            {% endfor %}
+        
+        {% endif %}
+
+
+        
+    {% endfor %}
+
+    
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

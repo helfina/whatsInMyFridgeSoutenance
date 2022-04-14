@@ -8,23 +8,59 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="container">
-	{% if app.user %}
-<div class="row">
-	<a class="btn btn-primary" href="{{path('app_recette_ajout')}}">Ajouter une recette</a>
+<div class="container d-flex">
+    {% for i in 1..3 %}    
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-heading{{ i }}">
+                    <button class="btn btn-primary btn-lg w-25 p-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ i }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ i }}">
+                        {% for c  in category %}
+                        {% if c == category[i] %}
+
+                            <span>{{ category[i] }} </span> 
+
+                    </button> 
+                        {% set count = 0 %}
+                            {% for recette in recettes %}
+							{% if i == (recette.category.id|first|lower) %}
+                                {% set count = count + 1%}
+                            
+                            {% endif %}
+                            {% endfor %}
+                            <font size="+0">Il y a {{ count }} recette{{ count <= 1 ? "" : "s" }} concernant les {{ c }}{{ count <= 1 ? "" : "s" }}</font>
+                </h2>
+                <div id="panelsStayOpen-collapse{{ i }}" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-heading{{ i }}">
+            
+                <div class="accordion-body" >
+                    <div class="d-flex flex-wrap">
+            
+                        <div class="text-center justify-content-center w-100 p-3 d-flex flex-wrap">
+                            {% for recette in recettes %}
+                                {% if i == (recette.category.id|first|lower) %}
+                                <div class="text-center p-3" id="respon">
+
+                                    <h2>{{ recette }}</h2>
+                                    <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette }}" height="80">
+
+                                        <a class="btn btn-primary" href="{{path('app_recette_detail', {'id': recette.id})}}">Voir le détail</a>
+                                        <a class="btn btn-primary" href="{{path('app_recette', {'id': recette.id})}}">Favoris</a>
+                                    </div>
+
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>   
+                </div>
+                        {% endif %}
+                        {% endfor %}
+            </div>    
+        </div>
+    {% endfor %}
 </div>
-	{% endif %}
-</div>
-	<div class="liste-card ">
-		{% for recette in recettes %}
 
-
-			{% include ("cards.html.twig") %}
-
-			
-		{% endfor %}
-			
+		
 
 	</div>
+
 
 {% endblock %}
