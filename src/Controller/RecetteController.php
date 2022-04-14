@@ -3,13 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Avis;
+use App\Form\AvisType;
+use App\Entity\Recette;
+use App\Form\RecetteType;
 use App\Repository\RecetteRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use App\Form\AvisType;
-use Doctrine\Persistence\ManagerRegistry;
 
 class RecetteController extends AbstractController
 {
@@ -57,4 +59,42 @@ class RecetteController extends AbstractController
             'avisForm' => $avisForm->createView()
         ]);
     }
+
+    #[Route('/recette/ajout', name: 'app_recette_ajout', requirements:['id' => '[0-9]+'])]
+    public function ajout(Request $request, ManagerRegistry $doctrine): Response
+    {
+        $entityManager = $doctrine->getManager();
+
+        $recette = new Recette();
+        $recetteForm = $this->createForm(RecetteType::class, $recette);
+
+        $recetteForm->handleRequest($request);
+
+        if($recetteForm->isSubmitted() && $recetteForm->isValid()){
+
+            if($fichier = $recetteForm->get('photo')->getData()){
+                $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
+                $nomFichier = strreplace(" ", "", $nomFichier);
+                $nomFichier .= '_'.uniqid().'.'.$fichier->guessExtension();
+                $fichier->move("img", $nomFichier);
+                $recette->setPhoto($nomFichier);
+            }
+
+            $recette->setUser($this->getUser());
+
+            $entityManager->persist($recette);
+            $entityManager->flush();
+
+            $this->addFlash('message', 'Votre recette a bien été ajoutée');
+
+            return $this->redirectToRoute('app_recette_detail', ['id' => $recette->getId()]);
+
+        }
+
+        return $this->render('recette/ajout.html.twig', [
+            'controller_name' => 'RecetteController',
+            'recetteForm' => $recetteForm->createView()
+        ]);
+    }
+
 }
