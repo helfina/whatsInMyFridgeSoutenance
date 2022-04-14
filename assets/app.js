@@ -12,14 +12,21 @@ import './styles/app.scss';
 // start the Stimulus application
 // import './bootstrap';
 
-const $ = require('jquery');//pour utiliser jquery
-global.$ = global.jQuery = $; // fix un probleme d'utilisation de la variable $ 
-require('bootstrap'); // pour utiliser le js de bootstrap
+const $ = require('jquery');
+global.$ = global.jQuery = $; 
+require('bootstrap'); 
 
 
 jQuery(document).ready(function() {
     var searchRequest = null;
-    $("#search").on("keyup", function() {
+    $("#search").on("keyup", function(e) {
+       if( e.key !== 'ArrowDown'&& input.keyCode !== '38' ){
+        if(e.key !== 'ArrowUp'&& input.keyCode !== '40'){
+
+        
+
+        
+        
         var minlength = 3;
         var that = this;
         var value = $(this).val();
@@ -38,17 +45,21 @@ jQuery(document).ready(function() {
 
                     if (value==$(that).val()) {
                                         
-                        // var result = msg;
-                        console.log(msg)
+                        
                         $.each(msg, function(key, arr) {
 
 
-                          
+                            let i = 0
                             $.each(arr, function(id, value) {
                                 
                                 if (key == 'entities') {
+                                    
                                     if (id != 'error') {
-                                        entitySelector.append('<li class="list-group-item result_bar"><a href="/daten/">'+value+'</a></li>');
+                                        
+                                        entitySelector.append('<li class="list-group-item result_bar" id="es'+i+'"><span >'+value+'</span></li>');
+                                        i++
+
+                                        
                                         
                                     } else {
                                         entitySelector.append('<li class="errorLi list-group-item">'+value+'</li>');
@@ -72,8 +83,45 @@ jQuery(document).ready(function() {
 
                                 $(".result_bar").on('click', function(){
                                     let mot = $(this).text()
-                                    console.log('mot = '+mot)
+                                    
                                     $('#search').val(mot)
+                                    entitySelector.text('');
+                                    return mot
+
+                                })
+
+                                
+                                document.getElementById('search').addEventListener('keydown', function(e) {
+                                    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                                        e.preventDefault();
+                                    }
+                                });
+                                  
+
+
+
+                                var k= 0;
+                               input.addEventListener('keydown', (e) =>{
+                                
+                                    if(e.key === 'ArrowDown' && k < $(".result_bar").length){
+                                        
+                                        $('#es'+k).toggleClass('active');
+                                        $('#es'+(k -1)).toggleClass('active');
+                                        
+                                        k++
+                                        
+                                    }
+                                })
+                                input.addEventListener('keydown', (e) =>{
+                                
+                                    if(e.key === 'ArrowUp'){
+                                        
+                                        $('#es'+k).toggleClass('active');
+                                        $('#es'+(k +1)).toggleClass('active');
+                                        
+                                        k--
+                                        
+                                    }
                                 })
                             }
                         });
@@ -83,90 +131,104 @@ jQuery(document).ready(function() {
                  }
             });
         }
+    }
+    }
     });
 });
 
 
-// if(typeof key != 'undefined'){
-//     console.log(key)
-//     let rb = document.querySelector('.result_bar')
-//     console.log(typeof(rb))
-//     console.log('test')
-// }
+
+
+//---------------------------------------------
+// TAGS 
 
 
 
-// for(var i = 0; i < relenght; i++){
-//     rb.addEventListener('mouseover', () => {
-//         this.classList.toggle('active');
-//         console.log('prout')
-//     });
+const tagContainer = document.querySelector('.tag-container');
+const input = document.querySelector('.tag-container input');
 
-// }
+let tags = [];
 
-// $(".result_bar").on({
-//     mouseenter: function () {
-//         $('.result_bar').toggleClass('active');
-//         console.log('test')
-//     },
-//     mouseleave: function () {
-//         $(this).toggleClass('active');
-//         console.log('test-out')
-//     }
-// });
 
-// $('.result_bar').on('mouseover', function() {
+function createTag(label) {
+  const div = document.createElement('div');
+  div.setAttribute('class', 'tag');
+  const span = document.createElement('span');
+  span.innerHTML = label;
+  const closeIcon = document.createElement('i');
+  
+  closeIcon.setAttribute('class','fa-solid fa-xmark');
+  closeIcon.setAttribute('data-item', label);
+  div.appendChild(span);
+  div.appendChild(closeIcon);
+  return div;
+}
+
+function clearTags() {
+  document.querySelectorAll('.tag').forEach(tag => {
+    tag.parentElement.removeChild(tag);
+  });
+}
+
+function addTags() {
+  clearTags();
+  
+  tags.slice().reverse().forEach(tag => {
+    tagContainer.prepend(createTag(tag));
+  });
+  
+  return tags
+}
+
+input.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter' ) {
+      e.target.value.split(',').forEach(tag => {
+        tags.push(tag);  
+      });
+      
+      addTags();
+      input.value = '';
+    }
+});
+
+
+
+
+document.addEventListener('click', (e) => {
+  
+  if (e.target.tagName === 'I') {
+    const tagLabel = e.target.getAttribute('data-item');
     
-//         $(this).toggleClass('active');
-//         console.log('test')
-       
-   
+        const index = tags.indexOf(tagLabel);
+    tags = [...tags.slice(0, index), ...tags.slice(index+1)];
+    addTags();
+    
+        
+  }
+})
 
 
-// });
+input.focus();
+
+
+//-------------- envoie recherche
+
+searchCompo = $.ajax({
+    type: "GET",
+    url: "/search_compo",
+    data: {
+        'c' : tags
+    },
+    dataType: "json",
+    success: function(msg){
+      
+
+
+     }
+});
 
 
 
 
-// commande avec un each pour récup plusieurs éléments
-// jQuery(document).ready(function() {
-//     var searchRequest = null;
-//     $("#search").on("keyup", function() {
-//         var minlength = 3;
-//         var that = this;
-//         var value = $(this).val();
-//         var entitySelector = $("#entitiesNav").html('');
-//         if (value.length >= minlength ) {
-//             if (searchRequest != null)  searchRequest.abort();
-//             searchRequest = $.ajax({
-//                 type: "GET",
-//                 url: "/search",
-//                 data: {
-//                     'q' : value
-//                 },
-//                 dataType: "json",
-//                 success: function(msg){
-//                     console.log("value :" +value)
-//                     //we need to check if the value is the same
-//                     if (value==$(that).val()) {
-//                         console.log("test")
-//                         console.log('msg = '+msg)
-//                         var result = JSON.parse(msg);
-//                         console.log( 'result'+result)
-//                         $.each(result, function(key, arr) {
-//                             $.each(arr, function(value) {
-//                                 if (key == 'entities') {
-//                                     if (id != 'error') {
-//                                         entitySelector.append('<li><a href="/daten/">'+value+'</a></li>');
-//                                     } else {
-//                                         entitySelector.append('<li class="errorLi">'+value+'</li>');
-//                                     }
-//                                 }
-//                             });
-//                         });
-//                     }
-//                  }
-//             });
-//         }
-//     });
-// });
+
+

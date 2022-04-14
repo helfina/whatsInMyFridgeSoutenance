@@ -10,14 +10,27 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SearchController extends AbstractController
 {
-    #[Route('/search_ing', name: 'app_search_ing')]
-    public function index(Request $rq,IngredientRepository $ir ): Response
+    // #[Route('/search_compo', name: 'app_search_compo')]
+    // public function index(Request $rq,IngredientRepository $ir ): Response
+    // {   
+    //     $word = $rq->query->get('search');
+    //     $ingredients = $ir -> findBysearch($word);
+    //     return $this->render('search/index.html.twig', [
+    //         'controller_name' => 'SearchController',
+    //         'ings' => $ingredients
+    //     ]);
+    // }
+
+    #[Route('/search_compo', name: 'app_search_compo')]
+    public function index(Request $rq, IngredientRepository $ir): Response
     {   
-        $word = $rq->query->get('search');
-        $ingredients = $ir -> findBysearch($word);
+        $requestString = $rq->get('c');
+        $entities = $ir->findById($requestString);
+
         return $this->render('search/index.html.twig', [
-            'page_name' => 'page de recherche',
-            'ings' => $ingredients
+            'controller_name' => 'SearchController',
+            'entities' => $entities
+            
         ]);
     }
 }
