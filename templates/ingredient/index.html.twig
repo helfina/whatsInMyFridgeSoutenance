@@ -45,7 +45,7 @@
                         <div class="text-center justify-content-center w-100 p-3 d-flex flex-wrap">
                             {% for ingredient in ingredients %}
                                 {% if a|lower == (ingredient.name|first|lower) %}
-                                <div class="text-center w-25 p-3">
+                                <div class="text-center p-3">
 
                                     <h2>{{ ingredient }}</h2>
                                     <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="80">

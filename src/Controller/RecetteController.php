@@ -16,9 +16,11 @@ class RecetteController extends AbstractController
     #[Route('/recette', name: 'app_recette')]
     public function index(RecetteRepository $rr): Response
     {
+        $c = [0,'Entrée','Plat','Dessert'];
         return $this->render('recette/index.html.twig', [
             'controller_name' => 'RecetteController',
-            'recettes' => $rr->findAll()
+            'recettes' => $rr->findBy( array(), array('title' => 'ASC')),
+            'category' => $c
         ]);
     }
 
