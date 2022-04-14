@@ -176,8 +176,16 @@ function addTags() {
   tags.slice().reverse().forEach(tag => {
     tagContainer.prepend(createTag(tag));
   });
+
+    console.log('test recup objet')
+    console.log(tags)
+    console.log( 'type = '+typeof tags)
   
-  return tags
+    let hidden_input = document.querySelector("[name='js_object']")
+    hidden_input.value = tags
+
+
+    
 }
 
 input.addEventListener('keyup', (e) => {
@@ -213,19 +221,19 @@ input.focus();
 
 //-------------- envoie recherche
 
-searchCompo = $.ajax({
-    type: "GET",
-    url: "/search_compo",
-    data: {
-        'c' : tags
-    },
-    dataType: "json",
-    success: function(msg){
+// searchCompo = $.ajax({
+//     type: "GET",
+//     url: "/search_compo",
+//     data: {
+//         'c' : tags
+//     },
+//     dataType: "json",
+//     success: function(msg){
       
 
 
-     }
-});
+//      }
+// });
 
 
 
