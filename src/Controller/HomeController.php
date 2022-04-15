@@ -27,7 +27,10 @@ class HomeController extends AbstractController
         ]);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     #[Route('/search', name: 'app_search', methods: 'GET')]
     public function searchAction(Request $request, IngredientRepository $ir)
     {
@@ -55,6 +58,10 @@ class HomeController extends AbstractController
   
         return $realEntities;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 }
 
 

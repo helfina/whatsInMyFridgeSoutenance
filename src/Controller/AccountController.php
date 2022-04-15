@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\RegisterType;
+use App\Entity\Recette;
+use App\Entity\Ingredient;
 use App\Repository\CompositionRepository;
 use App\Repository\IngredientRepository;
 use App\Repository\RecetteRepository;
@@ -29,7 +31,7 @@ class AccountController extends AbstractController
         return $this->render('account/index.html.twig', [
             'ingredient' => $ingredientRepository->findAll(),
             'compositions' => $compositionRepository->findAll(),
-            'recette' => $recetteRepository->findAll(),
+            'recettes' => $recetteRepository->findAll(),
 
         ]);
     }
@@ -61,5 +63,14 @@ class AccountController extends AbstractController
             'user' => $user,
             'form' => $form,
         ]);
+    }
+
+    #[Route('/favori/{id}', name: 'app_account_favoris',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    public function favoris(Request $request, EntityManagerInterface $em, RecetteRepository $rr, Recette $recette, UserRepository $ur, $id): Response
+    {   
+        $user = $this->getUser();
+        $user->addFavori($recette);
+        $em->flush();
+        return $this->redirectToRoute('app_account');
     }
 }
