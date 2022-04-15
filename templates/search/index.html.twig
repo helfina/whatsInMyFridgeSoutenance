@@ -1,71 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SearchController!{% endblock %}
+{% block title %}Hello SearchController!
+{% endblock %}
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>{{ controller_name }}</h1>
+	<div class="example-wrapper">
+		<h1>{{ controller_name }}</h1>
 
-        {# <div class="card-columns result">
-        {% for ing in ings %}
+		{# <div class="card-columns result">
+				        {% for ing in ings %}
+				
+				            <div class="card" style="">
+				    <div class="card-body">
+				        <h5 class="card-title">{{ ing.name }}</h5>
+				        <img src="{{asset('img/' ~ ing.photo)}}" alt="{{ ing.name }}">
+				}
+				    </div>
+				</div>
+				        {% else %}
+				            <mark>Aucun résultat trouvé</mark>
+				        {% endfor %}
+				    </div>
+				</div> #}
 
-            <div class="card" style="">
-    <div class="card-body">
-        <h5 class="card-title">{{ ing.name }}</h5>
-        <img src="{{asset('img/' ~ ing.photo)}}" alt="{{ ing.name }}">
-}
-    </div>
+<div class="row justify-content-arround container m-auto">
+		{% for ar in array %}
+
+			{% for ingredient in ingredients %}
+				{% if ar == ingredient.name %}
+					{% for compo in compos %}
+
+						{% if ingredient.id == compo.ingredient.id %}
+
+
+							{% for recette in recettes %}
+
+								{% if compo.recette.id == recette.id %}
+									{# <div class="col-4">
+										<div class="card col" style="width: 18rem;">
+											<img class="card-img-top" src="{{asset('img/' ~ compo.recette.photo)}}" alt="Card image cap">
+											<div class="card-body">
+												<h5 class="card-title">{{compo.recette.title}}</h5>
+												<p class="card-text ">
+												{% for compo in compos %}
+                                                {% if recette.id == compo.recette.id %}
+                                                    <li class="img-card">{{ compo.poids }} grammes
+                                                        de {{ compo.ingredient.name|lower }} <img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> </li>
+                                                {% endif %}
+                                            {% endfor %}
+												
+												</p>
+												<a href="#" class="btn btn-primary">Go somewhere</a>
+											</div>
+										</div>
+									
+									</div> #}
+									{% include ("cards-2.html.twig") %}
+
+								{% endif %}
+
+							{% endfor %}
+
+
+						{% endif %}
+
+					{% endfor %}
+
+				{% endif %}
+
+
+			{% endfor %}
+
+
+		{% endfor %}
+
 </div>
-        {% else %}
-            <mark>Aucun résultat trouvé</mark>
-        {% endfor %}
-    </div>
-</div> #}
-
-
-
-{% for ar in array %}
-
-    {% for ingredient in ingredients %}
-        {% if ar == ingredient.name %}
-            {% for compo in compos %}
-
-            {% if ingredient.id == compo.ingredient.id %}
-            
-            
-            {% for recette in recettes %}
-
-            {% if compo.recette.id == recette.id %}
-                {{compo.recette.title}}
-
-                {# {% include ("cards.html.twig") %} #}
-            
-            {% endif %}
-                
-            {% endfor %}
-            
-            
-            {% endif %}
-                
-            {% endfor %}
-        
-        {% endif %}
-
-
-        
-    {% endfor %}
-
-    
-{% endfor %}
-
-
-
-
-
-
-
-
-
-
-{% endblock %}
+	{% endblock %}
