@@ -9,21 +9,22 @@
             <article class="col-9">
                 <h4>Mes recettes</h4>
                 <ol class="row">
-                    {% for recettes in recette %}
-                        {% if  recettes.user == app.user.pseudo %}
-                            <li class="col-5">{{ recettes.title }} by {{ recettes.user }}</li>
+                    {% for recette   in recettes %}
+                        {% if  recette.user == app.user.pseudo %}
+                            <li class="col-5">{{ recette.title }} by {{ recette.user }}</li>
                         {% endif %}
                     {% endfor %}
                 </ol>
+                
                 <h4>mes ingredients favoris</h4>
 
                 {# !TODO revoir l'affichage des ingredient, une jointure sql, ou un ajout de champs favoris #}
                 <div>
                     <ul class="row flex-wrap">
-                        {% for recettes in recette %}
+                        {% for recette in recettes %}
                             {% for composition in compositions %}
 
-                                {% if recettes.id == composition.recette.id %}
+                                {% if recette.id == composition.recette.id %}
                                     <li class="col-4">{{ composition.ingredient.name|lower }}
                                         <img src="{{asset('img/' ~ composition.ingredient.photo)}}" width="30px"  height="auto" alt="{{ composition.ingredient.name }}">
                                     </li>
@@ -52,21 +53,19 @@
         </section>
         <section class="row my-auto">
             <h4 class="text-center col-12">Mes recettes Favorites</h4>
-            {% for recettes in recette %}
-                {% if  recettes.user == app.user.pseudo %}
-                    <article class="cards">
+            {% for recette in app.user.favoris %}
+                                   <article class="cards">
                         <div class="card-header">
-                            <h5 class="card-title">{{ recettes.title }} by {{ recettes.user }}</h5>
-                            <img src="{{asset('img/' ~ recettes.photo)}}" alt="" class="img-fluid">
+                            <h5 class="card-title">{{ recette.title }} by {{ recette.user }}</h5>
+                            <img src="{{asset('img/' ~ recette.photo)}}" alt="" class="img-fluid">
                         </div>
                         <div class="card-body">
-                            <p>Temps de preparations: {{ recettes.timePrepare }}</p>
-                            <p>Temps de cuissons: {{ recettes.cookTime }}</p>
+                            <p>Temps de preparations: {{ recette.timePrepare }}</p>
+                            <p>Temps de cuissons: {{ recette.cookTime }}</p>
 
                         </div>
                     </article>
-                {% endif %}
-            {% endfor %}
+                        {% endfor %}
         </section>
     </div>
 
