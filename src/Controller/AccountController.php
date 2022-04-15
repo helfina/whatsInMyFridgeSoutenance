@@ -64,4 +64,13 @@ class AccountController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/favori/{id}', name: 'app_account_favoris',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    public function favoris(Request $request, EntityManagerInterface $em, RecetteRepository $rr, Recette $recette, UserRepository $ur, $id): Response
+    {   
+        $user = $this->getUser();
+        $user->addFavori($recette);
+        $em->flush();
+        return $this->redirectToRoute('app_account');
+    }
 }
