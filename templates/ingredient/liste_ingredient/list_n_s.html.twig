@@ -1,0 +1,49 @@
+
+    {% for i in 14..19 %}    
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-heading{{ i }}">
+                    <button class="btn btn-primary btn-lg w-25 p-1" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ i }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ i }}">
+                        {% for a  in alpha %}
+                        {% if a == alpha[i] %}
+                        {# <a href="{{ path(app.request.get('_route'), { 'search_key' : alpha[i]}) }}"> #}
+                            <span>{{ alpha[i] }} </span> 
+                        {# </a> #}
+                    </button> 
+                        {% set count = 0 %}
+                            {% for ingredient in ingredients %}
+                            {% if a|lower == (ingredient.name|first|lower) %}
+                                {% set count = count + 1%}
+                            
+                            {% endif %}
+                            {% endfor %}
+                            <font size="+0">Il y a {{ count }} ingredient{{ count <= 1 ? "" : "s" }} commençant par {{ a }}</font>
+                </h2>
+                <div id="panelsStayOpen-collapse{{ i }}" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-heading{{ i }}">
+            
+                <div class="accordion-body" >
+                    <div class="d-flex flex-wrap">
+            
+                        <div class="text-center justify-content-center w-100 p-1 d-flex flex-wrap">
+                            {% for ingredient in ingredients %}
+                                {% if a|lower == (ingredient.name|first|lower) %}
+                                <div class="text-center p-2">
+
+                                    <h2>{{ ingredient }}</h2>
+                                    <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="80">
+
+                                        <a class="btn btn-primary" href="{{path('app_ingredient_detail', {'id': ingredient.id})}}">Voir le détail</a>
+                                    <p><u>Produit à consommer de préférence :</u></p>
+                                    <p>{{ ingredient.saison|replace({'_':' '}) }}.</p>
+                                </div>
+
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>   
+                </div></div>
+                        {% endif %}
+                        {% endfor %}
+            </div>    
+        </div>
+    {% endfor %}
