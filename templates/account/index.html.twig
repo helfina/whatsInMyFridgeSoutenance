@@ -15,7 +15,7 @@
                         {% endif %}
                     {% endfor %}
                 </ol>
-                
+
                 <h4>mes ingredients favoris</h4>
 
                 {# !TODO revoir l'affichage des ingredient, une jointure sql, ou un ajout de champs favoris #}
@@ -26,7 +26,8 @@
 
                                 {% if recette.id == composition.recette.id %}
                                     <li class="col-4">{{ composition.ingredient.name|lower }}
-                                        <img src="{{asset('img/' ~ composition.ingredient.photo)}}" width="30px"  height="auto" alt="{{ composition.ingredient.name }}">
+                                        <img src="{{ asset('img/' ~ composition.ingredient.photo) }}" width="30px"
+                                             height="auto" alt="{{ composition.ingredient.name }}">
                                     </li>
                                 {% endif %}
                             {% endfor %}
@@ -48,25 +49,29 @@
                     <li>Email: {{ app.user.email }}</li>
                     <li>Téléphone: {{ app.user.phone }}</li>
                 </ul>
-                <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mes infos</a>
-                <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mon mot de pass</a>
+                <div class="row">
+                    <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mes
+                        infos</a>
+                    <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mon
+                        mot de pass</a>
+                </div>
             </article>
         </section>
         <section class="row my-auto">
             <h4 class="text-center col-12">Mes recettes Favorites</h4>
             {% for recette in app.user.favoris %}
-                                   <article class="cards">
-                        <div class="card-header">
-                            <h5 class="card-title">{{ recette.title }} by {{ recette.user }}</h5>
-                            <img src="{{asset('img/' ~ recette.photo)}}" alt="" class="img-fluid">
-                        </div>
-                        <div class="card-body">
-                            <p>Temps de preparations: {{ recette.timePrepare }}</p>
-                            <p>Temps de cuissons: {{ recette.cookTime }}</p>
+                <article class="cards">
+                    <div class="card-header">
+                        <h5 class="card-title">{{ recette.title }} by {{ recette.user }}</h5>
+                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="" class="img-fluid">
+                    </div>
+                    <div class="card-body">
+                        <p>Temps de preparations: {{ recette.timePrepare }}</p>
+                        <p>Temps de cuissons: {{ recette.cookTime }}</p>
 
-                        </div>
-                    </article>
-                        {% endfor %}
+                    </div>
+                </article>
+            {% endfor %}
         </section>
     </div>
 

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditInfoFormType;
 use App\Form\RegisterType;
 use App\Entity\Recette;
 use App\Entity\Ingredient;
@@ -40,7 +41,7 @@ class AccountController extends AbstractController
     #[Route('/compte/{id}/edit', name: 'app_account_edit', methods: ['GET', 'POST'], requirements: ['id' => '[0-9]+'])]
     public function edit(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHashes, EntityManagerInterface $manager , User $user): Response
     {
-        $form = $this->createForm(RegisterType::class, $user);
+        $form = $this->createForm(EditInfoFormType::class, $user);
         $form->handleRequest($request);
 
 
