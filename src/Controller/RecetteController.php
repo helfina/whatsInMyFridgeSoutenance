@@ -77,7 +77,7 @@ class RecetteController extends AbstractController
                 $nomFichier = strreplace(" ", "_", $nomFichier);
                 $nomFichier .= '_'.uniqid().'.'.$fichier->guessExtension();
                 $fichier->move("img", $nomFichier);
-                $recette->setImage($nomFichier);
+                $recette->setPhoto($nomFichier);
             }
 
             $recette->setUser($this->getUser());
