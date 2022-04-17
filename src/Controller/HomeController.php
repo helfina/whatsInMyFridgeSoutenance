@@ -3,8 +3,9 @@
 namespace App\Controller;
 
 use App\Form\SearchingredientType;
-use App\Repository\CompositionRepository;
 use App\Repository\RecetteRepository;
+use App\Repository\IngredientRepository;
+use App\Repository\CompositionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,7 +54,6 @@ class HomeController extends AbstractController
   
         return $realEntities;
     }
-
 }
 
 

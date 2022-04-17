@@ -1,0 +1,19 @@
+<div class="col-4">
+    <div class="card col" style="width: 18rem;">
+        <img class="card-img-top" src="{{asset('img/' ~ compo.recette.photo)}}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{{compo.recette.title}}</h5>
+            <p class="card-text ">
+            {% for compo in compos %}
+            {% if recette.id == compo.recette.id %}
+                <li class="img-card">{{ compo.poids }} grammes
+                    de {{ compo.ingredient.name|lower }} <img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> </li>
+            {% endif %}
+        {% endfor %}
+            
+            </p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+</div>
