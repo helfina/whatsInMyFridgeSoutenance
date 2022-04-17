@@ -74,10 +74,10 @@ class RecetteController extends AbstractController
 
             if($fichier = $recetteForm->get('photo')->getData()){
                 $nomFichier = pathinfo($fichier->getClientOriginalName(), PATHINFO_FILENAME);
-                $nomFichier = strreplace(" ", "", $nomFichier);
+                $nomFichier = strreplace(" ", "_", $nomFichier);
                 $nomFichier .= '_'.uniqid().'.'.$fichier->guessExtension();
                 $fichier->move("img", $nomFichier);
-                $recette->setPhoto($nomFichier);
+                $recette->setImage($nomFichier);
             }
 
             $recette->setUser($this->getUser());
