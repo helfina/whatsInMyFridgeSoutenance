@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Contact;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -65,6 +66,10 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::subMenu('Compositions', 'fas fa-list')->setSubItems([
             MenuItem::linkToCrud('Add Composition', 'fas fa-list', Composition::class)->setAction(Crud::PAGE_NEW),
             MenuItem::linkToCrud('Show Compositions', 'fas fa-list', Composition::class)
+        ]);
+        yield MenuItem::subMenu('Contact', 'fas fa-list')->setSubItems([
+            MenuItem::linkToCrud('Add Contact', 'fas fa-list', Contact::class)->setAction(Crud::PAGE_NEW),
+            MenuItem::linkToCrud('Show Contact', 'fas fa-list', Contact::class)
         ]);
 
     }

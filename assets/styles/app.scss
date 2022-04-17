@@ -44,19 +44,24 @@ nav{
             ul li a{
                 color: white !important;
                 font-weight: 700;
+                padding: 0 8px 0 8px !important;
+                text-decoration: none;
+                transition-duration:0.1s ;
 
 
             }
             a:hover{
-                color: rgb(158, 158, 158) !important;
+               
+                border-bottom: solid white 3px;
             }
         }
     }
 }
 
 .correction{
-    padding-top: 40.85px;
+    padding-top: 56.4px;
 }
+
 
 
 //******************************************************************************
@@ -131,8 +136,11 @@ nav{
 
 //******************************************************************************
 //***************************--CARDS--********************************************
-
-
+//card bootstrap searchcontrolle 
+.img-card img{
+    width: 10% !important;
+}
+//card bootstrap searchcontrolle fin
 .liste-card{
     display: flex;
     width: 80%;
@@ -224,7 +232,7 @@ nav{
 }
 
 //******************************************************************************
-//***************************--SEARCBAR--********************************************
+//***************************--SEARCHBAR--********************************************
 
 
 
@@ -253,18 +261,27 @@ nav{
 .result_bar{
     text-align: start !important;
     background-color: rgba(255, 255, 255, 0.747);
+    z-index: 999;
 }
+
+
 
 .result{
     img{
         width: 30%;
     }
 }
-
+.selected{
+    background-color: red !important;
+}
 
 //******************************************************************************
 //***************************--TAGS--********************************************
-    .test-container{
+.cont_parent{
+    width: 70%;
+}    
+
+.test-container{
         position: relative;
         
         margin: 40px;

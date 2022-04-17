@@ -18,12 +18,14 @@
             {% include ("searchbar.html.twig") %}
             <div>
                 <form action="{{ path('app_search_compo') }}">
-                    <input type="hidden" name="js_object">
-                    <button class="mb-5" type="submit">C'est parti !</button>
+                    <input id='obj-input' type="hidden" name="js_object">
+                    <button id="search-btn" class="mb-5" type="submit">C'est parti !</button>
                 </form>
             </div>
         </div>
     </header>
+
+    
 
     <div class="container d-flex justify-content-between">
         <div class="col-md-4">

@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Contactez-Nous</h2>
+                <p><strong>Vous êtes commerçant et vous désirez nous contacter pour vendre des ingrédients aux utilisateurs ou pour toutes autres questions, n'hésitez pas? </strong></p>
+                <p>(Champs nom, ville, e-mail et sujet obligatoire.)</p>
+                {{form(contactForm)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
