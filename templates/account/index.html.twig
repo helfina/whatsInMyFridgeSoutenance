@@ -14,10 +14,11 @@
                     habitant {{ app.user.address }} dans la ville de {{ app.user.city }} {{ app.user.postalCode }}.</p>
                 <p>Mon E-mail est {{ app.user.email }} et mon téléphone: {{ app.user.phone }}</p>
             </ul>
-            <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mes
-                informations</a>
-            <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mon mot de
-                pass</a>
+            <div class="row ">
+                <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info m-1 col-5">Modifier mes
+                    informations</a>
+                <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info m-1 col-5">Modifier mon mot de pass</a>
+            </div>
         </article>
 
         <div class="container p-3">

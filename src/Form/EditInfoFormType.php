@@ -41,12 +41,12 @@ class EditInfoFormType extends AbstractType
                 'label' => 'Mon code postal'
             ])
             ->add('password', PasswordType::class, [
-                'label' => 'Mon mot de passe',
                 'mapped' => false,
                 'disabled' => true,
                 'attr' => [
-                    'placeholder' => 'Veuillez saisir le mot de pass actuel'
+                    'placeholder' => '********'
                 ]
+
             ])
             ->add('phone', NumberType::class, [
                 'label' => ' votre téléphone'

@@ -23,7 +23,7 @@ class AccountPasswordController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $oldPassword = $form->get('old_password')->getData();
-            dump($oldPassword);
+            //dump($oldPassword);
             if ($passwordHashes->isPasswordValid($user, $oldPassword)) {
                 $new_psw = $form->get('new_password')->getData();
                 //dump($new_psw);
