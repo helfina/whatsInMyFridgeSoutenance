@@ -5,6 +5,7 @@
 
 {% block body %}
 
+
 	<div class="example-wrapper">
 		<h1>{{ controller_name }}</h1>
 
@@ -24,20 +25,41 @@
 				    </div>
 				</div> #}
 
-<div class="row justify-content-arround container m-auto">
+{% set count = 0 %}
+{% set ingRecup %}
 		{% for ar in array %}
+			{% for ingredient in ingredients %}				
+				{% if ar == ingredient.name %}
+					{% set count = count + 1 %}
+					(compo.ingredient.id == {{ingredient.id}})
+					{% if array | length != count %}
+					or
+					{% endif %}					
+				{% endif %}
+			{% endfor %}			
+		{% endfor %}
+{% endset %}
+<p>{{ingRecup}}</p>	
 
+
+<div class="row justify-content-arround container m-auto">
+
+		 {#{% for ar in array %}
+			
 			{% for ingredient in ingredients %}
 				{% if ar == ingredient.name %}
+					
 					{% for compo in compos %}
 
-						{% if ingredient.id == compo.ingredient.id %}
+
+						{% if ingredient.id == compo.ingredient.id    %}
 
 
 							{% for recette in recettes %}
 
 								{% if compo.recette.id == recette.id %}
-									{# <div class="col-4">
+								
+									 <div class="col-4">
 										<div class="card col" style="width: 18rem;">
 											<img class="card-img-top" src="{{asset('img/' ~ compo.recette.photo)}}" alt="Card image cap">
 											<div class="card-body">
@@ -48,15 +70,15 @@
                                                     <li class="img-card">{{ compo.poids }} grammes
                                                         de {{ compo.ingredient.name|lower }} <img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> </li>
                                                 {% endif %}
-                                            {% endfor %}
+                                           		{% endfor %}
 												
 												</p>
 												<a href="#" class="btn btn-primary">Go somewhere</a>
 											</div>
 										</div>
 									
-									</div> #}
-									{% include ("cards-2.html.twig") %}
+									</div> 
+									 {# {% include ("cards-2.html.twig") %} 
 
 								{% endif %}
 
@@ -73,7 +95,165 @@
 			{% endfor %}
 
 
+		{% endfor %}  
+
+
+
+<hr><hr><hr><hr>
+
+{% set rec = 'recette' %}
+		  {% for ar in array %}
+			
+			{% for ingredient in ingredients %}
+				{% if ar == ingredient.name %}
+					
+					
+					
+					{% for compo in compos %}
+							
+						
+						{% if compo.ingredient.id == ingredient.id %}
+								
+								<p>{{compo.id}} : ingrédient {{compo.ingredient.name}} pour recette : {{compo.recette.title}} fin de boucle </p>
+							{% for recette in recettes %}
+
+								{% if (compo.recette.id == recette.id) and (compo.recette.title != rec) %}
+								{% set rec = compo.recette.title %}
+
+										
+									 <div class="col-4">
+										<div class="card col" style="width: 18rem;">
+											
+											<div class="card-body">
+												<h5 class="card-title">{{compo.recette.title}}</h5>
+												<h5 class="card-title">{{compo.recette.id}}</h5>
+											</div>
+										</div>
+									
+									</div> 
+									  
+
+								{% endif %}
+
+							{% endfor %}
+
+
+						{% endif %}
+
+					{% endfor %}
+					
+
+				{% endif %}
+
+
+			{% endfor %}
+
+
+		{% endfor %} 
+
+
+{% set rec = 'recette' %}
+		
+<hr><hr><hr><hr><hr><hr>
+{% set comp = [] %}
+
+{% for ar in array %}
+	{% for ingredient in ingredients %}
+		{% if ar == ingredient.name %}
+			{% for compo in compos %}
+				{% if ingredient.id == compo.ingredient.id %}
+						{% for recette in recettes %}
+							{% if compo.recette.id == recette.id %}
+								
+									
+								{% set comp = comp|merge([{ id: compo.recette.id,}]) %}
+									
+								{{recette.title}}
+			
+							{% endif %}
+						{% endfor %}
+				{% endif %}
+				
+			{% endfor %}
+		
+		{% endif %}
+		
+	{% endfor %}
+{% endfor %}
+<hr>
+{% set te = 0 %}
+{% for com in comp %}
+		
+	{% for co in com %}
+		{% for compo in compos %}
+			{% if compo.recette.id == co %}
+				{% if compo.recette.id != te %}
+				{% set te = compo.recette.id %}
+					{% for ar in array %}
+						
+					{% endfor %}
+				{% endif %}
+			
+			{% endif %}
+			
 		{% endfor %}
+	{% endfor %}
+{% endfor %}
+{% set te = 0 %}
+
+<hr><hr><hr><hr><hr><hr><hr><h3>teeeest</h3>
+
+{# {% for compo in compos %}
+	{% for rece in recet %}
+		{% if rece == compo.recette.id %}
+			{{compo.recette.title}}
+		
+		
+		{% endif %}
+	{% endfor %}
+{% endfor %} 
+
+{# {% for co in com %}
+	{{co}}
+{% endfor %} 
+<hr>
+{% for ingg in ing %}
+	{{ingg}}
+{% endfor %}
+
+<hr><hr><hr><hr><hr>
+
+<h2>
+	{% for dat in data %}
+		{% for da in dat %}
+			{{da}}
+		{% endfor %}	
+	{% endfor %}
+
+	
+
+</h2>#} 
+
+
+
+{# {% for arr in array %}
+	{% for ingredient in ingredients %}
+		{% if arr == ingredient.name %}
+			{% for compo in compos %}
+				{% if ingredient.id == compo.ingredient.id %} #}
+					{# {% for recette in recettes %}
+						{% if compo.recette.id == recette.id %}
+							<h1>{{recette.title}}</h1>
+							{# <h2>{{compo.recette.title}}</h2> #}
+						
+						{# {% endif %} #}
+					{# {% endfor %} #}
+				{# {% endif %}
+			{% endfor %}
+		
+		{% endif %}
+	{% endfor %}
+{% endfor %} #}
 
 </div>
 	{% endblock %}
