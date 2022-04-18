@@ -22,8 +22,9 @@ class HomeController extends AbstractController
         $search = $form->handleRequest($request);
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'recettes' => $rr->findAll(),
+            'recettes' => $rr->findByCategory(),
+            'recs' => $rr->findByCat(),
+            'recet' => $rr->findBydessert(),
             'form' => $form->createView(),
             'compositions' => $cr->findAll(),
             'categories' => $catr->findAll(),
