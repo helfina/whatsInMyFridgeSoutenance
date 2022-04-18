@@ -18,12 +18,14 @@
             {% include ("searchbar.html.twig") %}
             <div>
                 <form action="{{ path('app_search_compo') }}">
-                    <input type="hidden" name="js_object">
-                    <button class="mb-5" type="submit">C'est parti !</button>
+                    <input id='obj-input' type="hidden" name="js_object">
+                    <button id="search-btn" class="mb-5" type="submit">C'est parti !</button>
                 </form>
             </div>
         </div>
     </header>
+
+    
 
     <div class="container d-flex justify-content-between">
         <div class="col-md-4">
@@ -32,6 +34,8 @@
                  data-bs-interval="5000" class="border border-dark">
                 <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
                     {% for recette in recettes %}
+					{# {% for category in categories %}
+					{% if category.id == recette.category.id %} #}
                         {% if loop.first %}
                             <div class="carousel-item active border-dark">
                                 <div class=" width-auto p-auto justify-content-center">
@@ -99,19 +103,23 @@
                                 </div>
                             </div>
                         {% endif %}
+					{# {% endif %}
+					{% endfor %} #}
                     {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                         data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
+
+
         <div class="col-md-4 mx-3">
             <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel"
                  data-bs-interval="5000" class="border border-dark">
@@ -197,16 +205,18 @@
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControl"
                         data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControl"
                         data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
+
+
         <div class="col-md-4">
             <div id="carouselExampleControlss" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
                 <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
@@ -290,16 +300,26 @@
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlss"
                         data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlss"
                         data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
 
+        </div>
+	</div>
+	<div class="container mt-5">
+		<h3>Avis</h3>
+		<div>
+                {% for avis in avis | reverse %}
+                    <p>Publié par {{avis.user}}</p>
+                    <hr>
+                    <div>{{avis.content}}</div>
+                {% endfor %}
         </div>
     </div>
     <script>

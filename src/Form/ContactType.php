@@ -8,11 +8,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ContactType extends AbstractType
@@ -48,10 +48,14 @@ class ContactType extends AbstractType
                     'placeholder' => 'Merci de saisir votre Email'
                 ]
             ])
-            ->add('phone', TelType::class, [
-                'label'         => 'Téléphone',])
+            ->add('phone', NumberType::class, [
+                'label'         => 'Téléphone',
+                "help" => "Merci, de mettre des chiffres pour le téléphone.",
+                'required'     => false
+                ])
             ->add('commerce_name', TextType::class, [
-                'label'         => 'Si vous êtes commerçant, le nom de votre commerce'
+                'label'         => 'Si vous êtes commerçant, le nom de votre commerce',
+                'required'     => false
             ])
             ->add('commerce_type', ChoiceType::class, [
                 'choices' => [
@@ -70,6 +74,7 @@ class ContactType extends AbstractType
             ])
             ->add('photo', FileType::class, [
                 'label' => 'Photo du commerce',
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
