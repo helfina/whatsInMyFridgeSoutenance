@@ -3,14 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegisterType;
+use App\Form\EditInfoFormType;
 use App\Entity\Recette;
-use App\Entity\Ingredient;
 use App\Repository\CompositionRepository;
 use App\Repository\IngredientRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\UserRepository;
-use Cassandra\Type\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,10 +35,10 @@ class AccountController extends AbstractController
     }
 
 
-    #[Route('/compte/{id}/edit', name: 'app_account_edit', methods: ['GET', 'POST'], requirements: ['id' => '[0-9]+'])]
+    #[Route('/compte/{id}/edit', name: 'app_account_edit', requirements: ['id' => '[0-9]+'], methods: ['GET', 'POST'])]
     public function edit(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHashes, EntityManagerInterface $manager , User $user): Response
     {
-        $form = $this->createForm(RegisterType::class, $user);
+        $form = $this->createForm(EditInfoFormType::class, $user);
         $form->handleRequest($request);
 
 
@@ -49,12 +47,6 @@ class AccountController extends AbstractController
             if ($email != $user->getUserIdentifier()) {
                 $user->getId()->getEmail($email);
             }
-
-            if ($mdp = $form->get('password')->getData()) {
-                $password = $passwordHashes->hashPassword($user, $mdp);
-                $user->setPassword($password);
-            }
-
             $userRepository->add($user);
             return $this->redirectToRoute('app_account', [], Response::HTTP_SEE_OTHER);
         }
@@ -65,7 +57,7 @@ class AccountController extends AbstractController
         ]);
     }
 
-    #[Route('/favori/{id}', name: 'app_account_favoris',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    #[Route('/favori/{id}', name: 'app_account_favoris', requirements: ['id' => '[0-9]+'], methods: 'GET')]
     public function favoris(Request $request, EntityManagerInterface $em, RecetteRepository $rr, Recette $recette, UserRepository $ur, $id): Response
     {   
         $user = $this->getUser();

@@ -7,7 +7,7 @@
             {% for compo in compos %}
             {% if recette.id == compo.recette.id %}
                 <li class="img-card">{{ compo.poids }} grammes
-                    de {{ compo.ingredient.name|lower }} <img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> </li>
+                    de {{ compo.ingredient.name|lower }} <img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt="" class="w-25"> </li>
             {% endif %}
         {% endfor %}
             

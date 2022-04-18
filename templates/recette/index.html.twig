@@ -3,68 +3,94 @@
 {% block title %}Hello RecetteController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
-<div class="container">
-    <a class="btn btn-primary" href="{{path('app_recette_ajout')}}">Ajouter une recette</a>
-</div>
+        .example-wrapper code {
+            background: #F5F5F5;
+            padding: 2px 6px;
+        }
+    </style>
 
-<div class="container d-flex">
-    {% for i in 1..3 %}    
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-heading{{ i }}">
-                    <button class="btn btn-primary btn-lg w-25 p-3" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ i }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ i }}">
-                        {% for c  in category %}
-                        {% if c == category[i] %}
-						{# <a href="{{ path(app.request.get('_route'), { 'search_key' : alpha[i]}) }}"> #}
-                            <span>{{ category[i] }} </span> 
-                        {# </a> #}
-                    </button> 
-                        {% set count = 0 %}
-                            {% for recette in recettes %}
-							{% if i == (recette.category.id|first|lower) %}
-                                {% set count = count + 1%}
-                            
+    <h2 class="text-center">Les recettes</h2>
+
+    <div class="container d-flex">
+        {% if app.user %}
+            <div>
+                <a class="btn btn-primary" href="{{ path('app_recette_ajout') }}">Ajouter une recette</a>
+            </div>
+        {% endif %}
+        <div>
+            <div class="text-center">
+                {% for i in 1..3 %}
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-heading{{ i }}">
+                                <button class="btn btn-primary btn-lg w-100 p-1" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapse{{ i }}" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapse{{ i }}">
+                                    {% for c  in category %}
+                                    {% if c == category[i] %}
+                                    {# <a href="{{ path(app.request.get('_route'), { 'search_key' : alpha[i]}) }}"> #}
+                                    <span>{{ category[i] }} </span>
+                                    {# </a> #}
+                                </button>
+                                {% set count = 0 %}
+                                {% for recette in recettes %}
+                                    {% if i == (recette.category.id|first|lower) %}
+                                        {% set count = count + 1 %}
+
+                                    {% endif %}
+                                {% endfor %}
+                                <font size="+0">Il y a {{ count }} recette{{ count <= 1 ? "" : "s" }} concernant
+                                    les {{ c }}{{ count <= 1 ? "" : "s" }}</font>
+                            </h2>
+                            <div id="panelsStayOpen-collapse{{ i }}" class="accordion-collapse collapsing"
+                                 aria-labelledby="panelsStayOpen-heading{{ i }}">
+
+                                <div class="accordion-body">
+                                    <div class="d-flex flex-wrap">
+
+                                        <div class="text-center justify-content-center w-100 p-1 d-flex flex-wrap">
+                                            {% for recette in recettes %}
+                                                {% if i == (recette.category.id|first|lower) %}
+                                                    <div class="text-center p-3" id="respon">
+
+                                                        <h2>{{ recette }}</h2>
+                                                        <img src="{{ asset('img/' ~ recette.photo) }}"
+                                                             alt="{{ recette }}" height="80">
+                                                        <div class="mt-2">
+                                                            <a class="btn btn-primary"
+                                                               href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir
+                                                                le détail</a>
+                                                            {% if app.user %}
+                                                                <a class="btn btn-primary"
+                                                                   href="{{ path('app_account_favoris', {'id': recette.id}) }}">Favoris</a>
+                                                            {% else %}
+                                                                <a class="btn btn-primary"
+                                                                   href="{{ path('app_login') }}">Favoris</a>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             {% endif %}
                             {% endfor %}
-                            <font size="+0">Il y a {{ count }} recette{{ count <= 1 ? "" : "s" }} concernant les {{ c }}{{ count <= 1 ? "" : "s" }}</font>
-                </h2>
-                <div id="panelsStayOpen-collapse{{ i }}" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-heading{{ i }}">
-            
-                <div class="accordion-body" >
-                    <div class="d-flex flex-wrap">
-            
-                        <div class="text-center justify-content-center w-100 p-3 d-flex flex-wrap">
-                            {% for recette in recettes %}
-                                {% if i == (recette.category.id|first|lower) %}
-                                <div class="text-center p-3" id="respon">
-
-                                    <h2>{{ recette }}</h2>
-                                    <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette }}" height="80">
-
-                                        <a class="btn btn-primary" href="{{path('app_recette_detail', {'id': recette.id})}}">Voir le détail</a>
-                                        <a class="btn btn-primary" href="{{path('app_account_favoris', {'id': recette.id})}}">Favoris</a>
-                                    </div>
-
-                                {% endif %}
-                            {% endfor %}
                         </div>
-                    </div>   
-                </div>
-                        {% endif %}
-                        {% endfor %}
-            </div>    
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-    {% endfor %}
-</div>
-
-		
-
-	</div>
-
+    </div>
 
 {% endblock %}

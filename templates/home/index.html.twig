@@ -25,15 +25,12 @@
         </div>
     </header>
 
-    
-
-    <div class="container d-flex justify-content-between">
-        <div class="col-md-4">
-
-            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel"
-                 data-bs-interval="5000" class="border border-dark">
-                <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
-                    {% for recette in recettes %}
+<div class="container d-flex justify-content-between">
+    <div class="col-md-4">
+        <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
+            <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
+                {% for recette in recettes %}
+					{% if recette.category.id == 1 %}
                         {% if loop.first %}
                             <div class="carousel-item active border-dark">
                                 <div class=" width-auto p-auto justify-content-center">
@@ -45,23 +42,16 @@
                                         <ul>
                                             {% for composition in compositions %}
                                                 {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes
-                                                        de {{ composition.ingredient.name|lower }} </li>
+                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
-                                        <div class="time">
-                                            <p>
-                                                Temps de préparation :
-                                                {{ recette.timePrepare }}
-                                                min</p>
-                                            <p>Temps de cuisson :
-                                                {{ recette.cookTime }}
-                                                min</p>
+                                        <div>
+                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
+                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
                                         </div>
                                         <div class="d-flex justify-content-center">
-                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
-                                               class="btn btn-primary">Voir la recette</a>
+                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}" class="btn btn-primary">Voir la recette</a>
                                         </div>
                                     </div>
                                 </div>
@@ -77,54 +67,44 @@
                                         <ul>
                                             {% for composition in compositions %}
                                                 {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes
-                                                        de {{ composition.ingredient.name|lower }} </li>
+                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
-
-                                        <div class="time">
-                                            <p>
-                                                Temps de préparation :
-                                                {{ recette.timePrepare }}
-                                                min</p>
-                                            <p>Temps de cuisson :
-                                                {{ recette.cookTime }}
-                                                min</p>
+                                        <div>
+                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
+                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
                                                class="btn btn-primary">Voir la recette</a>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         {% endif %}
-                    {% endfor %}
+					{% endif %}
+                {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                         data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
-        <div class="col-md-4 mx-3">
-            <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel"
-                 data-bs-interval="5000" class="border border-dark">
-                <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
 
-                    {% for recette in recettes %}
+        <div class="col-md-4 mx-3">
+            <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
+                <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
+                    {% for recette in recs %}
                         {% if loop.first %}
                             <div class="carousel-item active border-dark">
                                 <div class=" width-auto p-auto justify-content-center">
-
-
                                     <div class="photo">
                                         <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
                                     </div>
@@ -133,34 +113,24 @@
                                         <ul>
                                             {% for composition in compositions %}
                                                 {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes
-                                                        de {{ composition.ingredient.name|lower }} </li>
+                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
-
-                                        <div class="time">
-                                            <p>
-                                                Temps de préparation :
-                                                {{ recette.timePrepare }}
-                                                min</p>
-                                            <p>Temps de cuisson :
-                                                {{ recette.cookTime }}
-                                                min</p>
+                                        <div>
+                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
+                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
                                                class="btn btn-primary">Voir la recette</a>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         {% else %}
                             <div class="carousel-item">
                                 <div class="width-auto p-auto justify-content-center ">
-
-
                                     <div class="photo">
                                         <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
                                     </div>
@@ -169,56 +139,44 @@
                                         <ul>
                                             {% for composition in compositions %}
                                                 {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes
-                                                        de {{ composition.ingredient.name|lower }} </li>
+                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
-
-                                        <div class="time">
-                                            <p>
-                                                Temps de préparation :
-                                                {{ recette.timePrepare }}
-                                                min</p>
-                                            <p>Temps de cuisson :
-                                                {{ recette.cookTime }}
-                                                min</p>
+                                        <div>
+                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
+                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
                                                class="btn btn-primary">Voir la recette</a>
                                         </div>
-
                                     </div>
-
-
                                 </div>
-                            </div>
+                            </div>    
                         {% endif %}
                     {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControl"
                         data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControl"
                         data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
         </div>
+
         <div class="col-md-4">
             <div id="carouselExampleControlss" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
                 <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
-
-                    {% for recette in recettes %}
+                    {% for recette in recet %}
                         {% if loop.first %}
                             <div class="carousel-item active border-dark">
                                 <div class=" width-auto p-auto justify-content-center">
-
-
                                     <div class="photo">
                                         <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
                                     </div>
@@ -227,33 +185,24 @@
                                         <ul>
                                             {% for composition in compositions %}
                                                 {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes
-                                                        de {{ composition.ingredient.name|lower }} </li>
+                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
-
-                                        <div class="time">
-                                            <p>
-                                                Temps de préparation :
-                                                {{ recette.timePrepare }}
-                                                min</p>
-                                            <p>Temps de cuisson :
-                                                {{ recette.cookTime }}
-                                                min</p>
+                                        <div>
+                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
+                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
                                                class="btn btn-primary">Voir la recette</a>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         {% else %}
                             <div class="carousel-item">
                                 <div class="width-auto p-auto justify-content-center ">
-
                                     <div class="photo">
                                         <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
                                     </div>
@@ -262,48 +211,54 @@
                                         <ul>
                                             {% for composition in compositions %}
                                                 {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes
-                                                        de {{ composition.ingredient.name|lower }} </li>
+                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
-
-                                        <div class="time">
-                                            <p>
-                                                Temps de préparation :
-                                                {{ recette.timePrepare }}
-                                                min</p>
-                                            <p>Temps de cuisson :
-                                                {{ recette.cookTime }}
-                                                min</p>
+                                        <div>
+                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
+                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
                                         </div>
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
                                                class="btn btn-primary">Voir la recette</a>
                                         </div>
-
                                     </div>
-
-
                                 </div>
                             </div>
-                        {% endif %}
+                        {% endif %}      
                     {% endfor %}
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlss"
                         data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlss"
                         data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="fa-solid fa-angle-right" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-
         </div>
+	</div>
+
+
+<div class="container mt-5">
+	<h3>Avis</h3>
+	<div>
+        {% for avis in avis | reverse %}
+            <aside>
+                <h5>{{avis.recette}}</h5>
+                <p>{{avis.content}}<br>
+                <span>Publié par {{avis.user}}</span>
+                </p>
+            </aside>
+            <hr>
+        {% endfor %}
     </div>
+</div>
+
     <script>
         var myCarousel = document.querySelector('#carouselExampleControls')
         var carousel = new bootstrap.Carousel(myCarousel, {

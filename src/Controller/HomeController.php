@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\SearchingredientType;
+use App\Repository\AvisRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\RecetteRepository;
 use App\Repository\IngredientRepository;
 use App\Repository\CompositionRepository;
@@ -14,16 +16,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(RecetteRepository $rr, Request $request, CompositionRepository $cr): Response
+    public function index(RecetteRepository $rr, Request $request, CompositionRepository $cr, CategoryRepository $catr, AvisRepository $av): Response
     {   
         $form = $this->createForm(SearchingredientType::class);
         $search = $form->handleRequest($request);
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'recettes' => $rr->findAll(),
+            'recettes' => $rr->findByCategory(),
+            'recs' => $rr->findByCat(),
+            'recet' => $rr->findBydessert(),
             'form' => $form->createView(),
             'compositions' => $cr->findAll(),
+            'categories' => $catr->findAll(),
+            'avis' => $av->findAll(),
         ]);
     }
 

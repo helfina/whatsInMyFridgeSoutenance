@@ -1,11 +1,11 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container">
-    <div class="cards">
-        <div class="liste-card ">
+<div class="container p-5">
+    <div class="cards w-50">
+        <div class="liste-card text-center mx-auto">
             <h2>{{ingredient.name}}</h2>
-            <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}">
+            <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" class="w-50">
             <p> <u>Produit à consommer de préférence :</u> {{ ingredient.saison|replace({'_':' '}) }}.</p>
 		</div>
     </div>
