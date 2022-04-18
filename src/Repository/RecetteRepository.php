@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Category;
 
 /**
  * @method Recette|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +20,45 @@ class RecetteRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Recette::class);
+    }
+
+     /**
+      * @return Recette[] Returns an array of Recette objects
+      */
+    public function findByCategory()
+    {
+        return $this->createQueryBuilder('r')
+            ->join(Category::class, 'c', 'WITH', 'c.id = r.category')
+            ->orderBy('r.title', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+         /**
+      * @return Recette[] Returns an array of Recette objects
+      */
+    public function findByCat()
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.category = 2')
+            ->orderBy('r.title', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findBydessert()
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.category = 3')
+            ->orderBy('r.title', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**
