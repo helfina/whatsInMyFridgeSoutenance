@@ -26,9 +26,9 @@ class AccountPasswordController extends AbstractController
             dump($oldPassword);
             if ($passwordHashes->isPasswordValid($user, $oldPassword)) {
                 $new_psw = $form->get('new_password')->getData();
-                dump($new_psw);
+                //dump($new_psw);
                 $password = $passwordHashes->hashPassword($user, $new_psw);
-                dump($password);
+                //dump($password);
                 $user->setPassword($password);
 
                 // enregistrement en bdd
