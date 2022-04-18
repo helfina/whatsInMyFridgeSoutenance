@@ -20,10 +20,11 @@
     <h2 class="text-center">Les recettes</h2>
 
     <div class="container d-flex">
-        <div>
-            <a class="btn btn-primary" href="{{ path('app_recette_ajout') }}">Ajouter une recette</a>
-        </div>
-
+        {% if app.user %}
+            <div>
+                <a class="btn btn-primary" href="{{ path('app_recette_ajout') }}">Ajouter une recette</a>
+            </div>
+        {% endif %}
         <div>
             <div class="text-center">
                 {% for i in 1..3 %}
