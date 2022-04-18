@@ -102,7 +102,7 @@
             <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
                 <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
                     {% for recette in recs %}
-                        {% if loop.first %}{{ dump(recette.category.id ) }}
+                        {% if loop.first %}
                             <div class="carousel-item active border-dark">
                                 <div class=" width-auto p-auto justify-content-center">
                                     <div class="photo">
