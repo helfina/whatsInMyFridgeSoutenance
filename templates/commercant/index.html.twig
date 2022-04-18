@@ -3,30 +3,33 @@
 {% block title %}Hello RecetteController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<h2 class="text-center">Commerçant proche de chez-vous !</h2>
-
-<div class="container d-flex flex-wrap">
-    {% for commerce in commercant %}
-        <div class="mx-auto w-50 mt-3 p-31">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.3536580835694!2d2.3042085155330505!3d48.87053427928868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc388112afb%3A0x4435393c7526dab3!2s54%20Av.%20des%20Champs-%C3%89lys%C3%A9es%2C%2075008%20Paris!5e0!3m2!1sfr!2sfr!4v1650152999427!5m2!1sfr!2sfr" width="400" height="225" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div class="text-center">
+    <h2>Commerçant proche de chez-vous à l'écoute de vos besoins !</h2>
+    <h5>Commande sur ce site bientôt</h5>
+</div>
+        <div class="text-center mx-auto">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1RZOeni5jrjxHbSaPYOW9ySKHZ-eXsw8_&ehbc=2E312F" width="640" height="480" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <div class="container w-50 mb-3">    
-            <div class="d-flex position-relative p-3">
-            <img src="{{asset('img/' ~ commerce.photo)}}" class="flex-shrink-0 me-3 w-50" alt="...">
-                <div class="text-center">
+<div class="container d-flex flex-wrap justify-content-between">
+    {% for commerce in commercant %}
+    {% if commerce.id <= 9 %}
+    
+        <div class="text-center row w-25 mb-3">    
+            <div class="text-center position-relative p-3">
+            <img src="{{asset('img/' ~ commerce.photo)}}" class="flex-shrink-0 me-3 w-100" alt="...">
+            </div>
+                <div class="text-center position-relative p-3">
                     <h4 class="bg-light border mt-0 p-2">{{ commerce.commerceName }}</h5>
                         <p>{{ commerce.adress }}</p>
                         <p>{{ commerce.city }}</p>
-                        <p>{{ commerce.commerceType }}</p>
+                        <p>{{ commerce.commerceType|replace({'_':' '}) }}</p>
+                        <p><a href="#">Leur site internet</a></p>
                         <a href="#" class="btn btn-primary stretched-link">Commande possible bientôt</a>
                 </div>
-            </div>
+            
         </div>
+    {% endif %} 
     {% endfor %} 
 </div>
 
