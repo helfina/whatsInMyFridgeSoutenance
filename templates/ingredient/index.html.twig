@@ -80,10 +80,12 @@
         </div>
     </div>
 
+{%if app.user %}
 <div class="container" style="height:70px">
         <a class="btn btn-primary" href="{{path('app_ingredient_ajout')}}">Ajouter un ingrédient</a>
 </div>
-
+{% endif %}
+    
 {# <div class="container d-flex">
     {% for i in 1..26 %}    
         <div class="accordion" id="accordionPanelsStayOpenExample">
