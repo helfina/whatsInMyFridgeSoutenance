@@ -3,76 +3,79 @@
 {% block title %}Hello AccountPasswordController!{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h3 class="text-center m-auto">Hello {{ app.user.firstname }}! ✅</h3>
-        <section class="row my-auto">
-            <article class="col-9">
-                <h4>Mes recettes</h4>
-                <ol class="row">
-                    {% for recette   in recettes %}
-                        {% if  recette.user == app.user.pseudo %}
-                            <li class="col-5">{{ recette.title }} by {{ recette.user }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ol>
 
-                <h4>mes ingredients favoris</h4>
+    <h3 class="text-center m-auto p-2">Salut {{ app.user.firstname }}! ✅</h3>
+    <div class="container d-flex">
 
-                {# !TODO revoir l'affichage des ingredient, une jointure sql, ou un ajout de champs favoris #}
-                <div>
+        <article class="col-4 text-center p-3">
+            <h4>Mon profil</h4>
+            <ul class="text-justify">
+                <p>{{ app.user.firstname }} {{ app.user.lastname }} surnommé {{ app.user.pseudo }}
+                    habitant {{ app.user.address }} dans la ville de {{ app.user.city }} {{ app.user.postalCode }}.</p>
+                <p>Mon E-mail est {{ app.user.email }} et mon téléphone: {{ app.user.phone }}</p>
+            </ul>
+            <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mes
+                informations</a>
+            <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mon mot de
+                pass</a>
+        </article>
+
+        <div class="container p-3">
+            <h4 class="text-center">Mes recettes Favorites</h4>
+            <div class="d-flex justify-content-around flex-wrap">
+                {% for recette in app.user.favoris %}
+                    <div class="cards w-25">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ recette ? recette.title : "Pas de recette facorites pour l'instant" }}
+                                by {{ recette.user }}</h5>
+                            <img src="{{ asset('img/' ~ recette.photo) }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="card-body">
+                            <p>Temps de preparations: {{ recette.timePrepare }}</p>
+                            <p>Temps de cuissons: {{ recette.cookTime }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex">
+        <article class="row col-7 p-3">
+            <h4 class="text-center">Mes recettes misent en ligne</h4>
+            <div class="d-flex flex-wrap">
+                {% for recette in recettes %}
+                    {% if  recette.user == app.user.pseudo %}
+                        <div class="mx-auto p-2 text-center">
+                            <h5>{{ recette.title }}</h5>
+                            <a class="btn btn-info" href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir le
+                                détail</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </article>
+
+        <article class="p-3">
+            <h4 class="text-center">Mes ingredients favoris</h4>
+
+            {# !TODO revoir l'affichage des ingredient, une jointure sql, ou un ajout de champs favoris #}
+            {# <div>
                     <ul class="row flex-wrap">
                         {% for recette in recettes %}
                             {% for composition in compositions %}
-
+    
                                 {% if recette.id == composition.recette.id %}
                                     <li class="col-4">{{ composition.ingredient.name|lower }}
-                                        <img src="{{ asset('img/' ~ composition.ingredient.photo) }}" width="30px"
-                                             height="auto" alt="{{ composition.ingredient.name }}">
+                                        <img src="{{asset('img/' ~ composition.ingredient.photo)}}" width="30px"  height="auto" alt="{{ composition.ingredient.name }}">
                                     </li>
                                 {% endif %}
                             {% endfor %}
                         {% endfor %}
                     </ul>
-                </div>
+                </div> #}
 
-
-            </article>
-            <article class="col-3">
-                <h4>Mon profil</h4>
-                <ul class="m-auto text-decoration-none">
-                    <li>Prénom: {{ app.user.firstname }}</li>
-                    <li>Nom: {{ app.user.lastname }}</li>
-                    <li>Pseudo: {{ app.user.pseudo }}</li>
-                    <li>Adresse: {{ app.user.address }}</li>
-                    <li>Code postal: {{ app.user.postalCode }}</li>
-                    <li>Ville: {{ app.user.city }}</li>
-                    <li>Email: {{ app.user.email }}</li>
-                    <li>Téléphone: {{ app.user.phone }}</li>
-                </ul>
-                <div class="row">
-                    <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mes
-                        infos</a>
-                    <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mon
-                        mot de pass</a>
-                </div>
-            </article>
-        </section>
-        <section class="row my-auto">
-            <h4 class="text-center col-12">Mes recettes Favorites</h4>
-            {% for recette in app.user.favoris %}
-                <article class="cards">
-                    <div class="card-header">
-                        <h5 class="card-title">{{ recette.title }} by {{ recette.user }}</h5>
-                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="" class="img-fluid">
-                    </div>
-                    <div class="card-body">
-                        <p>Temps de preparations: {{ recette.timePrepare }}</p>
-                        <p>Temps de cuissons: {{ recette.cookTime }}</p>
-
-                    </div>
-                </article>
-            {% endfor %}
-        </section>
+        </article>
     </div>
 
 {% endblock %}

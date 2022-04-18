@@ -10,78 +10,78 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+<h2 class="text-center">Les Ingrédients</h2>
 
-        
-<div class="container">
-    <a class="btn btn-primary" href="{{path('app_ingredient_ajout')}}">Ajouter un ingrédient</a>
-</div>
+    <div class="container">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingone">
+                    <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseone" aria-expanded="true" aria-controls="panelsStayOpen-collapseone">
+                        <span>Ingrédients de A à F</span> 
+                    </button>                    
+                </h2>
+                <div id="panelsStayOpen-collapseone" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingone">  
+                    <div class="accordion-body w-100" >           
+                        {{ include("ingredient/liste_ingredient/list_a_f.html.twig") }}
+                    </div>                       
+                </div>    
+            </div>
+        </div>
+    </div> 
+                        
+    <div class="container">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingtwo">
+                    <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsetwo" aria-expanded="true" aria-controls="panelsStayOpen-collapsetwo">
+                        <span>Ingrédients de G à M</span> 
+                    </button>                   
+                </h2>
+                <div id="panelsStayOpen-collapsetwo" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingtwo">  
+                    <div class="accordion-body w-100" >                        
+                        {{ include("ingredient/liste_ingredient/list_g_m.html.twig") }}
+                    </div>                       
+                </div>    
+            </div>
+        </div>
+    </div> 
 
-<div class="container">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingone">
-                <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseone" aria-expanded="true" aria-controls="panelsStayOpen-collapseone">
-                    <span>Ingrédients de A à F</span> 
-                </button>                    
-            </h2>
-            <div id="panelsStayOpen-collapseone" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingone">  
-                <div class="accordion-body w-100" >           
-                    {{ include("ingredient/liste_ingredient/list_a_f.html.twig") }}
-                </div>                       
-            </div>    
+    <div class="container">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingthree">
+                    <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsethree" aria-expanded="true" aria-controls="panelsStayOpen-collapsethree">
+                        <span>Ingrédients de N à S</span> 
+                    </button>       
+                </h2>
+                <div id="panelsStayOpen-collapsethree" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingthree">  
+                    <div class="accordion-body w-100" >                        
+                        {{ include("ingredient/liste_ingredient/list_n_s.html.twig") }}
+                    </div>                       
+                </div>    
+            </div>
+        </div>
+    </div> 
+
+    <div class="container">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingfour">
+                    <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsefour" aria-expanded="true" aria-controls="panelsStayOpen-collapsefour">
+                        <span>Ingrédients de T à Z</span> 
+                    </button> 
+                </h2>
+                <div id="panelsStayOpen-collapsefour" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingfour">  
+                    <div class="accordion-body w-100" >   
+                        {{ include("ingredient/liste_ingredient/list_t_z.html.twig") }}
+                    </div>                       
+                </div>    
+            </div>
         </div>
     </div>
-</div> 
-                    
-<div class="container">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingtwo">
-                <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsetwo" aria-expanded="true" aria-controls="panelsStayOpen-collapsetwo">
-                    <span>Ingrédients de G à M</span> 
-                </button>                   
-            </h2>
-            <div id="panelsStayOpen-collapsetwo" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingtwo">  
-                <div class="accordion-body w-100" >                        
-                    {{ include("ingredient/liste_ingredient/list_g_m.html.twig") }}
-                </div>                       
-            </div>    
-        </div>
-    </div>
-</div> 
 
-<div class="container">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingthree">
-                <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsethree" aria-expanded="true" aria-controls="panelsStayOpen-collapsethree">
-                    <span>Ingrédients de N à S</span> 
-                </button>       
-            </h2>
-            <div id="panelsStayOpen-collapsethree" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingthree">  
-                <div class="accordion-body w-100" >                        
-                    {{ include("ingredient/liste_ingredient/list_n_s.html.twig") }}
-                </div>                       
-            </div>    
-        </div>
-    </div>
-</div> 
-
-<div class="container">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingfour">
-                <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapsefour" aria-expanded="true" aria-controls="panelsStayOpen-collapsefour">
-                    <span>Ingrédients de T à Z</span> 
-                </button> 
-            </h2>
-            <div id="panelsStayOpen-collapsefour" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingfour">  
-                <div class="accordion-body w-100" >   
-                    {{ include("ingredient/liste_ingredient/list_t_z.html.twig") }}
-                </div>                       
-            </div>    
-        </div>
-    </div>
+<div class="container" style="height:70px">
+        <a class="btn btn-primary" href="{{path('app_ingredient_ajout')}}">Ajouter un ingrédient</a>
 </div>
 
 {# <div class="container d-flex">
