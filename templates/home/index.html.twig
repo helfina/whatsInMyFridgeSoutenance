@@ -245,15 +245,19 @@
             </div>
         </div>
 	</div>
-</div>
+
 
 <div class="container mt-5">
 	<h3>Avis</h3>
 	<div>
         {% for avis in avis | reverse %}
-            <p>Publié par {{avis.user}}</p>
+            <aside>
+                <h5>{{avis.recette}}</h5>
+                <p>{{avis.content}}<br>
+                <span>Publié par {{avis.user}}</span>
+                </p>
+            </aside>
             <hr>
-            <div>{{avis.content}}</div>
         {% endfor %}
     </div>
 </div>
