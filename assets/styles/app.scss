@@ -209,6 +209,11 @@ nav{
     padding: 15px;
     border-radius: 5px;
     margin: 15px auto 15px auto;
+    white-space: normal;
+    font-weight: 700;
+    p{
+        hyphens: auto;
+    }
 }
 
 .sub-avis{
@@ -281,6 +286,23 @@ nav{
         text-decoration: none;
         font-weight: 700;
     }
+}
+
+.card-favd{
+
+    padding-right:8% ;
+    a{
+        background-color: #F29F05;
+        padding: 9px 15px 9px 15px;
+        
+        
+        border-radius: 7px;
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 30px;
+    }
+
 }
 
 
@@ -466,6 +488,7 @@ nav{
             padding : 8px;
             border-radius: 15px;
             display: flex;
+            
 
             .tag{
                 padding: 4px;

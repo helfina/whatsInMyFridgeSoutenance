@@ -224,9 +224,9 @@ $(function() {
 
         
     }
-    let header = document.getElementsByTagName('header')
+    
 
-    header.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
     
     if (e.target.tagName === 'I') {
         const tagLabel = e.target.getAttribute('data-item');

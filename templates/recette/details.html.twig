@@ -3,73 +3,101 @@
 	
 
 
+<div class='pb-5'>
+<div class='container m-auto recette-cont mt-5 p-3 '>
 
-<div class='container m-auto recette-cont mt-5 p-3'>
-
-{% for recette in recettes %}
+	{% for recette in recettes %}
 
 
-		{% if id == recette.id %}
+			{% if id == recette.id %}
 
-		<h1 class="text-center">{{recette.title}}</h1>
-			
-					<div  class="photo-recette">
-						<img src="{{asset('img/' ~ recette.photo)}}" alt="{{recette.slug}}">
-					</div>
+			<h1 class="text-center">{{recette.title}}</h1>
+				
+						<div  class="photo-recette">
+							<img src="{{asset('img/' ~ recette.photo)}}" alt="{{recette.slug}}">
+						</div>
 
-					<div class='compteur'>
-					<i id='btn-m' class="fa-solid fa-minus"></i>  <span><span  id='nb-p'>1</span> personnes </span> <i  id='btn-p' class="fa-solid fa-plus"></i>
-					</div>
-					<div class='row '>
-					{% for compo in compos %}
-            		{% if id == compo.recette.id %}
-                
-						<div class='ingimg col-6 col-md-3 text-center'>
-							<div class='ingimgr'>
-								<img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> 
+						<div class='row justify-content-between d-flex align-items-center'>
+
+							<div class='compteur'>
+							<i id='btn-m' class="fa-solid fa-minus"></i>  <span><span  id='nb-p'>1</span> personnes </span> <i  id='btn-p' class="fa-solid fa-plus"></i>
 							</div>
-							<span class="poids" style='display: none;' >{{ compo.poids }}</span>
-							<p><span class="poid" >{{ compo.poids }}</span> grammes
-							 
-							de {{ compo.ingredient.name|lower }} </p> 
-						</div>
-					
-            		{% endif %}
-            		{% endfor %}
-					</div>
-					<div >
-						<div class="prep">
-						<p>{{recette.prepare}}</p>
-						</div>
-						<div class="time">
-							<p>
-								Temps de préparation :
-								{{recette.timePrepare}}
-								min</p>
-							<p>Temps de cuisson :
-								{{recette.cookTime}}
-								min</p>
-						</div>
-						{% if is_granted('ROLE_USER') %}
-                        <div>
-                            
-                            <h3>Ajouter un avis</h3>
-                            {{form(avisForm)}}
-                        </div>
-						<div>
-							<a href="{{path("app_account_favoris", {"id": recette.id})}}"><span class="iconify" data-icon="bi:heart"></span></a>
-						</div>
-                        <div>
-                            {% for avis in recette.avis | reverse %}
-                                <p>Publié par {{avis.user}}</p>
-                                <div>{{avis.content}}</div>
-                            {% endfor %}
-							{% endif %}
-                        </div>
 
-					</div>
-        {% endif %}
-{% endfor %}
+
+							<div class='card-favd col text-end '>
+								{% if app.user %}
+										
+								{% for recette in recettes %}
+									
+										{% if recette.id == id %}
+										
+									{% if recette in app.user.favoris   %}
+										<a href="{{path("app_account_favoris", {"id": id})}}"><span class="fa-solid fa-heart" aria-hidden="true"></span></a>
+
+										{% else %}
+											
+
+										<a href="{{path("app_account_favoris", {"id": id})}}"><span class="fa-regular fa-heart " data-icon="bi:heart"></span></a>
+										{% endif %}
+										{% endif %}
+										{% endfor %}  
+								{% endif %}
+							</div>
+
+						</div>
+
+						<div class='row '>
+						{% for compo in compos %}
+						{% if id == compo.recette.id %}
+					
+							<div class='ingimg col-6 col-md-3 text-center'>
+								<div class='ingimgr'>
+									<img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> 
+								</div>
+								<span class="poids" style='display: none;' >{{ compo.poids }}</span>
+								<p><span class="poid" >{{ compo.poids }}</span> grammes
+								
+								de {{ compo.ingredient.name|lower }} </p> 
+							</div>
+						
+						{% endif %}
+						{% endfor %}
+						</div>
+						<div >
+							<div class="prep">
+							<p>{{recette.prepare}}</p>
+							</div>
+							<div class="time">
+								<p>
+									Temps de préparation :
+									{{recette.timePrepare}}
+									min</p>
+								<p>Temps de cuisson :
+									{{recette.cookTime}}
+									min</p>
+							</div>
+							{% if is_granted('ROLE_USER') %}
+							<div>
+								
+								<h3>Ajouter un avis</h3>
+								{{form(avisForm)}}
+							</div>
+							<div>
+								<a href="{{path("app_account_favoris", {"id": recette.id})}}"><span class="iconify" data-icon="bi:heart"></span></a>
+							</div>
+							<div>
+								{% for avis in recette.avis | reverse %}
+									<p>Publié par {{avis.user}}</p>
+									<div>{{avis.content}}</div>
+								{% endfor %}
+								{% endif %}
+							</div>
+
+						</div>
+			{% endif %}
+	{% endfor %}
+
+</div>
 
 </div>
 {% endblock %}
