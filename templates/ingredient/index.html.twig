@@ -6,6 +6,7 @@
 
 {% block body %}
 
+
 <h2 class="text-center">Les Ingrédients</h2>
 
     <div class="container">
@@ -70,10 +71,11 @@
                 <div id="panelsStayOpen-collapsefour" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-headingfour">  
                     <div class="accordion-body w-100" >   
                         {{ include("ingredient/liste_ingredient/list_t_z.html.twig") }}
-                    </div>                       
-                </div>    
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 
 {% if app.user %}

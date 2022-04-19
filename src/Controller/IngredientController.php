@@ -3,16 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Ingredient;
-use App\Repository\IngredientRepository;
-use App\Repository\RecetteRepository;
+use App\Form\IngredientType;
 use App\Repository\UserRepository;
+use App\Repository\RecetteRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use App\Form\IngredientType;
 
 class IngredientController extends AbstractController
 {
