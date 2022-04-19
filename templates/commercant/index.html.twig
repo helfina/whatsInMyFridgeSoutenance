@@ -1,35 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecetteController!{% endblock %}
+{% block title %}Commerçants{% endblock %}
 
 {% block body %}
+    <div class="text-center mx-auto">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1RZOeni5jrjxHbSaPYOW9ySKHZ-eXsw8_&ehbc=2E312F" width="640"
+                height="480" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="container d-flex flex-wrap justify-content-between">
+        {% for commerce in commercant %}
+            {% if commerce.id <= 9 %}
 
-<div class="text-center">
-    <h2>Commerçant proche de chez-vous à l'écoute de vos besoins !</h2>
-    <h5>Commande sur ce site bientôt</h5>
-</div>
-        <div class="text-center mx-auto">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1RZOeni5jrjxHbSaPYOW9ySKHZ-eXsw8_&ehbc=2E312F" width="640" height="480" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-<div class="container d-flex flex-wrap justify-content-between">
-    {% for commerce in commercant %}
-    {% if commerce.id <= 9 %}
-    
-        <div class="text-center row w-25 mb-3">    
-            <div class="text-center position-relative p-3">
-            <img src="{{asset('img/' ~ commerce.photo)}}" class="flex-shrink-0 me-3 w-100" alt="...">
-            </div>
-                <div class="text-center position-relative p-3">
-                    <h4 class="bg-light border mt-0 p-2">{{ commerce.commerceName }}</h5>
+                <div class="text-center row w-25 mb-3">
+                    <div class="text-center position-relative p-3">
+                        <img src="{{ asset('img/' ~ commerce.photo) }}" class="flex-shrink-0 me-3 w-100" alt="...">
+                    </div>
+                    <div class="text-center position-relative p-3">
+                        <h4 class="bg-light border mt-0 p-2">{{ commerce.commerceName }}</h4>
                         <p>{{ commerce.adress }}</p>
                         <p>{{ commerce.city }}</p>
                         <p>{{ commerce.commerceType|replace({'_':' '}) }}</p>
                         <p><a href="#">Leur site internet</a></p>
                         <a href="#" class="btn btn-primary stretched-link">Commande possible bientôt</a>
+                    </div>
+
                 </div>
-            
-        </div>
-    {% endif %} 
+            {% endif %}
     {% endfor %} 
 </div>
 
