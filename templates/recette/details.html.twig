@@ -20,7 +20,7 @@
 					<div class='compteur'>
 					<i id='btn-m' class="fa-solid fa-minus"></i>  <span><span  id='nb-p'>1</span> personnes </span> <i  id='btn-p' class="fa-solid fa-plus"></i>
 					</div>
-					<div class='row'>
+					<div class='row '>
 					{% for compo in compos %}
             		{% if id == compo.recette.id %}
                 
@@ -50,7 +50,7 @@
 								{{recette.cookTime}}
 								min</p>
 						</div>
-
+						{% if is_granted('ROLE_USER') %}
                         <div>
                             
                             <h3>Ajouter un avis</h3>
@@ -64,6 +64,7 @@
                                 <p>Publié par {{avis.user}}</p>
                                 <div>{{avis.content}}</div>
                             {% endfor %}
+							{% endif %}
                         </div>
 
 					</div>

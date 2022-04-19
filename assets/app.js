@@ -224,9 +224,9 @@ $(function() {
 
         
     }
+    let header = document.getElementsByTagName('header')
 
-
-    document.addEventListener('click', (e) => {
+    header.addEventListener('click', (e) => {
     
     if (e.target.tagName === 'I') {
         const tagLabel = e.target.getAttribute('data-item');
@@ -242,44 +242,45 @@ $(function() {
 
 
     }
-    
+    //--------------------GRAMMAGE INGREDIENT
+    if(href){
 
-    var poid = document.querySelectorAll('.poid');
-    var poids = document.querySelectorAll('.poids');
-    
-    let nbp = document.querySelector('#nb-p');
-    let btnp = document.querySelector('#bt-p');
-    let btnm = document.querySelector('#bt-m');
-    let a = nbp.textContent
-    let m = 1
-    let pl = poid.length
-    
-
-    
-    $('#btn-p').on('click', function(){
-        a++
-        nbp.textContent = a
+        var poid = document.querySelectorAll('.poid');
+        var poids = document.querySelectorAll('.poids');
         
-        for(let i=0 ; i < pl ; i++){ 
-            poid[i].textContent  =  poids[i].textContent * a
-         }
+        let nbp = document.querySelector('#nb-p');
+        let btnp = document.querySelector('#bt-p');
+        let btnm = document.querySelector('#bt-m');
+        let a = nbp.textContent
         
-    })
+        let pl = poid.length
+        
 
-
-    $('#btn-m').on('click', function(){
-
-        if(a > 1){
-            a--
+        
+        $('#btn-p').on('click', function(){
+            a++
             nbp.textContent = a
+            
             for(let i=0 ; i < pl ; i++){ 
                 poid[i].textContent  =  poids[i].textContent * a
-             }
-        }
-        
-    })
+            }
+            
+        })
 
-    
+
+        $('#btn-m').on('click', function(){
+
+            if(a > 1){
+                a--
+                nbp.textContent = a
+                for(let i=0 ; i < pl ; i++){ 
+                    poid[i].textContent  =  poids[i].textContent * a
+                }
+            }
+            
+        })
+
+    }
     
 });
 
