@@ -66,7 +66,7 @@ class AccountController extends AbstractController
         return $this->redirectToRoute('app_account');
     }
 
-    #[Route('/delete/{id}', name: 'app_account_delete',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    #[Route('/delete/{id}', name: 'app_account_delete', requirements: ['id' => '[0-9]+'], methods: 'GET')]
     public function delete(Request $request, EntityManagerInterface $em, RecetteRepository $rr, Recette $recette, UserRepository $ur, $id): Response
     {   
         $user = $this->getUser();
