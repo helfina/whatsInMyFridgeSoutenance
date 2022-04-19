@@ -20,12 +20,17 @@ class RecetteController extends AbstractController
     {
         $c = [0,'Entrée','Plat','Dessert'];
         $user = $this->getUser();
-        $favori = $user->getfavoris();
+        if( $user ){
+            $favori = $user->getfavoris();
+                return $this->render('recette/index.html.twig', [
+                'recettes' => $rr->findBy( array(), array('title' => 'ASC')),
+                'category' => $c,
+                'favoris' => $favori
+                ]);
+            }
         return $this->render('recette/index.html.twig', [
-            'controller_name' => 'RecetteController',
             'recettes' => $rr->findBy( array(), array('title' => 'ASC')),
             'category' => $c,
-            'favoris' => $favori
         ]);
     }
 
