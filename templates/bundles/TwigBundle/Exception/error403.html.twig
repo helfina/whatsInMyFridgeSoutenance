@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Error
+{% block title %} Accès refuser- 403
 {% endblock %}
 
 {% block body %}
@@ -85,11 +85,9 @@
         }
     </style>
     <section class="error_section">
-        <p class="error_section_subtitle">Oups une erreur c'est produite !</p>
-        <h1 class="error_title"> ERROR </h1>
-        <p class="text-white">
-            Quelque chose est cassé. Veuillez nous indiquer ce que vous faisiez lorsque cette erreur s'est produite. Nous allons le réparer dès que possible. Désolé pour la gêne occasionnée.
-        </p>
+        <p class="error_section_subtitle">Oups accès refuser !</p>
+        <h1 class="error_title">403</h1>
+        <p class="text-white">Accès refuser</p>
         <a href="{{path('app_home')}}" class="btn btn-primary">Retour a l'accueil</a>
     </section>
 
