@@ -21,14 +21,12 @@ class IngredientController extends AbstractController
         if( $user ){
             $favori = $user->getIngredient();
             return $this->render('ingredient/index.html.twig', [
-                'controller_name' => 'IngredientController',
                 'ingredients' => $ir->findBy( array(), array('name' => 'ASC')),
                 'favoris' => $favori,
                 'alpha' => $a
             ]);
         }
         return $this->render('ingredient/index.html.twig', [
-            'controller_name' => 'IngredientController',
             'ingredients' => $ir->findBy( array(), array('name' => 'ASC')),
             'alpha' => $a
         ]);
