@@ -14,22 +14,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SearchController extends AbstractController
 {
-    // #[Route('/search_compo', name: 'app_search_compo')]
-    // public function index(Request $rq,IngredientRepository $ir ): Response
-    // {   
-    //     $word = $rq->query->get('search');
-    //     $ingredients = $ir -> findBysearch($word);
-    //     return $this->render('search/index.html.twig', [
-    //         'controller_name' => 'SearchController',
-    //         'ings' => $ingredients
-    //     ]);
-    // }
+
 
     #[Route('/search_compo', name: 'app_search_compo')]
     public function index(Request $rq, IngredientRepository $ir, CompositionRepository $cr, RecetteRepository $rr): Response
     {   
-        // $requestString = $rq->get('c');
-        // $entities = $ir->findById($requestString);
+
         $list = $rq->query->get("js_object");
         
         $array = explode(',', $list);
@@ -39,7 +29,7 @@ class SearchController extends AbstractController
         $recettes = $rr->findAll();
         $ingredients = $ir->findAll();
         $compos = $cr->findAll();
-        var_dump($ingredients);
+        
         foreach ($array as $arr) {
             foreach($ingredients as $ingredient){
                 if($ingredient->getName() == $arr){
@@ -89,26 +79,51 @@ class SearchController extends AbstractController
                 $obj->ingredient_id = $irr->id;
                 $obj->recette_id =$cc->recette_id;
                 array_push($compoResult,$obj );
+                
             }
         }
        
     }
-    forEach($cleanedCompos as $cdc){
-        forEach($result as $rst){
 
-        }
+    $idsfinal = array();
+    forEach($compoResult as $cdc){
+        
+        array_push($idsfinal,$cdc->recette_id);
     }
+
+    $arrayl = sizeof($array);  
+    
+          
+    $counts = array_count_values($idsfinal) ;
+        // $filtered = array_filter($recetid, function ($value) use ($counts) {
         
         
+    //     return $counts[$value]  > 1 ;
+    // });
+    
+    // print_r($filtered);
+    
+    $idfinal = array ();
+    forEach ($counts as $id => $idr) {
 
-        // return $this->render('search/index.html.twig', [
-        //     'controller_name' => 'SearchController',
-        //     // 'entities' => $entities
-        //     'list' => $list,
-        //     'recettes' => $rr->findAll(),
-        //     'compos' => $cr->findAll(),
-        //     'ingredients' => $ir->findAll(),
-        //     'array' => $array,
+        if($idr >= $arrayl){
+            
+            array_push($idfinal,$id);
+        }
+        
+    }
+
+
+
+        return $this->render('search/index.html.twig', [
+            'controller_name' => 'SearchController',
+            // 'entities' => $entities
+            'list' => $list,
+            'recettes' => $rr->findAll(),
+            'compos' => $cr->findAll(),
+            'ingredients' => $ir->findAll(),
+            'array' => $array,
+            'idfinal'=>$idfinal
             
             
             
@@ -116,7 +131,7 @@ class SearchController extends AbstractController
 
             
             
-        // ]);
+        ]);
     }
 }
 
