@@ -3,18 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\EditInfoFormType;
 use App\Entity\Recette;
-use App\Repository\CompositionRepository;
-use App\Repository\IngredientRepository;
-use App\Repository\RecetteRepository;
+use App\Form\EditInfoFormType;
 use App\Repository\UserRepository;
+use App\Repository\RecetteRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CompositionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AccountController extends AbstractController
 {
@@ -35,14 +35,12 @@ class AccountController extends AbstractController
     }
 
 
-
     #[Route('/compte/{id}/edit', name: 'app_account_edit', requirements: ['id' => '[0-9]+'], methods: ['GET', 'POST'])]
     public function edit(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHashes, EntityManagerInterface $manager , User $user): Response
 
     {
         $form = $this->createForm(EditInfoFormType::class, $user);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $email = $form->get('email')->getData();
@@ -68,7 +66,7 @@ class AccountController extends AbstractController
         return $this->redirectToRoute('app_account');
     }
 
-    #[Route('/delete/{id}', name: 'app_account_delete',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    #[Route('/delete/{id}', name: 'app_account_delete', requirements: ['id' => '[0-9]+'], methods: 'GET')]
     public function delete(Request $request, EntityManagerInterface $em, RecetteRepository $rr, Recette $recette, UserRepository $ur, $id): Response
     {   
         $user = $this->getUser();
@@ -78,24 +76,4 @@ class AccountController extends AbstractController
         
     }
 
-    #[Route('/ingredient/{id}', name: 'app_account_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
-    public function ingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
-    {   
-        $user = $this->getUser();
-        $ingredient = $ir->find($id);
-        $user->addIngredient($ingredient);
-        $em->flush();
-        return $this->redirectToRoute('app_account');
-    }
-
-    #[Route('/deleteingredient/{id}', name: 'app_account_delete_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
-    public function deleteingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
-    {   
-        $user = $this->getUser();
-        $ingredient = $ir->find($id);
-        $user->removeIngredient($ingredient);
-        $em->flush();
-        return $this->redirectToRoute("app_account");
-        
-    }
-}
+ }

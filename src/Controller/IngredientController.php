@@ -3,13 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Ingredient;
+use App\Form\IngredientType;
+use App\Repository\UserRepository;
+use App\Repository\RecetteRepository;
 use App\Repository\IngredientRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use App\Form\IngredientType;
 
 class IngredientController extends AbstractController
 {
@@ -76,5 +79,26 @@ class IngredientController extends AbstractController
         ]);
     }
 
+    
+    #[Route('/favorisingredient/{id}', name: 'app_account_favoris_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    public function ingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
+    {   
+        $user = $this->getUser();
+        $ingredient = $ir->find($id);
+        $user->addIngredient($ingredient);
+        $em->flush();
+        return $this->redirectToRoute('app_account');
+    }
+
+    #[Route('/deleteingredient/{id}', name: 'app_account_delete_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    public function deleteingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
+    {   
+        $user = $this->getUser();
+        $ingredient = $ir->find($id);
+        $user->removeIngredient($ingredient);
+        $em->flush();
+        return $this->redirectToRoute("app_account");
+        
+    }
    
 }

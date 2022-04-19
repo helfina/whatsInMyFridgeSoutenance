@@ -1,40 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello SearchController!
+{% block title %}Recherche
 {% endblock %}
 
 {% block body %}
 
 
-	<div class="example-wrapper pb-5">
-		<h1 class='text-center my-5'>Resultat de la recherche pour : {{list}} </h1>
-
-		
+<div class="example-wrapper pb-5">
+	<h1 class='text-center my-5'>Resultat de la recherche pour : {{ list }} </h1>
 
 
-<div class="row d-flex justify-content-between container m-auto p-0">
+	<div class="row d-flex justify-content-between container m-auto p-0">
 
-{% if idfinal is empty %}
-	<h2 class="text-center">Désolé, aucun résultat pour votre recherche</h2>
-	<div class="idvide">
-	
-	<i class="fa-solid fa-circle-question"></i>
-	
-	
-	
-	</div>
-	{% endif %}
-{% set prevent = 0 %}
-{% for id in idfinal %}
-	
-	{% for compo in compos %}
-		{% if compo.recette.id == id and compo.recette.id != prevent %}
-		{% set prevent = compo.recette.id %}
-			{% include ("cards-2.html.twig") %}
-				
+		{% if idfinal is empty %}
+			<h2 class="text-center">Désolé, aucun résultat pour votre recherche</h2>
+			<div class="idvide">
+
+				<i class="fa-solid fa-circle-question"></i>
+
+
+			</div>
 		{% endif %}
-	{% endfor %}
-{% endfor %}
-{% set prevent = 0 %}
-</div>
+		{% set prevent = 0 %}
+		{% for id in idfinal %}
+
+			{% for compo in compos %}
+				{% if compo.recette.id == id and compo.recette.id != prevent %}
+					{% set prevent = compo.recette.id %}
+					{% include ("cards-2.html.twig") %}
+
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
+		{% set prevent = 0 %}
+	</div>
 	{% endblock %}
