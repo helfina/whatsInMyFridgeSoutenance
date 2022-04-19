@@ -39,9 +39,9 @@
                                 <div>
 							        {% if app.user %}
                                         {% if ingredient in app.user.favoris %}
-                                            <a href="{{path("app_account_ingredient", {"id": ingredient.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
+                                            <a href="{{path("app_account_favoris_ingredient", {"id": ingredient.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
                                         {% else %}
-                                            <a href="{{path("app_account_ingredient", {"id": ingredient.id})}}"><span class="iconify" data-icon="bi:heart"></span></a>
+                                            <a href="{{path("app_account_favoris_ingredient", {"id": ingredient.id})}}"><span class="fa-regular fa-heart" data-icon="bi:heart"></span></a>
                                         {% endif %}
                                     {% endif %}    
 						        </div>
