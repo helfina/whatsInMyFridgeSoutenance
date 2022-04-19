@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RecetteController!{% endblock %}
+{% block title %}Toutes les recettes{% endblock %}
 
 {% block body %}
     <style>
@@ -17,21 +17,17 @@
         }
     </style>
 
-    <h2 class="text-center">Les recettes</h2>
+    <h2 class=" text-center">Les recettes</h2>
+<main class="h-a">
+    <div class="container d-flex w-100 ">
 
-    <div class="container d-flex">
-        {% if app.user %}
-            <div>
-                <a class="btn btn-primary" href="{{ path('app_recette_ajout') }}">Ajouter une recette</a>
-            </div>
-        {% endif %}
-        <div>
-            <div class="text-center">
+        <div class='w-100'>
+            <div class="text-center w-100">
                 {% for i in 1..3 %}
                     <div class="accordion" id="accordionPanelsStayOpenExample">
-                        <div class="accordion-item">
+                        <div class="accordion-item ">
                             <h2 class="accordion-header" id="panelsStayOpen-heading{{ i }}">
-                                <button class="btn btn-primary btn-lg w-100 p-1" type="button" data-bs-toggle="collapse"
+                                <button class="btn btn-warning btn-lg w-100 p-1" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#panelsStayOpen-collapse{{ i }}" aria-expanded="true"
                                         aria-controls="panelsStayOpen-collapse{{ i }}">
                                     {% for c  in category %}
@@ -49,7 +45,7 @@
 
                                     {% endfor %}
                                     <font size="+0">Il y a {{ count }} recette{{ count <= 1 ? "" : "s" }} concernant les {{ c }}{{ count <= 1 ? "" : "s" }}</font>
-                        </h2>
+                            </h2>
                         <div id="panelsStayOpen-collapse{{ i }}" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-heading{{ i }}">
                     
                             <div class="accordion-body" >
@@ -90,6 +86,14 @@
                 {% endfor %}
             </div>
         </div>
-    </div>
 
+
+            {% if app.user %}
+            <div class='mt-5'>
+                <a class="btn btn-primary" href="{{ path('app_recette_ajout') }}">Ajouter une recette</a>
+            </div>
+        {% endif %}
+
+    </div>
+</main>
 {% endblock %}
