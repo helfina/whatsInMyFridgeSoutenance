@@ -18,6 +18,11 @@ require('bootstrap');
 
 
 $(function() {
+    let href = window.location.href.indexOf("recette") > -1
+    if(! href) 
+    {
+         
+    
         var searchRequest = null;
         $("#search").on("keyup", function(e) {
             if( e.key !== 'ArrowDown'&& e.key !== 'ArrowUp'){
@@ -192,7 +197,7 @@ $(function() {
     span.innerHTML = label;
     const closeIcon = document.createElement('i');
     
-    closeIcon.setAttribute('class','fa-solid fa-xmark');
+    closeIcon.setAttribute('class','fa-solid fa-xmark cross');
     closeIcon.setAttribute('data-item', label);
     div.appendChild(span);
     div.appendChild(closeIcon);
@@ -215,10 +220,7 @@ $(function() {
         let hidden_input = document.querySelector("[name='js_object']")
         hidden_input.value = tags
 
-        // if(hidden_input.value != ''){
-        //     return obj = true;
-        // }
-
+        
 
         
     }
@@ -237,31 +239,57 @@ $(function() {
     }
     })
 
-    //Commande pour valider et lancer la recherche en appuyant sur entrée
-    //si le champs de recherche n'est pas validé (décommenter le code dans la fonction "addTags"aussi)
-
-    // input.focus();
-
-    // if(obj == true){
-    //     let focus = $('#search').is(':focus');
-    //     if(focus = false){
-
-    //         document.addEventListener('keyup', (e) => {
-    //             if (e.key === 'Enter' ) {
-    //                 document.getElementById("search-btn").click();           
-    //             }
-    //         });
 
 
+    }
+    
 
-    //     }
-    // }
+    var poid = document.querySelectorAll('.poid');
+    var poids = document.querySelectorAll('.poids');
+    
+    let nbp = document.querySelector('#nb-p');
+    let btnp = document.querySelector('#bt-p');
+    let btnm = document.querySelector('#bt-m');
+    let a = nbp.textContent
+    let m = 1
+    let pl = poid.length
+    
+
+    
+    $('#btn-p').on('click', function(){
+        a++
+        nbp.textContent = a
+        
+        for(let i=0 ; i < pl ; i++){ 
+            poid[i].textContent  =  poids[i].textContent * a
+         }
+        
+    })
 
 
+    $('#btn-m').on('click', function(){
 
+        if(a > 1){
+            a--
+            nbp.textContent = a
+            for(let i=0 ; i < pl ; i++){ 
+                poid[i].textContent  =  poids[i].textContent * a
+             }
+        }
+        
+    })
 
-
+    
+    
 });
 
+//-------------------------------
 
 
+
+
+    
+// btnp.addEventListener('click', function (){
+//     a++
+//     nbp.textContent *= 2
+// })

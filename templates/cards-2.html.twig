@@ -5,14 +5,18 @@
             <h5 class="card-title">{{compo.recette.title}}</h5>
             <p class="card-text ">
             {% for compo in compos %}
-            {% if recette.id == compo.recette.id %}
-                <li class="img-card">{{ compo.poids }} grammes
-                    de {{ compo.ingredient.name|lower }} <img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt="" class="w-25"> </li>
+            {% if id == compo.recette.id %}
+                
+                <div> <span id="poid">{{ compo.poids }}</span> grammes
+                    de {{ compo.ingredient.name|lower }} <img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt="" class="w-25"> </div>
             {% endif %}
-        {% endfor %}
+            {% endfor %}
             
             </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="d-flex justify-content-center">
+                                            <a href="{{ path('app_recette_detail', {'id': compo.recette.id}) }}"
+                                               class="btn btn-primary">Voir la recette</a>
+                                        </div>
         </div>
     </div>
 
