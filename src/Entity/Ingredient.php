@@ -27,9 +27,13 @@ class Ingredient
     #[ORM\OneToMany(mappedBy: 'ingredient', targetEntity: Composition::class, orphanRemoval: true)]
     private $compositions;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'ingredient')]
+    private $users;
+
     public function __construct()
     {
         $this->compositions = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,4 +111,31 @@ class Ingredient
        // TODO: Implement __toString() method.
         return $this->name;
    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addIngredient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeIngredient($this);
+        }
+
+        return $this;
+    }
 }

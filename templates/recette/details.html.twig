@@ -32,6 +32,9 @@
                             <h3>Ajouter un avis</h3>
                             {{form(avisForm)}}
                         </div>
+						<div>
+							<a href="{{path("app_account_favoris", {"id": recette.id})}}"><span class="iconify" data-icon="bi:heart"></span></a>
+						</div>
                         <div>
                             {% for avis in recette.avis | reverse %}
                                 <p>Publié par {{avis.user}}</p>

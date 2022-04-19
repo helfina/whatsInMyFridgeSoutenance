@@ -38,7 +38,7 @@ class AccountController extends AbstractController
 
 
     #[Route('/compte/{id}/edit', name: 'app_account_edit', methods: ['GET', 'POST'], requirements: ['id' => '[0-9]+'])]
-    public function edit(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHashes, EntityManagerInterface $manager , User $user): Response
+    public function edit(Request $request, UserRepository $userRepository, IngredientRepository $ir, UserPasswordHasherInterface $passwordHashes, EntityManagerInterface $manager , User $user): Response
     {
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
@@ -72,5 +72,36 @@ class AccountController extends AbstractController
         $user->addFavori($recette);
         $em->flush();
         return $this->redirectToRoute('app_account');
+    }
+
+    #[Route('/delete/{id}', name: 'app_account_delete',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    public function delete(Request $request, EntityManagerInterface $em, RecetteRepository $rr, Recette $recette, UserRepository $ur, $id): Response
+    {   
+        $user = $this->getUser();
+        $user->removeFavori($recette);
+        $em->flush();
+        return $this->redirectToRoute("app_account");
+        
+    }
+
+    #[Route('/ingredient/{id}', name: 'app_account_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    public function ingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
+    {   
+        $user = $this->getUser();
+        $ingredient = $ir->find($id);
+        $user->addIngredient($ingredient);
+        $em->flush();
+        return $this->redirectToRoute('app_account');
+    }
+
+    #[Route('/deleteingredient/{id}', name: 'app_account_delete_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
+    public function deleteingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
+    {   
+        $user = $this->getUser();
+        $ingredient = $ir->find($id);
+        $user->removeIngredient($ingredient);
+        $em->flush();
+        return $this->redirectToRoute("app_account");
+        
     }
 }
