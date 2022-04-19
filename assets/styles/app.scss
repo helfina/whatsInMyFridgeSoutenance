@@ -425,7 +425,7 @@ nav{
 
 }
 
-@media only screen and (max-width: 992px){
+@media only screen and (max-width: 768px){
     .liste-card{
         display: flex;
         flex-wrap: wrap;
@@ -435,6 +435,20 @@ nav{
     .cards{
         width: calc(90%/2);
 
+    }
+    .compteur{
+        width: 35%;
+    }
+
+    .photo-recette{
+        width: 80%;
+        margin:8px auto 18px auto;
+        height: 300px;
+        border-radius: 8px;
+        img{
+            width: 150%;
+        }
+    
     }
 }
 
@@ -449,6 +463,10 @@ nav{
     .cards{
         width: 100%;
 
+    }
+
+    .compteur{
+        width: 50%;
     }
 
 
