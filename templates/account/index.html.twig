@@ -1,58 +1,101 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccountPasswordController!{% endblock %}
+{% block title %}Mon compte{% endblock %}
 
 {% block body %}
 
-<h3 class="text-center m-auto p-2">Salut {{ app.user.firstname }}! ✅</h3>
+    <h3 class="text-center m-auto p-2">Salut {{ app.user.firstname }}! ✅</h3>
     <div class="container d-flex">
 
-         <article class="col-4 text-center p-3">
+        <article class="col-4 text-center p-3">
             <h4>Mon profil</h4>
-                <ul class="text-justify">
-                    <p>{{ app.user.firstname }} {{ app.user.lastname }} surnommé {{ app.user.pseudo }} habitant {{ app.user.address }}  dans la ville de {{ app.user.city }} {{ app.user.postalCode }}.</p>
-                    <p>Mon E-mail est {{ app.user.email }} et mon téléphone: {{ app.user.phone }}</p>
-                </ul>
-            <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info">Modifier mes informations</a>
+            <ul class="text-justify">
+                <p>{{ app.user.firstname }} {{ app.user.lastname }} surnommé {{ app.user.pseudo }}
+                    habitant {{ app.user.address }} dans la ville de {{ app.user.city }} {{ app.user.postalCode }}.</p>
+                <p>Mon E-mail est {{ app.user.email }} et mon téléphone: {{ app.user.phone }}</p>
+            </ul>
+            <div class="row ">
+                <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info m-1 col-5">Modifier
+                    mes
+                    informations</a>
+                <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info m-1 col-5">Modifier
+                    mon mot de pass</a>
+            </div>
         </article>
 
         <div class="container p-3">
             <h4 class="text-center">Mes recettes Favorites</h4>
             <div class="d-flex justify-content-around flex-wrap">
-                {% for recette in app.user.favoris %}                
-                    <div class="cards w-25">
+                {% for recette in app.user.favoris %}
+                    <div class="cards w-25 col-5">
                         <div class="card-header">
+                        
                             <h5 class="card-title">{{ recette ? recette.title : "Pas de recette favorites pour l'instant" }} by {{ recette.user }}</h5>
                             <img src="{{asset('img/' ~ recette.photo)}}" alt="" class="img-fluid">
+
                         </div>
                         <div class="card-body">
                             <p>Temps de preparations: {{ recette.timePrepare }}</p>
                             <p>Temps de cuissons: {{ recette.cookTime }}</p>
+
                             <a href="{{path("app_account_delete", {"id": recette.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
                             </div>
+
                     </div>
                 {% endfor %}
             </div>
         </div>
     </div>
- 
-        <div class="container d-flex">
-            <article class="row col-7 p-3">
-                <h4 class="text-center">Mes recettes misent en ligne</h4>
-                    <div class="d-flex flex-wrap">
+
+    <div class="container d-flex">
+        <article class="row col-7 p-3 accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseone" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseone">
+                    <span class="text-center">Mes recettes misent en ligne</span>
+                </button>
+                <div id="panelsStayOpen-collapseone" class="accordion-collapse collapsing d-flex flex-wrap"
+                     aria-labelledby="panelsStayOpen-headingone">
+                    <div class="accordion-body w-100 row d-flex flex-wrap">
                         {% for recette in recettes %}
                             {% if  recette.user == app.user.pseudo %}
-                                <div class="mx-auto p-2 text-center">
-                                    <h5>{{ recette.title }}</h5> 
-                                    <a class="btn btn-info" href="{{path('app_recette_detail', {'id': recette.id})}}">Voir le détail</a>
-                                </div>
+                                <figure class="mx-auto p-2 text-center col-5">
+                                    <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}"
+                                         class="img-thumbnail">
+                                    <h5>{{ recette.title }}</h5>
+                                    <a class="btn btn-info" href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir le détail</a>
+                                </figure>
                             {% endif %}
                         {% endfor %}
                     </div>
-            </article>
-                
-            <article class="p-3">
-                <h4 class="text-center">Mes ingredients favoris</h4>
+                </div>
+            </div>
+        </article>
+{#        <article class="row col-7 p-3 accordion" id="accordionPanelsStayOpenExample">#}
+{#            <div class="accordion-item">#}
+{#                <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"#}
+{#                        data-bs-target="#panelsStayOpen-collapseone" aria-expanded="true"#}
+{#                        aria-controls="panelsStayOpen-collapseone">#}
+{#                    <span class="text-center">Mes ingredients favoris</span>#}
+{#                </button>#}
+{#                <div id="panelsStayOpen-collapseone" class="accordion-collapse collapsing d-flex flex-wrap"#}
+{#                     aria-labelledby="panelsStayOpen-headingone">#}
+{#                    <div class="accordion-body w-100">#}
+{#                        {% for ingredients in ingredient %}#}
+
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </article>#}
+
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </article>#}
+
 
                 <div class="d-flex justify-content-around flex-wrap">
                     {% for ingredient in app.user.ingredient %}                
@@ -85,9 +128,7 @@
                     </ul>
                 </div> #}
 
-            </article>
-        </div>
-        
+
     </div>
 
 {% endblock %}
