@@ -60,6 +60,7 @@ nav{
 
 .correction{
     padding-top: 56.4px;
+
 }
 
 
@@ -210,15 +211,81 @@ nav{
     margin: 15px auto 15px auto;
 }
 
-.sub-avis{
-    background-color: #F28705 !important;
+.sub-avis {
+    background-color: #F29F05 !important;
     color: white !important;
+    border: none !important;
 }
+
 //******************************************************************************
 //***************************--CARDS--********************************************
 
 
-.liste-card{
+.card-new {
+    box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.341);
+
+
+}
+
+.top-card {
+    height: 300px;
+    background-color: rgb(68, 68, 68);
+
+    overflow: hidden !important;
+
+    img {
+        width: 110%;
+    }
+}
+
+.card-body {
+    h5 {
+        border-bottom: #F28705 solid 2px;
+    }
+}
+
+
+.dot {
+
+
+    p {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+}
+
+.time-card {
+    display: flex;
+    justify-content: space-around;
+    margin: 10px auto 10px auto;
+    font-weight: 700;
+    box-shadow: inset 3px 2px 5px rgba(0, 0, 0, 0.185);
+    color: #3B3B3B;
+    border-radius: 5px;
+    width: 90%;
+    text-align: center;
+
+
+}
+
+.card-fav {
+
+    a {
+        background-color: #F29F05;
+        padding: 9px 15px 9px 15px;
+
+
+        border-radius: 7px;
+        color: white;
+        text-decoration: none;
+        font-weight: 700;
+    }
+}
+
+
+.liste-card {
     display: flex;
     width: 80%;
     margin: auto;
@@ -300,20 +367,49 @@ nav{
         width: 100%;
         display: flex;
         align-items: center;
-        #search{
+
+        #search {
             width: 100%;
             padding: 5px;
         }
     }
-    
+
 }
 
+.card-1 {
+    width: 110% !important;
+}
+
+.ingscroll {
+    overflow: scroll;
+    height: 250px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.ingscroll::-webkit-scrollbar {
+    display: none;
+}
 
 
 //******************************************************************************
 //***************************--SEARCBAR--********************************************
 
+.idvide {
+    height: 500px;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+
+    i {
+
+        font-size: 400px;
+        color: #F29F05;
+    }
+}
 
 .auto_search{
 
@@ -425,15 +521,30 @@ nav{
 
 }
 
-@media only screen and (max-width: 992px){
-    .liste-card{
+@media only screen and (max-width: 768px) {
+    .liste-card {
         display: flex;
         flex-wrap: wrap;
-    
+
     }
 
-    .cards{
-        width: calc(90%/2);
+    .cards {
+        width: calc(90% / 2);
+
+    }
+    .compteur {
+        width: 35%;
+    }
+
+    .photo-recette {
+        width: 80%;
+        margin: 8px auto 18px auto;
+        height: 300px;
+        border-radius: 8px;
+
+        img {
+            width: 150%;
+        }
 
     }
 }
@@ -443,12 +554,16 @@ nav{
     .liste-card{
         display: block;
 
-    
+
     }
 
-    .cards{
+    .cards {
         width: 100%;
 
+    }
+
+    .compteur {
+        width: 50%;
     }
 
 

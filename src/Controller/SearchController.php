@@ -6,6 +6,7 @@ use PDO;
 use App\Repository\RecetteRepository;
 use App\Repository\IngredientRepository;
 use App\Repository\CompositionRepository;
+use App\Repository\UserRepository;
 use stdClass;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +24,7 @@ class SearchController extends AbstractController
         $list = $rq->query->get("js_object");
 
         $array = explode(',', $list);
+
 
         $recettes = $rr->findAll();
         $ingredients = $ir->findAll();
@@ -91,6 +93,7 @@ class SearchController extends AbstractController
 
         $arrayl = sizeof($array);
 
+
         $counts = array_count_values($idsfinal);
 
         $idfinal = array();
@@ -102,6 +105,8 @@ class SearchController extends AbstractController
             }
 
         }
+
+
         return $this->render('search/index.html.twig', [
             'controller_name' => 'SearchController',
             'list' => $list,
@@ -110,6 +115,7 @@ class SearchController extends AbstractController
             'ingredients' => $ir->findAll(),
             'array' => $array,
             'idfinal' => $idfinal
+
 
         ]);
     }

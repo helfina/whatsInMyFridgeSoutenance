@@ -1,27 +1,68 @@
-<div class="cards p-0 justify-content-between ">
-    <div class="photo">
-        <img src="{{ asset('img/' ~ compo.recette.photo) }}" alt="{{ compo.recette.slug }}">
+<div class="w-100 card-new" style="width: 18rem;">
+    <div class="card-img-top top-card card-1">
+        <img class="" src="{{ asset('img/' ~ recette.photo) }}" alt="Card image cap">
     </div>
-    <div class="cont-card">
-        <h3>{{ compo.recette.title }}</h3>
+    <div class="card-body">
+        <h5 class="card-title">{{ recette.title }}</h5>
+        <p class="card-text ">
+        <div class="row ingscroll">
+            {% for composition in compositions %}
+                {% if recette.id == composition.recette.id %}
 
-        <li>{{ compo.poids }} grammes de {{ compo.ingredient.name|lower }} </li>
-        <img class="ing_img" src="{{ asset('img/' ~ compo.ingredient.photo) }}" alt="">
+                    <div class='ingimg dot col-6 col-md-3 text-center '>
+                        <div class='ingimgr w-100'>
+                            <img src="{{ asset('img/' ~ composition.ingredient.photo) }}" alt="">
+                        </div>
 
-        <div class="time">
+                        <p>
+
+                            {{ composition.ingredient.name|lower }}
+
+                        </p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="time-card">
             <p>
-                Temps de préparation :
-                {{ compo.recette.timePrepare }}
+                Temps de préparation : <br>
+                {{ recette.timePrepare }}
                 min</p>
-            <p>Temps de cuisson :
-                {{ compo.recette.cookTime }}
+            <p>Temps de cuisson :<br>
+                {{ recette.cookTime }}
                 min</p>
         </div>
 
-        <a href="{{ path('app_recette_detail', {'id': compo.recette.id}) }}">Voir la recette</a>
+
+        </p>
+        <div class="row align-items-center ">
+            <div class="col ">
+                <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
+                   class="sub-avis btn btn-primary ">Voir la recette</a>
+            </div>
+            <div class="card-fav col text-end">
+                {% if app.user %}
 
 
+
+
+
+                    {% if recette in app.user.favoris %}
+                        <a href="{{ path("app_account_favoris", {"id": recette.id}) }}"><span class="fa-solid fa-heart"
+                                                                                              aria-hidden="true"></span></a>
+
+                    {% else %}
+
+
+                        <a href="{{ path("app_account_favoris", {"id": recette.id}) }}"><span
+                                    class="fa-regular fa-heart " data-icon="bi:heart"></span></a>
+
+                    {% endif %}
+
+                {% endif %}
+            </div>
+        </div>
     </div>
+</div>
 
-
-</div> 

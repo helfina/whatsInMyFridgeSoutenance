@@ -1,24 +1,67 @@
-<div class="col-4">
-    <div class="card col" style="width: 18rem;">
-        <img class="card-img-top" src="{{ asset('img/' ~ compo.recette.photo) }}" alt="Card image cap">
+<div class="col-lg-4 col-md-6 col-sd-12 my-4 ">
+    <div class="w-100 card-new" style="width: 18rem;">
+        <div class="card-img-top top-card">
+            <img class="" src="{{ asset('img/' ~ compo.recette.photo) }}" alt="Card image cap">
+        </div>
         <div class="card-body">
             <h5 class="card-title">{{ compo.recette.title }}</h5>
             <p class="card-text ">
+            <div class="row ingscroll">
                 {% for compo in compos %}
-                {% if id == compo.recette.id %}
+                    {% if id == compo.recette.id %}
 
-            <div>
-                <span id="poid">{{ compo.poids }}</span> grammes
-                de {{ compo.ingredient.name|lower }}
-                <img src="{{ asset('img/' ~ compo.ingredient.photo) }}" alt="{{ compo.ingredient.name }}" class="w-25">
+                        <div class='ingimg dot col-6 col-md-3 text-center'>
+                            <div class='ingimgr w-100'>
+                                <img src="{{ asset('img/' ~ compo.ingredient.photo) }}" alt="">
+                            </div>
+
+                            <p>
+
+                                {{ compo.ingredient.name|lower }}
+
+                            </p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
+            <div class="time-card">
+                <p>
+                    Temps de préparation : <br>
+                    {{ compo.recette.timePrepare }}
+                    min</p>
+                <p>Temps de cuisson :<br>
+                    {{ compo.recette.cookTime }}
+                    min</p>
+            </div>
+
 
             </p>
-            <div class="d-flex justify-content-center">
-                <a href="{{ path('app_recette_detail', {'id': compo.recette.id}) }}"
-                   class="btn btn-primary">Voir la recette</a>
+            <div class="row align-items-center ">
+                <div class="col ">
+                    <a href="{{ path('app_recette_detail', {'id': compo.recette.id}) }}"
+                       class="sub-avis btn btn-primary ">Voir la recette</a>
+                </div>
+                <div class="card-fav col text-end">
+                    {% if app.user %}
+
+                        {% for recette in recettes %}
+
+                            {% if recette.id == id %}
+
+                                {% if recette in app.user.favoris %}
+                                    <a href="{{ path("app_account_favoris", {"id": id}) }}"><span
+                                                class="fa-solid fa-heart" aria-hidden="true"></span></a>
+
+                                {% else %}
+
+
+                                    <a href="{{ path("app_account_favoris", {"id": id}) }}"><span
+                                                class="fa-regular fa-heart " data-icon="bi:heart"></span></a>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

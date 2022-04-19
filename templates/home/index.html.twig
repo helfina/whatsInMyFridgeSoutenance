@@ -25,63 +25,21 @@
         </div>
     </header>
 
-<div class="container d-flex justify-content-between">
-    <div class="col-md-4">
-    <h2 class="text-center">Entrées</h2>
-        <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
-            <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
-                {% for recette in recettes %}
+    <div class="container d-flex justify-content-between">
+        <div class="col-md-4">
+            <h2 class="text-center">Entrées</h2>
+            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel"
+                 data-bs-interval="5000" class="">
+                <div class="carousel-inner shadow-sm rounded shadow-lg col-sm-12 col-md-6 col-lg-4">
+                    {% for recette in recettes %}
 					{% if recette.category.id == 1 %}
                         {% if loop.first %}
                             <div class="carousel-item active border-dark">
-                                <div class=" width-auto p-auto justify-content-center">
-                                    <div class="photo">
-                                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
-                                    </div>
-                                    <div class="cont-card">
-                                        <h3>{{ recette.title }}</h3>
-                                        <ul>
-                                            {% for composition in compositions %}
-                                                {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                        <div>
-                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
-                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}" class="btn btn-primary">Voir la recette</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include ("cards.html.twig") %}
                             </div>
                         {% else %}
                             <div class="carousel-item">
-                                <div class="width-auto p-auto justify-content-center ">
-                                    <div class="photo">
-                                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
-                                    </div>
-                                    <div class="cont-card">
-                                        <h3>{{ recette.title }}</h3>
-                                        <ul>
-                                            {% for composition in compositions %}
-                                                {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                        <div>
-                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
-                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
-                                               class="btn btn-primary">Voir la recette</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include ("cards.html.twig") %}
                             </div>
                         {% endif %}
 					{% endif %}
@@ -100,61 +58,18 @@
         </div>
 
         <div class="col-md-4 mx-3">
-        <h2 class="text-center">Plats</h2>
-            <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
-                <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
+            <h2 class="text-center">Plats</h2>
+            <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel"
+                 data-bs-interval="5000" class="border border-dark">
+                <div class="carousel-inner shadow-sm rounded shadow-lg col-sm-12 col-md-6 col-lg-4">
                     {% for recette in recs %}
                         {% if loop.first %}
                             <div class="carousel-item active border-dark">
-                                <div class=" width-auto p-auto justify-content-center">
-                                    <div class="photo">
-                                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
-                                    </div>
-                                    <div class="cont-card">
-                                        <h3>{{ recette.title }}</h3>
-                                        <ul>
-                                            {% for composition in compositions %}
-                                                {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                        <div>
-                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
-                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
-                                               class="btn btn-primary">Voir la recette</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include ("cards.html.twig") %}
                             </div>
                         {% else %}
                             <div class="carousel-item">
-                                <div class="width-auto p-auto justify-content-center ">
-                                    <div class="photo">
-                                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
-                                    </div>
-                                    <div class="cont-card">
-                                        <h3>{{ recette.title }}</h3>
-                                        <ul>
-                                            {% for composition in compositions %}
-                                                {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                        <div>
-                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
-                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
-                                               class="btn btn-primary">Voir la recette</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include ("cards.html.twig") %}
                             </div>    
                         {% endif %}
                     {% endfor %}
@@ -173,61 +88,18 @@
         </div>
 
         <div class="col-md-4">
-        <h2 class="text-center">Desserts</h2>
-            <div id="carouselExampleControlss" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
-                <div class="carousel-inner border border-dark rounded shadow-lg col-md-4">
+            <h2 class="text-center">Desserts</h2>
+            <div id="carouselExampleControlss" class="carousel carousel-dark slide" data-bs-ride="carousel"
+                 data-bs-interval="5000" class="border border-dark">
+                <div class="carousel-inner shadow-sm rounded shadow-lg col-sm-12 col-md-6 col-lg-4">
                     {% for recette in recet %}
                         {% if loop.first %}
                             <div class="carousel-item active border-dark">
-                                <div class=" width-auto p-auto justify-content-center">
-                                    <div class="photo">
-                                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
-                                    </div>
-                                    <div class="cont-card">
-                                        <h3>{{ recette.title }}</h3>
-                                        <ul>
-                                            {% for composition in compositions %}
-                                                {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                        <div>
-                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
-                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
-                                               class="btn btn-primary">Voir la recette</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% include ("cards.html.twig") %}
                             </div>
                         {% else %}
                             <div class="carousel-item">
-                                <div class="width-auto p-auto justify-content-center ">
-                                    <div class="photo">
-                                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette.slug }}">
-                                    </div>
-                                    <div class="cont-card">
-                                        <h3>{{ recette.title }}</h3>
-                                        <ul>
-                                            {% for composition in compositions %}
-                                                {% if recette.id == composition.recette.id %}
-                                                    <li>{{ composition.poids }} grammes de {{ composition.ingredient.name|lower }} </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
-                                        <div>
-                                            <p>Temps de préparation : {{ recette.timePrepare }} min</p>
-                                            <p>Temps de cuisson : {{ recette.cookTime }} min</p>
-                                        </div>
-                                        <div class="d-flex justify-content-center">
-                                            <a href="{{ path('app_recette_detail', {'id': recette.id}) }}"
-                                               class="btn btn-primary">Voir la recette</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <{% include ("cards.html.twig") %}
                             </div>
                         {% endif %}      
                     {% endfor %}
