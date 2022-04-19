@@ -60,7 +60,7 @@ nav{
 
 .correction{
     padding-top: 56.4px;
-
+    
 }
 
 
@@ -101,7 +101,7 @@ nav{
             color:#F28705 ;
         }
 
-        width: 30%;
+        width: 40%;
 
     }
     
@@ -216,52 +216,51 @@ nav{
     }
 }
 
-.sub-avis {
+.sub-avis{
     background-color: #F29F05 !important;
     color: white !important;
     border: none !important;
 }
-
 //******************************************************************************
 //***************************--CARDS--********************************************
 
 
-.card-new {
+
+.card-new{
     box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.341);
-
-
+    
+    
 }
 
-.top-card {
+.top-card{
     height: 300px;
     background-color: rgb(68, 68, 68);
 
     overflow: hidden !important;
-
-    img {
+    img{
         width: 110%;
     }
 }
 
-.card-body {
-    h5 {
+.card-body{
+    h5{
         border-bottom: #F28705 solid 2px;
     }
 }
 
 
-.dot {
-
-
-    p {
-        text-overflow: ellipsis;
+.dot{
+    
+    
+    p{
+        text-overflow:ellipsis;
         white-space: nowrap;
-        overflow: hidden;
+  overflow: hidden;
     }
-
+    
 }
 
-.time-card {
+.time-card{
     display: flex;
     justify-content: space-around;
     margin: 10px auto 10px auto;
@@ -271,17 +270,17 @@ nav{
     border-radius: 5px;
     width: 90%;
     text-align: center;
-
+    
 
 }
 
-.card-fav {
+.card-fav{
 
-    a {
+     a{
         background-color: #F29F05;
         padding: 9px 15px 9px 15px;
-
-
+        
+        
         border-radius: 7px;
         color: white;
         text-decoration: none;
@@ -307,7 +306,13 @@ nav{
 }
 
 
-.liste-card {
+
+
+
+
+
+
+.liste-card{
     display: flex;
     width: 80%;
     margin: auto;
@@ -389,45 +394,45 @@ nav{
         width: 100%;
         display: flex;
         align-items: center;
-
-        #search {
+        #search{
             width: 100%;
             padding: 5px;
         }
     }
-
+    
 }
 
-.card-1 {
+.card-1{
     width: 110% !important;
 }
 
-.ingscroll {
+.ingscroll{
     overflow: scroll;
     height: 250px;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .ingscroll::-webkit-scrollbar {
     display: none;
-}
+  }
+  
 
 
 //******************************************************************************
 //***************************--SEARCBAR--********************************************
 
-.idvide {
+.idvide{
     height: 500px;
-
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 50px;
 
-    i {
-
+    i{
+        
         font-size: 400px;
         color: #F29F05;
     }
@@ -483,8 +488,9 @@ nav{
             padding : 8px;
             border-radius: 15px;
             display: flex;
-            
-
+            overflow: scroll;
+            -ms-overflow-style: none !important;  
+             scrollbar-width: none !important;  
             .tag{
                 padding: 4px;
                 
@@ -494,7 +500,7 @@ nav{
                 border-radius: 3px;
                 background-color: #F28705;
                 color: white;
-                
+                // overflow: hidden;
                 white-space:nowrap;
                 i{
                     font-size: 16px;
@@ -513,13 +519,120 @@ nav{
                 background-color: rgba(255, 255, 255, 0);
             }
         }
+        .tag-container::-webkit-scrollbar {
+            display: none;
+          }
     
     }
+
+//***************************--FOOTER--********************************************
+
+
+footer{
+
+    background-color: #F29F05 !important;
+    color: #3B3B3B;
+    h3{
+        font-size: 22px;
+        color: white;
+    }
+
+        .ct{
+            text-align: start;
+            img{
+                width: 100%;
+                border-bottom:solid 2px white ;
+            }
+            p{
+                padding-top: 5px;
+                font-weight: 700;
+            }
+
+            i{
+                color: white;
+                font-size: 20px;
+                margin-right: 3px;
+            }
+        }
+
+        .links{
+            text-align: center;
+            li{
+                list-style: none;
+            }
+            
+            a{
+                text-decoration: none;
+                color: #3B3B3B;
+                font-weight: 700;
+            }
+            a:hover{
+                border-bottom: #ffffff solid 2px;
+            }
+        }
+
+        .rs{
+            width: 30%;
+            text-align: end;
+
+            i{
+                font-size: 35px;
+                color: white;
+
+
+            }
+            i:hover{
+                color: rgb(146, 146, 146);
+            }
+
+            .fc {
+                border-right: #fff 2px solid;
+                border-left: #fff 2px solid;
+                
+            }
+
+            
+            
+            .re p{
+                width: 10%;
+                text-align: center;
+            }
+
+        }
+
+
+
+}
+
+
+
+
+
+
+
+
 
 
 //******************************************************************************
 //***************************--MEDIA QUERIES--********************************************
+@media only screen and (max-width: 1300px){
+ 
+    .h-home{
 
+        .tagline{
+            width: 50%;
+        }
+
+    }
+
+    .cont_parent{
+        width: 80%;
+        .test-container{
+            margin: 20px;
+            
+        }
+    }
+}
 
 @media only screen and (max-width: 992px){
     .liste-card{
@@ -541,35 +654,65 @@ nav{
         
     
     }
+    .h-home{
 
-}
-
-@media only screen and (max-width: 768px) {
-    .liste-card {
-        display: flex;
-        flex-wrap: wrap;
-
-    }
-
-    .cards {
-        width: calc(90% / 2);
-
-    }
-    .compteur {
-        width: 35%;
-    }
-
-    .photo-recette {
-        width: 80%;
-        margin: 8px auto 18px auto;
-        height: 300px;
-        border-radius: 8px;
-
-        img {
-            width: 150%;
+        .tagline{
+            width: 80%;
         }
 
     }
+
+    .cont_parent{
+        width: 80%;
+        .test-container{
+            margin: 15px;
+            
+        }
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .liste-card{
+        display: flex;
+        flex-wrap: wrap;
+    
+    }
+
+    .cards{
+        width: calc(90%/2);
+
+    }
+    .compteur{
+        width: 35%;
+    }
+
+    .photo-recette{
+        width: 80%;
+        margin:8px auto 18px auto;
+        height: 300px;
+        border-radius: 8px;
+        img{
+            width: 150%;
+        }
+
+        .h-home{
+
+            .tagline{
+                width: 100%;
+            }
+    
+        }
+    
+    }
+
+    .cont_parent{
+        width: 90%;
+        .test-container{
+            margin: 10px;
+            
+        }
+    }
+
 }
 
 
@@ -577,18 +720,29 @@ nav{
     .liste-card{
         display: block;
 
-
+    
     }
 
-    .cards {
+    .cards{
         width: 100%;
 
     }
 
-    .compteur {
+    .compteur{
         width: 50%;
     }
 
+    .h-home{
+        h2{
+            color: #F28705 !important;
+            .c-word{
+                color: white !important;
+            }
+        }
+        .tagline{
+            width: 100%;
+        }
 
+    }
 }
 

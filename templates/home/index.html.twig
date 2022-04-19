@@ -25,18 +25,28 @@
         </div>
     </header>
 
-    <div class="container d-flex justify-content-between">
-        <div class="col-md-4">
-            <h2 class="text-center">Entrées</h2>
-            <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel"
-                 data-bs-interval="5000" class="">
-                <div class="carousel-inner shadow-sm rounded shadow-lg col-sm-12 col-md-6 col-lg-4">
-                    {% for recette in recettes %}
+
+
+
+
+
+
+
+
+
+
+<div class="container d-flex justify-content-between">
+<div class='row'>
+    <div class="col-sd-12 col-md-6 col-lg-4">
+    <h2 class="text-center">Entrées</h2>
+        <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="">
+            <div class="carousel-inner shadow-sm rounded shadow-lg col-sm-12 col-md-6 col-lg-4">
+                {% for recette in recettes %}
 					{% if recette.category.id == 1 %}
                         {% if loop.first %}
-                            <div class="carousel-item active border-dark">
-                                {% include ("cards.html.twig") %}
-                            </div>
+                        <div class="carousel-item active border-dark">
+                            {% include ("cards.html.twig") %}
+                        </div>
                         {% else %}
                             <div class="carousel-item">
                                 {% include ("cards.html.twig") %}
@@ -57,10 +67,9 @@
             </div>
         </div>
 
-        <div class="col-md-4 mx-3">
-            <h2 class="text-center">Plats</h2>
-            <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel"
-                 data-bs-interval="5000" class="border border-dark">
+        <div class="col-sd-12 col-md-6 col-lg-4">
+        <h2 class="text-center">Plats</h2>
+            <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
                 <div class="carousel-inner shadow-sm rounded shadow-lg col-sm-12 col-md-6 col-lg-4">
                     {% for recette in recs %}
                         {% if loop.first %}
@@ -87,10 +96,9 @@
             </div>
         </div>
 
-        <div class="col-md-4">
-            <h2 class="text-center">Desserts</h2>
-            <div id="carouselExampleControlss" class="carousel carousel-dark slide" data-bs-ride="carousel"
-                 data-bs-interval="5000" class="border border-dark">
+        <div class="col-sd-12 col-md-6 col-lg-4">
+        <h2 class="text-center">Desserts</h2>
+            <div id="carouselExampleControlss" class="carousel carousel-dark slide" data-bs-ride="carousel" data-bs-interval="5000" class="border border-dark">
                 <div class="carousel-inner shadow-sm rounded shadow-lg col-sm-12 col-md-6 col-lg-4">
                     {% for recette in recet %}
                         {% if loop.first %}
@@ -104,10 +112,10 @@
                         {% endif %}      
                     {% endfor %}
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlss"
+                <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleControlss"
                         data-bs-slide="prev">
-                    <span class="fa-solid fa-angle-left" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
+                    <span class=" fa-solid fa-angle-left" aria-hidden="true"></span>
+                    <span class=" visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlss"
                         data-bs-slide="next">
@@ -117,6 +125,32 @@
             </div>
         </div>
 	</div>
+
+</div>
+
+
+
+{% set count = 1 %}
+            <div class ='container row mx-auto'>
+            <h2 class='my-5'>Vos dernières recettes favorites</h2>
+                {% if is_granted('ROLE_USER') %}
+
+                    {% for recette in recettes %}
+                        {% if recette in app.user.favoris and count <= 3  %}
+                            {% set count = count + 1 %}
+                            <div class='col-sd-12 col-md-6 col-lg-4'>
+                            <div class='item'>
+                            {% include ("cards-3.html.twig") %}
+                            </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+{% set count = 0 %}
+
+
 
 
 <div class="container mt-5">
