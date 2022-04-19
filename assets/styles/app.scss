@@ -131,9 +131,89 @@ nav{
 
     
 }
+//******************************************************************************
+//***************************--page recette--********************************************
+.recette-cont{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.341);
+}
+.photo-recette{
+    width: 80%;
+    margin:15px auto 15px auto;
+    
+    overflow: hidden;
+    height: 300px;
+    border-radius: 8px;
+    img{
+        width: 100%;
+    }
+
+}
+
+.ingimg{
+    
+    font-weight: 700;
+    color: #3B3B3B;
+    .ingimgr{
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.341);
+        width: 40%;
+        height: 75px;
+        margin: auto;
+        overflow: hidden;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 60%;
+            
+            
+        }
+    }
+    
+}
+
+.compteur{
+    color: #3B3B3B;
+    background-color: #e0e0e0;
+    font-weight: 900;
+    padding: 15px;
+    width: 20%;
+    border-radius: 5px;
+    margin: 25px 0 25px 40px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: center;
+
+    
+    i{
+        font-size: 20px;
+        font-weight: bolder;
+        color: #F28705;
+    }
+    i:hover{
+        color: #9b5806;
+        cursor: pointer;
+        
+    }
 
 
 
+}
+
+.prep{
+    width: 80%;
+    box-shadow: inset 3px 2px 5px rgba(0, 0, 0, 0.185);
+    padding: 15px;
+    border-radius: 5px;
+    margin: 15px auto 15px auto;
+}
+
+.sub-avis{
+    background-color: #F28705 !important;
+    color: white !important;
+}
 //******************************************************************************
 //***************************--CARDS--********************************************
 
@@ -227,6 +307,8 @@ nav{
     }
     
 }
+
+
 
 //******************************************************************************
 //***************************--SEARCBAR--********************************************
