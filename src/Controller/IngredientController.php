@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Ingredient;
 use App\Repository\IngredientRepository;
+use App\Repository\RecetteRepository;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
