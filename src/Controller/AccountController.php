@@ -3,18 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\EditInfoFormType;
 use App\Entity\Recette;
-use App\Repository\CompositionRepository;
-use App\Repository\IngredientRepository;
-use App\Repository\RecetteRepository;
+use App\Entity\Ingredient;
+use App\Form\EditInfoFormType;
 use App\Repository\UserRepository;
+use App\Repository\RecetteRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CompositionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AccountController extends AbstractController
 {

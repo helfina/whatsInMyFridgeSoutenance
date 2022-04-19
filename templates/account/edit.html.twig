@@ -2,11 +2,15 @@
 {% block title %}Modifier{% endblock %}
 
 {% block body %}
-    <h1>Modifier mon mot de passe</h1>
-    <a href="{{ path('app_account') }}">Retourner a mon compte</a><br>
-
-    {{ form(form) }}
+    <div class="container">
+        <h1>Modifier mon mot de passe</h1>
+    
+        <a href="{{ path('app_account') }}">Retourner a mon compte</a><br>
+        
+        {{ form(form) }}
+        
     <hr>
+    </div>
 {% endblock %}
 
 

@@ -65,11 +65,14 @@
                                                 <div class="mt-2">
                                                     <a class="btn btn-primary" href="{{path('app_recette_detail', {'id': recette.id})}}">Voir le détail</a>
                                                     {% if app.user %}
-                                                        {% for favori in favoris %}
-                                                            {% if favori.id == recette.id %}
+                                                            {% if recette in app.user.favoris %}
                                                                 <a href="{{path("app_account_favoris", {"id": recette.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
-                                                            {% endif %}
-                                                        {% endfor %}
+
+                                                            {% else %}
+                                                        
+                                                                <a href="{{path("app_account_favoris", {"id": recette.id})}}"><span class="iconify" data-icon="bi:heart"></span></a>
+                                                        {% endif %}
+                                                       
                                                     {% endif %}   
                                                 </div>
                                             </div>
