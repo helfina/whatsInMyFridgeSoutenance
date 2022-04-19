@@ -224,58 +224,60 @@ $(function() {
 
         
     }
-    let header = document.getElementsByTagName('header')
+    
 
-        header.addEventListener('click', (e) => {
+    document.addEventListener('click', (e) => {
+    
+    if (e.target.tagName === 'I') {
+        const tagLabel = e.target.getAttribute('data-item');
+        
+            const index = tags.indexOf(tagLabel);
+        tags = [...tags.slice(0, index), ...tags.slice(index+1)];
+        addTags();
+        
+            
+    }
+    })
 
-            if (e.target.tagName === 'I') {
-                const tagLabel = e.target.getAttribute('data-item');
-
-                const index = tags.indexOf(tagLabel);
-                tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
-                addTags();
-
-
-            }
-        })
 
 
     }
     //--------------------GRAMMAGE INGREDIENT
-    if (href) {
+    if(href){
 
         var poid = document.querySelectorAll('.poid');
         var poids = document.querySelectorAll('.poids');
-
+        
         let nbp = document.querySelector('#nb-p');
         let btnp = document.querySelector('#bt-p');
         let btnm = document.querySelector('#bt-m');
         let a = nbp.textContent
-
+        
         let pl = poid.length
+        
 
-
-        $('#btn-p').on('click', function () {
+        
+        $('#btn-p').on('click', function(){
             a++
             nbp.textContent = a
-
-            for (let i = 0; i < pl; i++) {
-                poid[i].textContent = poids[i].textContent * a
+            
+            for(let i=0 ; i < pl ; i++){ 
+                poid[i].textContent  =  poids[i].textContent * a
             }
-
+            
         })
 
 
-        $('#btn-m').on('click', function () {
+        $('#btn-m').on('click', function(){
 
-            if (a > 1) {
+            if(a > 1){
                 a--
                 nbp.textContent = a
-                for (let i = 0; i < pl; i++) {
-                    poid[i].textContent = poids[i].textContent * a
+                for(let i=0 ; i < pl ; i++){ 
+                    poid[i].textContent  =  poids[i].textContent * a
                 }
             }
-
+            
         })
 
     }
