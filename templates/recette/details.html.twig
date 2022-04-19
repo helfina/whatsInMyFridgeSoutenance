@@ -1,22 +1,46 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 	
-<div class="cards p-0 justify-content-between ">
+
+
+
+<div class='container m-auto recette-cont mt-5 p-3'>
 
 {% for recette in recettes %}
 
 
 		{% if id == recette.id %}
 
-		
+		<h1 class="text-center">{{recette.title}}</h1>
 			
-					<div class="photo">
+					<div  class="photo-recette">
 						<img src="{{asset('img/' ~ recette.photo)}}" alt="{{recette.slug}}">
 					</div>
-					<div class="cont-card">
-						<h3>{{recette.title}}</h3>
-						<p>{{recette.prepare}}</p>
 
+					<div class='compteur'>
+					<i id='btn-m' class="fa-solid fa-minus"></i>  <span><span  id='nb-p'>1</span> personnes </span> <i  id='btn-p' class="fa-solid fa-plus"></i>
+					</div>
+					<div class='row'>
+					{% for compo in compos %}
+            		{% if id == compo.recette.id %}
+                
+						<div class='ingimg col-3 text-center'>
+							<div class='ingimgr'>
+								<img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> 
+							</div>
+							<span class="poids" style='display: none;' >{{ compo.poids }}</span>
+							<p><span class="poid" >{{ compo.poids }}</span> grammes
+							 
+							de {{ compo.ingredient.name|lower }} </p> 
+						</div>
+					
+            		{% endif %}
+            		{% endfor %}
+					</div>
+					<div >
+						<div class="prep">
+						<p>{{recette.prepare}}</p>
+						</div>
 						<div class="time">
 							<p>
 								Temps de préparation :
@@ -28,7 +52,7 @@
 						</div>
 
                         <div>
-                            <h2>Avis</h2>
+                            
                             <h3>Ajouter un avis</h3>
                             {{form(avisForm)}}
                         </div>
@@ -46,5 +70,5 @@
         {% endif %}
 {% endfor %}
 
-</div> 
+</div>
 {% endblock %}

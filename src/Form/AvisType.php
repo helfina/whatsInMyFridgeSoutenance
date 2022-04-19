@@ -20,7 +20,11 @@ class AvisType extends AbstractType
                     'class' => 'form-control',
                 ]
             ])
-            ->add('envoyer', SubmitType::class)
+            ->add('envoyer', SubmitType::class,[
+                'attr' => [
+                    'class' => 'sub-avis',
+                ]
+            ])
             ;
     }
 

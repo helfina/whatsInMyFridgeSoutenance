@@ -7,6 +7,9 @@ use App\Form\AvisType;
 use App\Entity\Recette;
 use App\Form\RecetteType;
 use App\Repository\RecetteRepository;
+use App\Controller\CompositionController;
+use App\Repository\CompositionRepository;
+use App\Repository\IngredientRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +34,7 @@ class RecetteController extends AbstractController
 
     // Partie avis
     #[Route('/recette/{id}/avis', name: 'app_recette_detail')]
-    public function avis(RecetteRepository $rr, int $id, Request $request, ManagerRegistry $doctrine): Response
+    public function avis(RecetteRepository $rr,CompositionRepository $cr,IngredientRepository $ir,  int $id, Request $request, ManagerRegistry $doctrine): Response
     {
         $entityManager = $doctrine->getManager();
 
@@ -59,7 +62,9 @@ class RecetteController extends AbstractController
             'controller_name' => 'RecetteController',
             'recettes' => $rr->findAll(),
             'id' => $id,
-            'avisForm' => $avisForm->createView()
+            'avisForm' => $avisForm->createView(),
+            'compos'=>$cr ->findAll(),
+            'ingredients'=>$ir ->findAll(),
         ]);
     }
 
