@@ -11,10 +11,6 @@ class AvisController extends AbstractController
     #[Route('/avis', name: 'app_avis')]
     public function index(): Response
     {
-        
-
-        return $this->render('avis/index.html.twig', [
-            'controller_name' => 'AvisController',
-        ]);
+        return $this->render('avis/index.html.twig');
     }
 }
