@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Recette;
-use App\Entity\Ingredient;
 use App\Form\EditInfoFormType;
 use App\Repository\UserRepository;
 use App\Repository\RecetteRepository;
@@ -77,24 +76,4 @@ class AccountController extends AbstractController
         
     }
 
-//     #[Route('/ingredient/{id}', name: 'app_account_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
-//     public function ingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
-//     {   
-//         $user = $this->getUser();
-//         $ingredient = $ir->find($id);
-//         $user->addIngredient($ingredient);
-//         $em->flush();
-//         return $this->redirectToRoute('app_account');
-//     }
-
-//     #[Route('/deleteingredient/{id}', name: 'app_account_delete_ingredient',  methods: 'GET', requirements: ['id' => '[0-9]+'])]
-//     public function deleteingredient(Request $request, EntityManagerInterface $em, RecetteRepository $rr, IngredientRepository $ir, Ingredient $Ingredient, UserRepository $ur, $id): Response
-//     {   
-//         $user = $this->getUser();
-//         $ingredient = $ir->find($id);
-//         $user->removeIngredient($ingredient);
-//         $em->flush();
-//         return $this->redirectToRoute("app_account");
-        
-//     }
  }
