@@ -33,8 +33,6 @@ class ContactController extends AbstractController
                 $contact->setPhoto($nomFichier);
             }
 
-            // $contact->setUser($this->getUser());
-
             $entityManager->persist($contact);
             $entityManager->flush();
 
