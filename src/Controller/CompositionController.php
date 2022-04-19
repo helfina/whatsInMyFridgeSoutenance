@@ -14,9 +14,7 @@ class CompositionController extends AbstractController
     public function index(CompositionRepository $cr, RecetteRepository $rr): Response
     {
 
-
         return $this->render('composition/index.html.twig', [
-            'controller_name' => 'CompositionController',
             'compositions' => $cr->findAll(),
             'recettes' => $rr->findAll()                   
         ]);

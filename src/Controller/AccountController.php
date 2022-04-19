@@ -36,14 +36,12 @@ class AccountController extends AbstractController
     }
 
 
-
     #[Route('/compte/{id}/edit', name: 'app_account_edit', requirements: ['id' => '[0-9]+'], methods: ['GET', 'POST'])]
     public function edit(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHashes, EntityManagerInterface $manager , User $user): Response
 
     {
         $form = $this->createForm(EditInfoFormType::class, $user);
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
             $email = $form->get('email')->getData();
