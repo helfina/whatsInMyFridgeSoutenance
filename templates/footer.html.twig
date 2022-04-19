@@ -1,25 +1,42 @@
-<footer style="height:250px; background-color: #F29F05" class="d-flex  pt-3">
+<footer class="d-flex  pt-3">
     <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-3 item">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="{{ path('app_recette') }}">Recettes</a></li>
-                        <li><a href="{{ path('app_composition') }}">Composition</a></li>
-                        <li><a href="{{ path('app_ingredient') }}">Ingrédients</a></li>
-                    </ul>
+            <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-sm-12 col-md-6 col-lg-4 ct text-center text-md-start">
+                   <img src="{{ asset('img/' ~ 'wif.png') }}" alt="what's in my fridge"></img>
+                   <p><i class="fa-solid fa-building"></i> 9 Rue Geoffroy l'Asnier, 75004 Paris </p>
+                   <p><i class="fa-solid fa-phone"></i> 01 42 63 50 11</p>
+                   <p><i class="fa-solid fa-envelope"></i> Contact@whatsinmyfridge.com</p>
+                
                 </div>
-                <div class="col-sm-6 col-md-3 item">
-                    <h3>A propos</h3>
-                    <ul>
-                        <li><a href="{{ path('app_contact') }}">Contact</a></li>
-                        <li><a href="{{ path('app_mention_legal') }}">Mention Légal</a></li>
-                    </ul>
+
+                <div class="col-sm-12 col-md-6 col-lg-4 links row text-center text-md-center">
+                    <div class=" item col-6">
+                        <h3 class=".text-white">Services</h3>
+                        <ul class='p-0'>
+                            <li><a href="{{ path('app_recette') }}">Recettes</a></li>
+                            <li><a href="{{ path('app_composition') }}">Composition</a></li>
+                            <li><a href="{{ path('app_ingredient') }}">Ingrédients</a></li>
+                        </ul>
+                    </div>
+                
+                    <div class="col-6">
+                        <h3 class=".text-white">A propos</h3>
+                        <ul class='p-0'>
+                            <li><a href="{{ path('app_contact') }}">Contact</a></li>
+                            <li><a href="{{ path('app_mention_legal') }}">Mention Légal</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-6 item text">
-                    <h3>WhatsInMyFridge</h3>
-                    <p>"Toute recette requiert un ingrédient que vous n'avez pas dans votre
-                    cuisine" <br> C'est faux !</p>
+                <div class="col-sm-12 col-md-12 col-lg-4  item text rs text-center text-md-end mx-auto">
+                    <h3 class=".text-white">Suivez nous sur les réseaux !</h3>
+                    
+                    <div class="row re">
+                        <p class="col "><i class="fa-brands fa-instagram"></i></p>
+                        <p class="col fc"><i class="fa-brands fa-facebook-f"></i></p>
+                        <p class="col "><i class="fa-brands fa-twitter"></i></p>
+                    </div>
+                    
+
                 </div>
             <p style="text-align:center;">WhatsInMyFridge © 2022</p>
         </div>
