@@ -18,11 +18,16 @@ class IngredientController extends AbstractController
     {
         $a = [0,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
         $user = $this->getUser();
-        $favori = $user->getIngredient();
+        if( $user ){
+            $favori = $user->getIngredient();
+            return $this->render('ingredient/index.html.twig', [
+                'ingredients' => $ir->findBy( array(), array('name' => 'ASC')),
+                'favoris' => $favori,
+                'alpha' => $a
+            ]);
+        }
         return $this->render('ingredient/index.html.twig', [
-            'controller_name' => 'IngredientController',
             'ingredients' => $ir->findBy( array(), array('name' => 'ASC')),
-            'favoris' => $favori,
             'alpha' => $a
         ]);
     }
