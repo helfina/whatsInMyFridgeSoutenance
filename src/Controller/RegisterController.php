@@ -25,12 +25,12 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // tu inject dans l'objet user toutes le données que tu recupere dans le formulaire
             $user = $form->getData();
-            dump($user);
+            //dump($user);
 
             // hash du mdp
             $password = $passwordHashes->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
-            dump($password);
+            //dump($password);
 
             // enregistrement en bdd
             $manager->persist($user); // je prepare et je fige la donner pour la creation de l'entity

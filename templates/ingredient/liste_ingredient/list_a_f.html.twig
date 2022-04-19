@@ -36,7 +36,9 @@
                                     <p><u>Produit à consommer de préférence :</u></p>
                                     <p>{{ ingredient.saison|replace({'_':' '}) }}.</p>
                                 </div>
-
+                                <div>
+							        <a href="{{path("app_account_ingredient", {"id": ingredient.id})}}"><span class="iconify" data-icon="bi:heart"></span></a>
+						        </div>
                                 {% endif %}
                             {% endfor %}
                         </div>

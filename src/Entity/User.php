@@ -56,12 +56,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Avis::class, orphanRemoval: true)]
     private $avis;
 
+    #[ORM\ManyToMany(targetEntity: Ingredient::class, inversedBy: 'users')]
+    private $ingredient;
+
 
     public function __construct()
     {
         $this->favoris = new ArrayCollection();
         $this->recettes = new ArrayCollection();
         $this->avis = new ArrayCollection();
+        $this->ingredient = new ArrayCollection();
     }
 
 
@@ -306,5 +310,29 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // TODO: Implement __toString() method.
         return $this->pseudo;
+    }
+
+    /**
+     * @return Collection<int, Ingredient>
+     */
+    public function getIngredient(): Collection
+    {
+        return $this->ingredient;
+    }
+
+    public function addIngredient(Ingredient $ingredient): self
+    {
+        if (!$this->ingredient->contains($ingredient)) {
+            $this->ingredient[] = $ingredient;
+        }
+
+        return $this;
+    }
+
+    public function removeIngredient(Ingredient $ingredient): self
+    {
+        $this->ingredient->removeElement($ingredient);
+
+        return $this;
     }
 }

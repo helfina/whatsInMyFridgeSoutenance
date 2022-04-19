@@ -19,13 +19,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class RecetteController extends AbstractController
 {
     #[Route('/recette', name: 'app_recette')]
-    public function index(RecetteRepository $rr): Response
+    public function index(RecetteRepository $rr,): Response
     {
         $c = [0,'Entrée','Plat','Dessert'];
+        $user = $this->getUser();
+        if( $user ){
+            $favori = $user->getfavoris();
+                return $this->render('recette/index.html.twig', [
+                'recettes' => $rr->findBy( array(), array('title' => 'ASC')),
+                'category' => $c,
+                'favoris' => $favori
+                ]);
+            }
         return $this->render('recette/index.html.twig', [
-            'controller_name' => 'RecetteController',
             'recettes' => $rr->findBy( array(), array('title' => 'ASC')),
-            'category' => $c
+            'category' => $c,
         ]);
     }
 

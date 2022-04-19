@@ -46,41 +46,40 @@
                                         {% set count = count + 1 %}
 
                                     {% endif %}
-                                {% endfor %}
-                                <font size="+0">Il y a {{ count }} recette{{ count <= 1 ? "" : "s" }} concernant
-                                    les {{ c }}{{ count <= 1 ? "" : "s" }}</font>
-                            </h2>
-                            <div id="panelsStayOpen-collapse{{ i }}" class="accordion-collapse collapsing"
-                                 aria-labelledby="panelsStayOpen-heading{{ i }}">
 
-                                <div class="accordion-body">
-                                    <div class="d-flex flex-wrap">
-
-                                        <div class="text-center justify-content-center w-100 p-1 d-flex flex-wrap">
-                                            {% for recette in recettes %}
-                                                {% if i == (recette.category.id|first|lower) %}
-                                                    <div class="text-center p-3" id="respon">
-
-                                                        <h2>{{ recette }}</h2>
-                                                        <img src="{{ asset('img/' ~ recette.photo) }}"
-                                                             alt="{{ recette }}" height="80">
-                                                        <div class="mt-2">
-                                                            <a class="btn btn-primary"
-                                                               href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir
-                                                                le détail</a>
-                                                            {% if app.user %}
-                                                                <a class="btn btn-primary"
-                                                                   href="{{ path('app_account_favoris', {'id': recette.id}) }}">Favoris</a>
-                                                            {% else %}
-                                                                <a class="btn btn-primary"
-                                                                   href="{{ path('app_login') }}">Favoris</a>
+                                    {% endfor %}
+                                    <font size="+0">Il y a {{ count }} recette{{ count <= 1 ? "" : "s" }} concernant les {{ c }}{{ count <= 1 ? "" : "s" }}</font>
+                        </h2>
+                        <div id="panelsStayOpen-collapse{{ i }}" class="accordion-collapse collapsing" aria-labelledby="panelsStayOpen-heading{{ i }}">
+                    
+                            <div class="accordion-body" >
+                                <div class="d-flex flex-wrap">
+                        
+                                    <div class="text-center justify-content-center w-100 p-1 d-flex flex-wrap">
+                                        {% for recette in recettes  %}
+                                            {% if i == (recette.category.id|first|lower) %}
+                                            <div class="text-center p-3" id="respon">
+                                               
+                                                <h2>{{ recette }}</h2>
+                                                <img src="{{ asset('img/' ~ recette.photo) }}" alt="{{ recette }}" height="80">
+                                                <div class="mt-2">
+                                                    <a class="btn btn-primary" href="{{path('app_recette_detail', {'id': recette.id})}}">Voir le détail</a>
+                                                    {% if app.user %}
+                                                        {% for favori in favoris %}
+                                                            {% if favori.id == recette.id %}
+                                                                <a href="{{path("app_account_favoris", {"id": recette.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
                                                             {% endif %}
-                                                        </div>
-                                                    </div>
+                                                        {% endfor %}
+                                                        
+                                                                {# <a href="{{path("app_account_favoris", {"id": recette.id})}}"><span class="iconify" data-icon="bi:heart"></span></a> #}
+                                                        
+                                                    {% endif %}   
+                                                </div>
+                                            </div>
+                                                    
+                                            {% endif %}
+                                        {% endfor %}
 
-                                                {% endif %}
-                                            {% endfor %}
-                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -29,14 +29,18 @@
                 {% for recette in app.user.favoris %}
                     <div class="cards w-25 col-5">
                         <div class="card-header">
-                            <h5 class="card-title">{{ recette ? recette.title : "Pas de recette facorites pour l'instant" }}
-                                by {{ recette.user }}</h5>
-                            <img src="{{ asset('img/' ~ recette.photo) }}" alt="" class="img-fluid">
+                        
+                            <h5 class="card-title">{{ recette ? recette.title : "Pas de recette favorites pour l'instant" }} by {{ recette.user }}</h5>
+                            <img src="{{asset('img/' ~ recette.photo)}}" alt="" class="img-fluid">
+
                         </div>
                         <div class="card-body">
                             <p>Temps de preparations: {{ recette.timePrepare }}</p>
                             <p>Temps de cuissons: {{ recette.cookTime }}</p>
-                        </div>
+
+                            <a href="{{path("app_account_delete", {"id": recette.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
+                            </div>
+
                     </div>
                 {% endfor %}
             </div>
@@ -85,6 +89,45 @@
 {#                </div>#}
 {#            </div>#}
 {#        </article>#}
+
+{#                        {% endfor %}#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </article>#}
+
+
+                <div class="d-flex justify-content-around flex-wrap">
+                    {% for ingredient in app.user.ingredient %}                
+                        <div class="cards w-25">
+                            <div class="card-header">
+                                <h5 class="card-title">{{ ingredient ? ingredient.name : "Pas d'ingrédient favoris pour l'instant" }}</h5>
+                                <img src="{{asset('img/' ~ ingredient.photo)}}" alt="" class="img-fluid">
+                                <p><u>Produit à consommer de préférence :</u></p>
+                                    <p>{{ ingredient.saison|replace({'_':' '}) }}.</p>
+                            </div>
+                            <div class="card-body">
+                                <a href="{{path("app_account_delete_ingredient", {"id": ingredient.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
+                                </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                {# !TODO revoir l'affichage des ingredient, une jointure sql, ou un ajout de champs favoris #}
+                {# <div>
+                    <ul class="row flex-wrap">
+                        {% for recette in recettes %}
+                            {% for composition in compositions %}
+    
+                                {% if recette.id == composition.recette.id %}
+                                    <li class="col-4">{{ composition.ingredient.name|lower }}
+                                        <img src="{{asset('img/' ~ composition.ingredient.photo)}}" width="30px"  height="auto" alt="{{ composition.ingredient.name }}">
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div> #}
+
 
     </div>
 
