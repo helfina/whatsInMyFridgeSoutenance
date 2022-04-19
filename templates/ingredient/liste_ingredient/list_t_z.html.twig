@@ -30,6 +30,12 @@
                                 <div class="text-center p-2">
 
                                     <h2>{{ ingredient }}</h2>
+                                    {% if app.user %}
+                                        {% if ingredient in app.user.favoris %}
+                                            <a href="{{path("app_account_favoris_ingredient", {"id": ingredient.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
+                                        {% else %}
+                                            <a href="{{path("app_account_favoris_ingredient", {"id": ingredient.id})}}"><span class="fa-regular fa-heart" data-icon="bi:heart"></span></a>
+                                        {% endif %}
                                     <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="{{ ingredient }}" height="80">
 
                                         <a class="btn btn-primary" href="{{path('app_ingredient_detail', {'id': ingredient.id})}}">Voir le détail</a>
@@ -37,12 +43,6 @@
                                     <p>{{ ingredient.saison|replace({'_':' '}) }}.</p>
                                 </div>
                                 <div>
-							        {% if app.user %}
-                                        {% if ingredient in app.user.favoris %}
-                                            <a href="{{path("app_account_favoris_ingredient", {"id": ingredient.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
-                                        {% else %}
-                                            <a href="{{path("app_account_favoris_ingredient", {"id": ingredient.id})}}"><span class="fa-regular fa-heart" data-icon="bi:heart"></span></a>
-                                        {% endif %}
                                     {% endif %}    
 						        </div>
                                 {% endif %}
