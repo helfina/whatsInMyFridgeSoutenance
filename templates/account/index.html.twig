@@ -46,22 +46,7 @@
                                         <div class='clo-sm-12 col-md-6 col-lg-4 my-3'>
                                             {% include ("cards-3.html.twig") %}
                                         </div>
-                                        {# <div class="cards w-25 col-5">
-                                <div class="card-header p-2">
-                                    <h5 class="card-title">{{ recette.title }} by {{ recette.user }}</h5>
-                                    <img src="{{asset('img/' ~ recette.photo)}}" alt="" class="img-fluid">
-                                    <div class="p-2">
-                                        <p>Niveau de préparation : {{ recette.level }}</p>
-                                        <p>Préparation : {{ recette.prepare }}.</p>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <p>Temps de preparations: {{ recette.timePrepare }}</p>
-                                    <p>Temps de cuissons: {{ recette.cookTime }}</p>
-                                    <a class="btn btn-info" href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir le détail</a>
-                                    <a href="{{path("app_account_delete", {"id": recette.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
-                                </div>
-                            </div> #}
+
                                     {% endif %}
                                 {% endfor %}
                             </div>

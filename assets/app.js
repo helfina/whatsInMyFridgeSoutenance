@@ -54,8 +54,8 @@ $(function() {
                                                 //vérification de la value pour ne pas pouvoir la rentrer deux fois
 
                                                 if (Object.values(tags).indexOf(value) > -1) {
-                                                    // console.log('has value');
-                                                 }else{
+
+                                                }else{
                                                     entitySelector.append('<li class="list-group-item result_bar" id="es'+i+'"><span class="value">'+value+'</span></li>');
                                                     i++
                                                  }
