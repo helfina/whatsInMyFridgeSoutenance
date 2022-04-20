@@ -37,7 +37,7 @@
 
     <div class="container d-flex justify-content-between">
         <div class='row'>
-            <div class="col-sd-12 col-md-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <h2 class="text-center">Entrées</h2>
                 <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel"
                      data-bs-interval="5000" class="">
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="col-sd-12 col-md-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <h2 class="text-center">Plats</h2>
                 <div id="carouselExampleControl" class="carousel carousel-dark slide" data-bs-ride="carousel"
                      data-bs-interval="5000" class="border border-dark">
@@ -99,7 +99,7 @@
                 </div>
             </div>
 
-            <div class="col-sd-12 col-md-6 col-lg-4">
+            <div class="col-sm-12 col-md-6 col-lg-4">
                 <h2 class="text-center">Desserts</h2>
                 <div id="carouselExampleControlss" class="carousel carousel-dark slide" data-bs-ride="carousel"
                      data-bs-interval="5000" class="border border-dark">
@@ -141,7 +141,7 @@
             {% for recette in recettes %}
                 {% if recette in app.user.favoris and count <= 3 %}
                     {% set count = count + 1 %}
-                    <div class='col-sd-12 col-md-6 col-lg-4'>
+                    <div class='col-sm-12 col-md-6 col-lg-4'>
                         <div class='item'>
                             {% include ("cards-3.html.twig") %}
                         </div>
