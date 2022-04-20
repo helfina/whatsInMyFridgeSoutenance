@@ -3,88 +3,53 @@
 {% block title %}Mon compte{% endblock %}
 
 {% block body %}
+    <div class='container c-p my-5 py-5'>
+        <h3 class="text-center m-auto p-2">Salut {{ app.user.firstname }}! </h3>
 
-    <h3 class="text-center m-auto p-2">Salut {{ app.user.firstname }}! ✅</h3>
-
-    <div class="container mb-5">
-        <article class="text-center p-3">
-            <h4>Mon profil</h4>
-            <ul class="text-justify">
-                <p>{{ app.user.firstname }} {{ app.user.lastname }} surnommé {{ app.user.pseudo }}
-                    habitant {{ app.user.address }} dans la ville de {{ app.user.city }} {{ app.user.postalCode }}.</p>
-                <p>Mon adresse e-mail est {{ app.user.email }} .</p>
-            </ul>
-            <div class="text center">
-                <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info m-1 col-5">Modifier
-                    mes
-                    informations</a>
-                <a href="{{ path('app_account_password', {'id' : app.user.id}) }}" class="btn btn-info m-1 col-5">Modifier
-                    mon mot de pass</a>
-            </div>
-        </article>
-    </div>
-
-    <div class="container mb-5">
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingone">
-                    <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapseone" aria-expanded="true"
-                            aria-controls="panelsStayOpen-collapseone">
-                        <span>Mes recettes ajoutées</span>
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseone" class="accordion-collapse collapsing"
-                     aria-labelledby="panelsStayOpen-headingone">
-                    <div class="accordion-body w-100 d-flex flex-wrap">
-                        {% for recette in recettes %}
-                            {% if  recette.user == app.user.pseudo %}
-                                <div class="cards w-25 col-5">
-                                    <div class="card-header p-2">
-                                        <h5 class="card-title">{{ recette.title }} by {{ recette.user }}</h5>
-                                        <img src="{{ asset('img/' ~ recette.photo) }}" alt="" class="img-fluid">
-                                        <div class="p-2">
-                                            <p>Niveau de préparation : {{ recette.level }}</p>
-                                            <p>Préparation : {{ recette.prepare }}.</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>Temps de preparations: {{ recette.timePrepare }}</p>
-                                        <p>Temps de cuissons: {{ recette.cookTime }}</p>
-                                        <a class="btn btn-info"
-                                           href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir le
-                                            détail</a>
-                                        <a href="{{ path("app_account_delete", {"id": recette.id}) }}"><span
-                                                    class="fa fa-heart" aria-hidden="true"></span></a>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+        <div class="container mb-5">
+            <article class="text-center p-3">
+                <h4>Mon profil</h4>
+                <ul class="text-justify p-bio">
+                    <p>{{ app.user.firstname }} {{ app.user.lastname }} surnommé {{ app.user.pseudo }}
+                        habitant {{ app.user.address }} dans la ville de {{ app.user.city }} {{ app.user.postalCode }}
+                        .</p>
+                    <p>Mon E-mail est {{ app.user.email }} et mon téléphone: {{ app.user.phone }}</p>
+                </ul>
+                <div class="text center">
+                    <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}"
+                       class="btn btn-warning text-white m-1 col-5">Modifier
+                        mes
+                        informations</a>
+                    <a href="{{ path('app_account_password', {'id' : app.user.id}) }}"
+                       class="btn btn-warning text-white  m-1 col-5">Modifier
+                        mon mot de pass</a>
                 </div>
-            </div>
+            </article>
         </div>
-    </div>
 
-    <div class="container mb-5">
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingtwo">
-                    <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapsetwo" aria-expanded="true"
-                            aria-controls="panelsStayOpen-collapsetwo">
-                        <span>Mes recettes favorites</span>
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapsetwo" class="accordion-collapse collapsing"
-                     aria-labelledby="panelsStayOpen-headingtwo">
-                    <div class="accordion-body w-100 d-flex flex-wrap">
-                        {% for recette in app.user.favoris %}
-                            <div class="cards w-25 col-5">
+        <div class="container mb-5">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingone">
+                        <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseone" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseone">
+                            <span>Mes recettes ajoutées</span>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseone" class="accordion-collapse collapsing"
+                         aria-labelledby="panelsStayOpen-headingone">
+                        <div class="accordion-body w-100 d-flex flex-wrap">
+                            <div class='row'>
+                                {% for recette in recettes %}
+                                    {% if  recette.user == app.user.pseudo %}
+                                        <div class='clo-sm-12 col-md-6 col-lg-4 my-3'>
+                                            {% include ("cards-3.html.twig") %}
+                                        </div>
+                                        {# <div class="cards w-25 col-5">
                                 <div class="card-header p-2">
-                                    <h5 class="card-title">{{ recette ? recette.title : "Pas de recette favorites pour l'instant" }}
-                                        by {{ recette.user }}</h5>
-                                    <img src="{{ asset('img/' ~ recette.photo) }}" alt="" class="img-fluid">
+                                    <h5 class="card-title">{{ recette.title }} by {{ recette.user }}</h5>
+                                    <img src="{{asset('img/' ~ recette.photo)}}" alt="" class="img-fluid">
                                     <div class="p-2">
                                         <p>Niveau de préparation : {{ recette.level }}</p>
                                         <p>Préparation : {{ recette.prepare }}.</p>
@@ -93,55 +58,104 @@
                                 <div class="card-body">
                                     <p>Temps de preparations: {{ recette.timePrepare }}</p>
                                     <p>Temps de cuissons: {{ recette.cookTime }}</p>
-                                    <a class="btn btn-info" href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir
-                                        le détail</a>
-                                    <a href="{{ path("app_account_delete", {"id": recette.id}) }}"><span
-                                                class="fa fa-heart" aria-hidden="true"></span></a>
+                                    <a class="btn btn-info" href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir le détail</a>
+                                    <a href="{{path("app_account_delete", {"id": recette.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
                                 </div>
+                            </div> #}
+                                    {% endif %}
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <div class="container mb-5">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingtwo">
+                        <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapsetwo" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapsetwo">
+                            <span>Mes recettes favorites</span>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapsetwo" class="accordion-collapse collapsing"
+                         aria-labelledby="panelsStayOpen-headingtwo">
+                        <div class="accordion-body w-100 d-flex flex-wrap">
+                            <div class='row'>
+                                {% for recette in app.user.favoris %}
+
+                                    <div class='clo-sm-12 col-md-6 col-lg-4 my-3'>
+
+                                        {% include ("cards-3.html.twig") %}
 
 
-    <div class="container mb-5">
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingthree">
-                    <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapsethree" aria-expanded="true"
-                            aria-controls="panelsStayOpen-collapsethree">
-                        <span>Mes ingredients Favorites</span>
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapsethree" class="accordion-collapse collapsing"
-                     aria-labelledby="panelsStayOpen-headingthree">
-                    <div class="accordion-body w-100 d-flex flex-wrap">
-                        {% for ingredient in app.user.ingredient %}
-                            <div class="cards w-25 col-5">
+                                    </div>
+                                    {# <div class="cards w-25 col-5">
                                 <div class="card-header p-2">
-                                    <h5 class="card-title">{{ ingredient.name }}</h5>
-                                    <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="" class="img-fluid">
+                                    <h5 class="card-title">{{ recette ? recette.title : "Pas de recette favorites pour l'instant" }} by {{ recette.user }}</h5>
+                                    <img src="{{asset('img/' ~ recette.photo)}}" alt="" class="img-fluid">
                                     <div class="p-2">
-                                        <p><u>Produit à consommer de préférence :</u></p>
-                                        <p>{{ ingredient.saison|replace({'_':' '}) }}.</p>
+                                        <p>Niveau de préparation : {{ recette.level }}</p>
+                                        <p>Préparation : {{ recette.prepare }}.</p>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a href="{{ path("app_account_delete_ingredient", {"id": ingredient.id}) }}"><span
-                                                class="fa fa-heart" aria-hidden="true"></span></a>
+                                    <p>Temps de preparations: {{ recette.timePrepare }}</p>
+                                    <p>Temps de cuissons: {{ recette.cookTime }}</p>
+                                    <a class="btn btn-info" href="{{ path('app_recette_detail', {'id': recette.id}) }}">Voir le détail</a>
+                                    <a href="{{path("app_account_delete", {"id": recette.id})}}"><span class="fa fa-heart" aria-hidden="true"></span></a>
                                 </div>
+                            </div>                      #}
+                                {% endfor %}
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                        {% endfor %}
+
+        <div class="container mb-5">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingthree">
+                        <button class="btn btn-primary btn-lg w-100" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapsethree" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapsethree">
+                            <span>Mes ingredients Favorites</span>
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapsethree" class="accordion-collapse collapsing"
+                         aria-labelledby="panelsStayOpen-headingthree">
+                        <div class="accordion-body w-100 d-flex flex-wrap">
+                            {% for ingredient in app.user.ingredient %}
+                                <div class="cards w-25 col-5">
+                                    <div class="card-header p-2">
+                                        <h5 class="card-title">{{ ingredient.name }}</h5>
+                                        <img src="{{ asset('img/' ~ ingredient.photo) }}" alt="" class="img-fluid">
+                                        <div class="p-2">
+                                            <p><u>Produit à consommer de préférence :</u></p>
+                                            <p>{{ ingredient.saison|replace({'_':' '}) }}.</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <a href="{{ path("app_account_delete_ingredient", {"id": ingredient.id}) }}"><span
+                                                    class="fa fa-heart" aria-hidden="true"></span></a>
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
+    <div class='my-5 ' style='visibility : hidden;'>|</div>
+
+    </div>
 {% endblock %}
