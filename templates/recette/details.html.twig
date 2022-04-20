@@ -49,17 +49,27 @@
 						<div class='row '>
 						{% for compo in compos %}
 						{% if id == compo.recette.id %}
-					
-							<div class='ingimg col-6 col-md-3 text-center'>
-								<div class='ingimgr'>
-									<img  src="{{asset('img/' ~ compo.ingredient.photo)}}" alt=""> 
+							{% if  compo.ingredient.id == 252 %}
+								<div class='ingimg col-6 col-md-3 text-center'>
+									<div class='ingimgr'>
+										<img src="{{ asset('img/' ~ compo.ingredient.photo) }}" alt="">
+									</div>
+									<span class="poids" style='display: none;'>{{ compo.poids ? '2' }}</span>
+									<p>
+										<span class="poid">{{ compo.poids  ? '2' }}</span> {{ compo.ingredient.name|lower }}
+									</p>
 								</div>
-								<span class="poids" style='display: none;' >{{ compo.poids }}</span>
-								<p><span class="poid" >{{ compo.poids }}</span> grammes
-								
-								de {{ compo.ingredient.name|lower }} </p> 
-							</div>
-						
+							{% else %}
+								<div class='ingimg col-6 col-md-3 text-center'>
+									<div class='ingimgr'>
+										<img src="{{ asset('img/' ~ compo.ingredient.photo) }}" alt="">
+									</div>
+									<span class="poids" style='display: none;'>{{ compo.poids }}</span>
+									<p><span class="poid">{{ compo.poids }}</span> grammes
+
+										de {{ compo.ingredient.name|lower }} </p>
+								</div>
+							{% endif %}
 						{% endif %}
 						{% endfor %}
 						</div>

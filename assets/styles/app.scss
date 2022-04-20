@@ -5,15 +5,15 @@
 
 body {
     background-color: rgb(255, 255, 255);
-    font-family: lato,sans-serif;
-font-weight: 400;
-font-style: normal;
+    font-family: lato, sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
-h1, h2, h3, h4{
-    font-family: poppins,sans-serif;
-font-weight: 700;
-font-style: normal;
+h1, h2, h3, h4 {
+    font-family: poppins, sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 h3{
@@ -30,7 +30,7 @@ nav{
     top: 0;
     width: 100%;
     background-color: #F29F05 !important;
-    
+
     img{
         width: 40%;
     }
@@ -51,7 +51,7 @@ nav{
 
             }
             a:hover{
-               
+
                 border-bottom: solid white 3px;
             }
         }
@@ -60,7 +60,7 @@ nav{
 
 .correction{
     padding-top: 56.4px;
-    
+
 }
 
 
@@ -84,7 +84,7 @@ nav{
         text-align: center;
     }
     .tagline{
-        
+
         h1, h2{
             color: white;
             text-align: left;
@@ -104,7 +104,7 @@ nav{
         width: 40%;
 
     }
-    
+
     .cont{
         width: 80%;
         margin: auto;
@@ -121,8 +121,7 @@ nav{
             font-weight: 700;
             font-size: 18px;
 
-            
-            
+
         }
 
         button:hover{
@@ -130,7 +129,7 @@ nav{
         }
     }
 
-    
+
 }
 //******************************************************************************
 //***************************--page recette--********************************************
@@ -140,7 +139,7 @@ nav{
 .photo-recette{
     width: 80%;
     margin:15px auto 15px auto;
-    
+
     overflow: hidden;
     height: 300px;
     border-radius: 8px;
@@ -151,7 +150,7 @@ nav{
 }
 
 .ingimg{
-    
+
     font-weight: 700;
     color: #3B3B3B;
     .ingimgr{
@@ -166,11 +165,11 @@ nav{
         justify-content: center;
         img{
             width: 60%;
-            
-            
+
+
         }
     }
-    
+
 }
 
 .compteur{
@@ -184,10 +183,10 @@ nav{
     text-align: center;
     display: flex;
     justify-content: space-between;
-    
+
     align-items: center;
 
-    
+
     i{
         font-size: 20px;
         font-weight: bolder;
@@ -196,7 +195,7 @@ nav{
     i:hover{
         color: #9b5806;
         cursor: pointer;
-        
+
     }
 
 
@@ -228,8 +227,8 @@ nav{
 
 .card-new{
     box-shadow: 7px 5px 10px rgba(0, 0, 0, 0.341);
-    
-    
+
+
 }
 
 .top-card{
@@ -250,14 +249,14 @@ nav{
 
 
 .dot{
-    
-    
-    p{
-        text-overflow:ellipsis;
+
+
+    p {
+        text-overflow: ellipsis;
         white-space: nowrap;
-  overflow: hidden;
+        overflow: hidden;
     }
-    
+
 }
 
 .time-card{
@@ -270,17 +269,17 @@ nav{
     border-radius: 5px;
     width: 90%;
     text-align: center;
-    
+
 
 }
 
 .card-fav{
 
-     a{
+    a {
         background-color: #F29F05;
         padding: 9px 15px 9px 15px;
-        
-        
+
+
         border-radius: 7px;
         color: white;
         text-decoration: none;
@@ -294,8 +293,8 @@ nav{
     a{
         background-color: #F29F05;
         padding: 9px 15px 9px 15px;
-        
-        
+
+
         border-radius: 7px;
         color: white;
         text-decoration: none;
@@ -304,7 +303,6 @@ nav{
     }
 
 }
-
 
 
 .liste-card{
@@ -322,20 +320,25 @@ nav{
     text-align: center;
     margin-bottom: 15px;
     border: none;
- 
+
 
 }
 
-.photo{
+.photo {
     height: 300px;
     overflow: hidden;
-    
-    
+    /* position: relative; */
+
 }
 
-.photo>img{
+.photo>img {
     width: 100%;
-    
+    /* height: 100%; */
+    /* position: absolute; */
+    /* top: 50; */
+    /* left: 50; */
+    /* transform: translate(-50%, -50%); */
+
 }
 
 .ing_img{
@@ -345,6 +348,8 @@ nav{
 .cards a{
     background-color: #F29F05;
     padding: 9px 15px 9px 15px;
+
+
     border-radius: 7px;
     color: white;
     text-decoration: none;
@@ -360,7 +365,7 @@ nav{
     display: flex;
     justify-content: space-around;
     margin-bottom: 25px;
-    
+
 
 }
 
@@ -387,30 +392,31 @@ nav{
             padding: 5px;
         }
     }
-    
+
 }
 
 .card-1{
     width: 110% !important;
 }
 
-.ingscroll{
+.ingscroll {
     overflow: scroll;
     height: 250px;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }
 
 .ingscroll::-webkit-scrollbar {
     display: none;
-  }
-  
+}
+
+
 //******************************************************************************
 //***************************--SEARCBAR--********************************************
 
-.idvide{
+.idvide {
     height: 500px;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -418,7 +424,7 @@ nav{
     padding: 50px;
 
     i{
-        
+
         font-size: 400px;
         color: #F29F05;
     }
@@ -426,9 +432,9 @@ nav{
 
 .auto_search{
 
-    a{
+    a {
         text-decoration: none;
-        font-weight: 700;      
+        font-weight: 700;
     }
 
     position: absolute;
@@ -439,8 +445,8 @@ nav{
 }
 
 .active{
-    
-    
+
+
     a{
         color: white !important;
     }
@@ -462,177 +468,147 @@ nav{
 //***************************--TAGS--********************************************
 .cont_parent{
     width: 70%;
-}    
+}
 
-.test-container{
-        position: relative;
-        
-        margin: 40px;
+.test-container {
+    position: relative;
 
-        .tag-container{
-            background-color: rgba(255, 255, 255, 0.747);
-            padding : 8px;
-            border-radius: 15px;
+    margin: 40px;
+
+    .tag-container {
+        background-color: rgba(255, 255, 255, 0.747);
+        padding: 8px;
+        border-radius: 15px;
+        display: flex;
+        overflow: scroll;
+        -ms-overflow-style: none !important;
+        scrollbar-width: none !important;
+
+        .tag {
+            padding: 4px;
+
+            margin: 0px 5px 0px 5px;
             display: flex;
-            overflow: scroll;
-            -ms-overflow-style: none !important;  
-             scrollbar-width: none !important;  
-            .tag{
-                padding: 4px;
-                
-                margin: 0px 5px 0px 5px ;
-                display: flex;
-                align-items: center;
-                border-radius: 3px;
-                background-color: #F28705;
-                color: white;
-                // overflow: hidden;
-                white-space:nowrap;
-                i{
-                    font-size: 16px;
-                    margin-left: 5px;
-                    cursor: pointer;
-                    color: white;
-                }
-            }
+            align-items: center;
+            border-radius: 3px;
+            background-color: #F28705;
+            color: white;
+            // overflow: hidden;
+            white-space: nowrap;
 
-            input{
-                flex : 1;
+            i {
                 font-size: 16px;
-                padding: 5px;
-                outline: none;
-                border: 0;
-                background-color: rgba(255, 255, 255, 0);
+                margin-left: 5px;
+                cursor: pointer;
+                color: white;
             }
         }
-        .tag-container::-webkit-scrollbar {
-            display: none;
-          }
-    
+
+        input {
+            flex: 1;
+            font-size: 16px;
+            padding: 5px;
+            outline: none;
+            border: 0;
+            background-color: rgba(255, 255, 255, 0);
+        }
     }
 
-//***************************--profil--********************************************
-
-
-.p-bio{
-    color: #3B3B3B;
-    font-weight: 700;
-}
-
-.c-p{
-    box-shadow: 7px 5px 12px rgba(0, 0, 0, 0.212);
-}
-
-.container-m{
-    width: 60%;
-    margin: auto;
-}
-
-.h-m{
-    height: 800px;
-}
-
-.map-responsive {
-    overflow:hidden;
-    padding-bottom:56.25%;
-    position:relative;
-    height:0;
+    .tag-container::-webkit-scrollbar {
+        display: none;
     }
-    
-    .map-responsive iframe {
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
-    position:absolute;
-    }
+
+}
+
 //***************************--FOOTER--********************************************
 
-.h-a{
-    height: 100vh !important;
-}
-footer{
+
+footer {
 
     background-color: #F29F05 !important;
     color: #3B3B3B;
-    h3{
+
+    h3 {
         font-size: 22px;
         color: white;
     }
 
-        .ct{
-            text-align: start;
-            img{
-                width: 100%;
-                border-bottom:solid 2px white ;
-            }
-            p{
-                padding-top: 5px;
-                font-weight: 700;
-            }
+    .ct {
+        text-align: start;
 
-            i{
-                color: white;
-                font-size: 20px;
-                margin-right: 3px;
-            }
+        img {
+            width: 100%;
+            border-bottom: solid 2px white;
         }
 
-        .links{
+        p {
+            padding-top: 5px;
+            font-weight: 700;
+        }
+
+        i {
+            color: white;
+            font-size: 20px;
+            margin-right: 3px;
+        }
+    }
+
+    .links {
+        text-align: center;
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3B3B3B;
+            font-weight: 700;
+        }
+
+        a:hover {
+            border-bottom: #ffffff solid 2px;
+        }
+    }
+
+    .rs {
+        width: 30%;
+        text-align: end;
+
+        i {
+            font-size: 35px;
+            color: white;
+
+
+        }
+
+        i:hover {
+            color: rgb(146, 146, 146);
+        }
+
+        .fc {
+            border-right: #fff 2px solid;
+            border-left: #fff 2px solid;
+
+        }
+
+
+        .re p {
+            width: 10%;
             text-align: center;
-            li{
-                list-style: none;
-            }
-            
-            a{
-                text-decoration: none;
-                color: #3B3B3B;
-                font-weight: 700;
-            }
-            a:hover{
-                border-bottom: #ffffff solid 2px;
-            }
         }
 
-        .rs{
-            width: 30%;
-            text-align: end;
-
-            i{
-                font-size: 35px;
-                color: white;
-
-
-            }
-            i:hover{
-                color: rgb(146, 146, 146);
-            }
-
-            .fc {
-                border-right: #fff 2px solid;
-                border-left: #fff 2px solid;
-                
-            }
-
-            
-            
-            .re p{
-                width: 10%;
-                text-align: center;
-            }
-
-        }
+    }
 
 
 
 }
-
 
 
 //******************************************************************************
 //***************************--MEDIA QUERIES--********************************************
 @media only screen and (max-width: 1300px){
- 
+
     .h-home{
 
         .tagline{
@@ -645,14 +621,8 @@ footer{
         width: 80%;
         .test-container{
             margin: 20px;
-            
-        }
-    }
 
-    .container-m{
-        width: 70%;
-        margin: auto;
-        padding: 5px !important;
+        }
     }
 }
 
@@ -660,7 +630,7 @@ footer{
     .liste-card{
         display: flex;
         flex-wrap: wrap;
-    
+
     }
 
     .cards{
@@ -669,12 +639,10 @@ footer{
         text-align: center;
         margin-bottom: 15px;
         border: none;
-        
+
         /* height: 60vh; */
-        
-        
-        
-    
+
+
     }
     .h-home{
 
@@ -688,13 +656,8 @@ footer{
         width: 80%;
         .test-container{
             margin: 15px;
-            
-        }
-    }
 
-    .container-m{
-        width: 80%;
-        margin: auto;
+        }
     }
 }
 
@@ -702,7 +665,7 @@ footer{
     .liste-card{
         display: flex;
         flex-wrap: wrap;
-    
+
     }
 
     .cards{
@@ -727,23 +690,17 @@ footer{
             .tagline{
                 width: 100%;
             }
-    
+
         }
-    
+
     }
 
     .cont_parent{
         width: 90%;
         .test-container{
             margin: 10px;
-            
-        }
-    }
 
-    .container-m{
-        width: 95%;
-        margin: auto;
-        padding: 5px !important;
+        }
     }
 
 }
@@ -753,7 +710,7 @@ footer{
     .liste-card{
         display: block;
 
-    
+
     }
 
     .cards{
@@ -776,17 +733,6 @@ footer{
             width: 100%;
         }
 
-    }
-    .container-m{
-        width: 80%;
-        margin: auto;
-    }
-
-    .container-m{
-        width: 100%;
-        margin: 0 !important;
-        margin-top: 15px !important;
-        padding: 2px !important;
     }
 }
 
