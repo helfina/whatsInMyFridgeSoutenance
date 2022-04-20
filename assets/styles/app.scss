@@ -456,6 +456,11 @@ nav{
         width: 30%;
     }
 }
+//------avis
+
+
+
+
 
 
 //******************************************************************************
@@ -545,6 +550,30 @@ nav{
     height:100%;
     width:100%;
     position:absolute;
+    }
+    .aviscont{
+        width: 48%;
+    }
+
+    .avis{
+        border-top: #F29F05 solid 2px;
+        margin: 2px 2px 0 2px;
+        padding: 5px 2px 5px 2px;
+        background-color: #f7f7f7;
+        overflow: scroll;
+        -ms-overflow-style: none !important;  
+             scrollbar-width: none !important;
+            ; 
+        
+    }
+
+ 
+    .avis::-webkit-scrollbar {
+        display: none;
+      }
+
+    .ua{
+        color:#F29F05 ;
     }
 //***************************--FOOTER--********************************************
 
@@ -746,6 +775,10 @@ footer{
         padding: 5px !important;
     }
 
+    .aviscont{
+        width: 100%;
+    }
+    
 }
 
 
@@ -788,5 +821,7 @@ footer{
         margin-top: 15px !important;
         padding: 2px !important;
     }
+
+    
 }
 

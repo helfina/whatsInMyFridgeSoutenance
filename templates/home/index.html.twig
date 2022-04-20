@@ -155,18 +155,27 @@
 
 <div class="container mt-5">
 	<h3>Avis</h3>
-	<div>
-        {% for avis in avis | reverse %}
-            <aside>
-                <h5>{{avis.recette}}</h5>
-                <p>{{avis.content}}<br>
-                <span>Publié par {{avis.user}}</span>
-                </p>
-            </aside>
-            <hr>
-        {% endfor %}
+
+    <div>
+        <div class='row d-flex justify-content-between mx-1 p-1'>
+            {% for avis in avis | reverse %}
+                <div class='col-sm-12 col-md-6  c-p p-2 aviscont'>
+                    <h5>{{avis.recette}}</h5>
+                    <div class="avis p-3">
+                        <p>{{avis.content}}<br>
+                    </div>
+                    <span>Publié par <span class='ua'> {{avis.user}} </span></span>
+                    </p>
+                </div>
+                
+            {% endfor %}
+        </div>
+
     </div>
 </div>
+
+
+
 
     <script>
         var myCarousel = document.querySelector('#carouselExampleControls')
