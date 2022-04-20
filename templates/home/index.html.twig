@@ -136,9 +136,8 @@
 
     {% set count = 1 %}
     <div class='container row mx-auto'>
-        <h2 class='my-5'>Vos dernières recettes favorites</h2>
         {% if is_granted('ROLE_USER') %}
-
+            <h2 class='my-5'>Vos dernières recettes favorites</h2>
             {% for recette in recettes %}
                 {% if recette in app.user.favoris and count <= 3 %}
                     {% set count = count + 1 %}
