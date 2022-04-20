@@ -12,7 +12,7 @@
             <ul class="text-justify">
                 <p>{{ app.user.firstname }} {{ app.user.lastname }} surnommé {{ app.user.pseudo }}
                     habitant {{ app.user.address }} dans la ville de {{ app.user.city }} {{ app.user.postalCode }}.</p>
-                <p>Mon E-mail est {{ app.user.email }} et mon téléphone: {{ app.user.phone }}</p>
+                <p>Mon adresse e-mail est {{ app.user.email }} .</p>
             </ul>
             <div class="text center">
                 <a href="{{ path('app_account_edit', {'id' : app.user.id}) }}" class="btn btn-info m-1 col-5">Modifier
