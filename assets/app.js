@@ -54,7 +54,7 @@ $(function() {
                                                 //vérification de la value pour ne pas pouvoir la rentrer deux fois
 
                                                 if (Object.values(tags).indexOf(value) > -1) {
-                                                    console.log('has value');
+                                                    // console.log('has value');
                                                  }else{
                                                     entitySelector.append('<li class="list-group-item result_bar" id="es'+i+'"><span class="value">'+value+'</span></li>');
                                                     i++
@@ -246,8 +246,7 @@ $(function() {
     if(href){
 
         var poid = document.querySelectorAll('.poid');
-        var poids = document.querySelectorAll('.poids');
-        
+        var poids = document.querySelectorAll('.poids'); 
         let nbp = document.querySelector('#nb-p');
         let btnp = document.querySelector('#bt-p');
         let btnm = document.querySelector('#bt-m');
@@ -288,9 +287,3 @@ $(function() {
 
 
 
-
-    
-// btnp.addEventListener('click', function (){
-//     a++
-//     nbp.textContent *= 2
-// })
